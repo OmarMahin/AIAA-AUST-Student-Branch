@@ -1,14 +1,14 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import Container from "./Container"
-import { GoDotFill } from "react-icons/go"
+import { FaCircle } from "react-icons/fa"
 import List from "./List"
 import ListItem from "./ListItem"
 
 const AboutContent = () => {
 	return (
 		<Container>
-			<div className=' px-10 text-[#212121]'>
+			<div className=' lg:px-10 px-4 text-[#212121]'>
 				<p className=' font-poppins font-medium text-lg text-justify leading-9'>
 					Welcome to <span className=' font-bold'>AIAA AUST Student Branch</span>, the first
 					student branch of the{" "}
@@ -40,8 +40,8 @@ const AboutContent = () => {
 					society established in <span className=' font-bold'>1963</span> by the merger of the
 					two great aerospace societies of the day, the American Rocket Society (founded in
 					1930 as the American Interplanetary Society), and the Institute of the Aerospace
-					Sciences (established in 1933 as the Institute of the Aeronautical Sciences).
-					<span className=' font-bold'>AIAA</span> has been a proud aerospace leader for over
+					Sciences (established in 1933 as the Institute of the Aeronautical Sciences).{" "}
+					<span className=' font-bold'> AIAA</span> has been a proud aerospace leader for over
 					80 years. It is dedicated to shaping the future of aerospace, astronautics, and STEM
 					educations as well as committed to provide resources and experiences that assist in
 					an aero enthusiast's personal and professional development.
@@ -52,21 +52,29 @@ const AboutContent = () => {
 					At <span className=' font-bold'>AIAA AUST Student Branch</span> our vision is to
 					reach new heights in the Aerospace and Aviation field though{" "}
 					<span className=' font-bold'>AIAA</span> by giving:
-					<List className={"pl-10 mt-4 flex-col"}>
-						<ListItem className={"items-center gap-4"}>
-							<GoDotFill className=' text-darknest_blue' />
+					<List className={"md:pl-10 pl-2 mt-4 flex-col flex lg:gap-0 gap-3 text-[17px]"}>
+						<ListItem className={"items-center lg:gap-4 gap-4 flex"}>
+							<div>
+								<FaCircle className=' text-darknest_blue h-2 w-2' />
+							</div>
 							Cutting-edge aerospace insights
 						</ListItem>
-						<ListItem className={"items-center gap-4"}>
-							<GoDotFill className=' text-darknest_blue' />
+						<ListItem className={"items-center lg:gap-4 gap-4 flex"}>
+							<div>
+								<FaCircle className=' text-darknest_blue h-2 w-2' />
+							</div>
 							Networking opportunities with industry leaders
 						</ListItem>
-						<ListItem className={"items-center gap-4"}>
-							<GoDotFill className=' text-darknest_blue' />
+						<ListItem className={"items-center lg:gap-4 gap-4 flex"}>
+							<div>
+								<FaCircle className=' text-darknest_blue h-2 w-2' />
+							</div>
 							Career development resources
 						</ListItem>
-						<ListItem className={"items-center gap-4"}>
-							<GoDotFill className=' text-darknest_blue' />
+						<ListItem className={"items-center lg:gap-4 gap-4 flex"}>
+							<div>
+								<FaCircle className=' text-darknest_blue h-2 w-2' />
+							</div>
 							Resources for innovating and developing aerospace technologies
 						</ListItem>
 					</List>
