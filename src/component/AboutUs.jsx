@@ -7,8 +7,8 @@ const AboutUs = () => {
   return (
     <Container>
         <Title>About Us</Title>
-        <p className=' w-full text-font-color font-poppins font-medium text-[19px] leading-8'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus....</p>
-        <Button className={' mt-14 mb-8'}>Learn More</Button>
+        <p className=' w-full text-font-color font-poppins font-medium text-[20px] text-justify leading-10'>Welcome to <span className=' font-bold'>AIAA AUST Student Branch</span>, the first student branch of the American Institute of Aeronautics and Astronautics(AIAA) in Bangladesh. At Ahsanullah University of Science and Technology (AUST), we are dedicated to pushing the boundaries of aerospace through innovation, research, and professional development with <span className=' font-bold'>AIAA</span> . . .</p>
+        <Button className={' mt-14 mb-8'} link = {'/about_us'}>Learn More</Button>
     </Container>
 
   )

@@ -103,7 +103,7 @@ const Navbar = () => {
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]
                          after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
 								>
-									<Link to='/about'>About Us</Link>
+									<Link to='/about_us'>About Us</Link>
 								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]

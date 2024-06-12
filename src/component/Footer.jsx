@@ -12,6 +12,7 @@ import { IoMdMail } from "react-icons/io"
 import { FaPhoneAlt } from "react-icons/fa"
 
 const Footer = () => {
+
 	return (
 		<>
 			<div className='w-full bg-darker_blue md:px-6 lg:px-0'>
@@ -33,13 +34,13 @@ const Footer = () => {
 									<Link to={"/"}>Home</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
-									<Link to={"/"}>About Us</Link>
+									<Link to={"/about_us"}>About Us</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
-									<Link to={"/"}>About AIAA</Link>
+									<Link to={"https://www.aiaa.org/"}  target = {'_blank'}>About AIAA</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
-									<Link to={"/"}>About AUST</Link>
+									<Link to={"https://aust.edu/"}  target = {'_blank'}>About AUST</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
 									<Link to={"/"}>Our Team</Link>
