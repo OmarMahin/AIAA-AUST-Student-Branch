@@ -35,7 +35,7 @@ const Navbar = () => {
 			if (navref) {
 				if (!navref.current.contains(e.target)) {
 					setState(false)
-					if (window.scrollY != 0){
+					if (window.scrollY != 0) {
 						setNavShadow(true)
 					}
 				}
@@ -46,7 +46,7 @@ const Navbar = () => {
 			if (navref) {
 				if (!navref.current.contains(e.target)) {
 					setState(false)
-					if (window.scrollY != 0){
+					if (window.scrollY != 0) {
 						setNavShadow(true)
 					}
 				}
@@ -73,7 +73,9 @@ const Navbar = () => {
 				<div
 					className={`w-full lg:bg-darker_blue ${
 						state ? "bg-transparent" : "bg-darker_blue"
-					} top-[0%] z-50 lg:static lg:shadow-none ${navShadow ? 'shadow-xl' : 'shadow-none'} fixed duration-300`}
+					} top-[0%] z-50 lg:static lg:shadow-none ${
+						navShadow ? "shadow-xl" : "shadow-none"
+					} fixed duration-300`}
 				>
 					<Container>
 						<Flex className='lg:py-6 py-5 justify-between items-center flex'>
@@ -87,7 +89,7 @@ const Navbar = () => {
 							<List
 								className={`lg:flex-row flex-col flex gap-7 lg:relative absolute lg:bg-darker_blue bg-darker_blue lg:w-full lg:h-full h-[100vh] top-0 lg:left-0 ${
 									state ? "left-[0%]" : "left-[-100%]"
-								} lg:duration-0 duration-300 w-[70%] max-w-[300px] lg:max-w-[1000px] lg:shadow-none shadow-2xl shadow-black/70 lg:pt-0 lg:pl-0 pt-12 px-4`}
+								} lg:duration-0 duration-300 w-[70%] max-w-[300px] lg:max-w-[1000px] lg:shadow-none shadow-2xl shadow-black/70 lg:pt-0 lg:pl-0 pt-12 px-5`}
 							>
 								<IoMdCloseCircleOutline
 									className='lg:hidden absolute top-4 right-4 text-white w-6 h-6 hover:cursor-pointer z-50'
@@ -95,33 +97,63 @@ const Navbar = () => {
 								/>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
-                         after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 '
+                         after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
-									<Link to='/' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Home</Link>
+									<Link
+										to='/'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={changeState}
+									>
+										Home
+									</Link>
 								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
-									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
-									<Link to='/about' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>About Us</Link>
+									<Link
+										to='/about'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={changeState}
+									>
+										About Us
+									</Link>
 								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
-									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
-									<Link to='/team' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Our Team</Link>
+									<Link
+										to='/team'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={changeState}
+									>
+										Our Team
+									</Link>
 								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
-									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
-									<Link to='/activites' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Our Activites</Link>
+									<Link
+										to='/activites'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={changeState}
+									>
+										Our Activites
+									</Link>
 								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
-									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 '
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
-									<Link to='/' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Contact Us</Link>
+									<Link
+										to='/'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={changeState}
+									>
+										Contact Us
+									</Link>
 								</ListItem>
 							</List>
 						</Flex>
