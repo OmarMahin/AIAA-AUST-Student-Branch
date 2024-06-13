@@ -7,10 +7,10 @@ const TeamContent = () => {
 	return (
 		<div className=' mt-16'>
 			<Flex className={"flex flex-col items-center gap-3 mb-24"}>
-				<h3 className=' font-poppins font-bold text-darker_blue text-4xl'>
+				<h3 className=' font-poppins font-bold text-darker_blue lg:text-4xl text-xl'>
 					Our Remarkable Team Members
 				</h3>
-				<h3 className=' font-poppins font-bold text-darker_blue text-3xl'>
+				<h3 className=' font-poppins font-bold text-darker_blue lg:text-3xl text-xl'>
 					Executive Committee Fall 2023
 				</h3>
 			</Flex>
