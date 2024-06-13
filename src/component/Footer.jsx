@@ -34,7 +34,7 @@ const Footer = () => {
 									<Link to={"/"}>Home</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
-									<Link to={"/about_us"}>About Us</Link>
+									<Link to={"/about"}>About Us</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
 									<Link to={"https://www.aiaa.org/"}  target = {'_blank'}>About AIAA</Link>
@@ -50,7 +50,7 @@ const Footer = () => {
 						<div className='lg:w-[25%] md:w-[30%] w-[30%]'>
 							<List className={"flex-col lg:gap-6 gap-4 flex"}>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
-									<Link to={"/"}>Our Activates</Link>
+									<Link to={"/activites"}>Our Activities</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
 									<Link to={"/"}>Events</Link>

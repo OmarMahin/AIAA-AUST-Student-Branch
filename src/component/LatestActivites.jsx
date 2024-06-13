@@ -6,7 +6,7 @@ import Title from './Title'
 const LatestActivites = () => {
   return (
     <Container className={'mb-60'}>
-        <Title>Latest Activites</Title>
+        <Title>Latest Activities</Title>
         <ActivityCard></ActivityCard>
     </Container>
 
