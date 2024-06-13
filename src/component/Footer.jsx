@@ -43,7 +43,7 @@ const Footer = () => {
 									<Link to={"https://aust.edu/"}  target = {'_blank'}>About AUST</Link>
 								</ListItem>
 								<ListItem className={"font-mark font-medium text-lg text-white"}>
-									<Link to={"/"}>Our Team</Link>
+									<Link to={"/team"}>Our Team</Link>
 								</ListItem>
 							</List>
 						</div>
