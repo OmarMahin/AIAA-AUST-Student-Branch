@@ -1,6 +1,5 @@
 import React from "react"
 import AboutContent from "../component/AboutContent"
-import Breadcrumb from "../component/Breadcrumb"
 import Container from "../component/Container"
 import Title from "../component/Title"
 

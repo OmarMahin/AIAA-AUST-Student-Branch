@@ -6,7 +6,7 @@ import Title from "../component/Title"
 const Activities = () => {
 	return (
 		<Container>
-			<Title>Our Latest Activites</Title>
+			<Title>Latest Activites</Title>
 			<ActivityContent
 				image={"Activity_Cover.jpg"}
 				heading={"General Member Recruitment Fall’23"}

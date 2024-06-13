@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import Container from "./Container"
 import { FaCircle } from "react-icons/fa"
 import List from "./List"
 import ListItem from "./ListItem"

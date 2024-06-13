@@ -94,34 +94,34 @@ const Navbar = () => {
 									onClick={changeState}
 								/>
 								<ListItem
-									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
                          after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 '
 								>
-									<Link to='/'>Home</Link>
+									<Link to='/' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Home</Link>
 								</ListItem>
 								<ListItem
-									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]
-                         after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
 								>
-									<Link to='/about'>About Us</Link>
+									<Link to='/about' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>About Us</Link>
 								</ListItem>
 								<ListItem
-									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]
-                         after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
 								>
-									<Link to='/'>Our Team</Link>
+									<Link to='/' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Our Team</Link>
 								</ListItem>
 								<ListItem
-									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]
-                         after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 '
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150'
 								>
-									<Link to='/activites'>Our Activites</Link>
+									<Link to='/activites' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Our Activites</Link>
 								</ListItem>
 								<ListItem
-									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-slate-300 lg:after:bottom-[-5px]
-                         after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 '
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 '
 								>
-									<Link to='/'>Contact Us</Link>
+									<Link to='/' className="hover:font-semibold lg:hover:font-medium" onClick={changeState}>Contact Us</Link>
 								</ListItem>
 							</List>
 						</Flex>

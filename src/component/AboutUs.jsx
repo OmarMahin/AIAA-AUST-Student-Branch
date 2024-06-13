@@ -12,7 +12,7 @@ const AboutUs = () => {
         <span className=' font-bold'>AIAA</span> is the world’s largest aerospace technical
 				society established in <span className=' font-bold'>1963</span> by the merger of the two
 				great aerospace societies of the day, the American Rocket Society (founded in 1930 as
-				the American Interplanetary Society), and the Institute of the Aerospace Sciences . . 
+				the American Interplanetary Society), and the Institute of the Aerospace Sciences . . .
         </p>
         <Button className={' mt-14 mb-8'} link = {'/about'}>Learn More</Button>
     </Container>
