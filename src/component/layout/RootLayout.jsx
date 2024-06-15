@@ -5,7 +5,7 @@ import Navbar from '../Navbar'
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
         <Navbar></Navbar>
         <ScrollRestoration></ScrollRestoration>
         <Outlet></Outlet>

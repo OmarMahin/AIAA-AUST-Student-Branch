@@ -4,7 +4,6 @@ import Flex from "./Flex"
 
 const ActivityContent = ({ image, heading, date, content, videoHeading, video, videoType }) => {
 	let paras = content.split(/\r?\n|\r|\n/g)
-	console.log(paras)
 	return (
 		<div className=" mb-28">
 			<ActivityPageCover image={image}></ActivityPageCover>

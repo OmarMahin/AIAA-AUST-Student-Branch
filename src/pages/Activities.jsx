@@ -1,10 +1,13 @@
 import React from "react"
 import ActivityContent from "../component/ActivityContent"
+import AnimatePage from "../component/AnimatePage"
 import Container from "../component/Container"
 import Title from "../component/Title"
 
 const Activities = () => {
 	return (
+		<AnimatePage>
+
 		<Container>
 			<Title>Latest Activites</Title>
 			<ActivityContent
@@ -21,6 +24,7 @@ const Activities = () => {
         videoType = {'webm'}
 			></ActivityContent>
 		</Container>
+		</AnimatePage>
 	)
 }
 

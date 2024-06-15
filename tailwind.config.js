@@ -23,6 +23,9 @@ export default {
         "heavy": '900',
         'medium': '500',
         'regular': '400',
+      },
+      boxShadow: {
+        'around': '0px 0px 38px -8px rgba(0,0,0,0.75)',
       }
     },
   },

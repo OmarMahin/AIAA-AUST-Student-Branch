@@ -43,7 +43,7 @@ const Navbar = () => {
 		})
 
 		document.addEventListener("click", (e) => {
-			if (navref) {
+			if (navref != null) {
 				if (!navref.current.contains(e.target)) {
 					setState(false)
 					if (window.scrollY != 0) {
@@ -66,7 +66,7 @@ const Navbar = () => {
 		<>
 			<div
 				className={`lg:hidden w-[100vw] h-[100vh] top-0 left-0  ${
-					state ? "bg-black/50 z-40 fixed" : "bg-transparent z-0 absolute"
+					state ? "bg-black/50 z-40 fixed" : "bg-transparent z-[-1] absolute"
 				} duration-300`}
 			></div>
 			<nav ref={navref}>
@@ -89,7 +89,7 @@ const Navbar = () => {
 							<List
 								className={`lg:flex-row flex-col flex gap-7 lg:relative absolute lg:bg-darker_blue bg-darker_blue lg:w-full lg:h-full h-[100vh] top-0 lg:left-0 ${
 									state ? "left-[0%]" : "left-[-100%]"
-								} lg:duration-0 duration-300 w-[70%] max-w-[300px] lg:max-w-[1000px] lg:shadow-none shadow-2xl shadow-black/70 lg:pt-0 lg:pl-0 pt-12 px-5`}
+								} lg:duration-0 duration-500 w-[70%] max-w-[300px] lg:max-w-[1000px] lg:shadow-none shadow-2xl shadow-black/70 lg:pt-0 lg:pl-0 pt-12 px-5`}
 							>
 								<IoMdCloseCircleOutline
 									className='lg:hidden absolute top-4 right-4 text-white w-6 h-6 hover:cursor-pointer z-50'
@@ -148,7 +148,7 @@ const Navbar = () => {
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
 									<Link
-										to='/'
+										to='/contact'
 										className='hover:font-semibold lg:hover:font-medium'
 										onClick={changeState}
 									>
