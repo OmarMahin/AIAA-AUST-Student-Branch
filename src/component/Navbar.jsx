@@ -10,6 +10,7 @@ import ListItem from "./ListItem"
 import { IoMdCloseCircleOutline } from "react-icons/io"
 import { FaBars } from "react-icons/fa"
 import { useRef } from "react"
+import ScrollToTopButton from "./ScrollToTopButton"
 
 const Navbar = () => {
 	let [state, setState] = useState(false)
@@ -21,12 +22,19 @@ const Navbar = () => {
 		setNavShadow(false)
 	}
 
+	let linkChangeState = ()=>{
+		if (window.innerWidth < 1024){
+			setState(!state)
+			setNavShadow(false)
+		}
+	}
+
 	useEffect(() => {
 		function checkWindowSize() {
 			if (window.innerWidth < 1024) {
 				setState(false)
 			} else {
-				setState(true)
+				setState(false)
 			}
 		}
 		checkWindowSize()
@@ -77,6 +85,7 @@ const Navbar = () => {
 						navShadow ? "shadow-xl" : "shadow-none"
 					} fixed duration-300`}
 				>
+					<ScrollToTopButton navmenu = {state}></ScrollToTopButton>
 					<Container>
 						<Flex className='lg:py-6 py-5 justify-between items-center flex'>
 							<Image src={"images/Logo.png"} className={"lg:w-24 md:w-20 w-16"}></Image>
@@ -102,7 +111,7 @@ const Navbar = () => {
 									<Link
 										to='/'
 										className='hover:font-semibold lg:hover:font-medium'
-										onClick={changeState}
+										onClick={linkChangeState}
 									>
 										Home
 									</Link>
@@ -114,7 +123,7 @@ const Navbar = () => {
 									<Link
 										to='/about'
 										className='hover:font-semibold lg:hover:font-medium'
-										onClick={changeState}
+										onClick={linkChangeState}
 									>
 										About Us
 									</Link>
@@ -126,7 +135,7 @@ const Navbar = () => {
 									<Link
 										to='/team'
 										className='hover:font-semibold lg:hover:font-medium'
-										onClick={changeState}
+										onClick={linkChangeState}
 									>
 										Our Team
 									</Link>
@@ -138,7 +147,7 @@ const Navbar = () => {
 									<Link
 										to='/activites'
 										className='hover:font-semibold lg:hover:font-medium'
-										onClick={changeState}
+										onClick={linkChangeState}
 									>
 										Our Activites
 									</Link>
@@ -150,7 +159,7 @@ const Navbar = () => {
 									<Link
 										to='/contact'
 										className='hover:font-semibold lg:hover:font-medium'
-										onClick={changeState}
+										onClick={linkChangeState}
 									>
 										Contact Us
 									</Link>
