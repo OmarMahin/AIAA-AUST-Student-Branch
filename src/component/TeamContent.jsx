@@ -19,13 +19,13 @@ const TeamContent = () => {
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col"}>
 					<TeamMember
 						name={"Prof. Dr. Mazharul Islam"}
-						image={""}
+						image={"Prof Dr Mazharul Islam.png"}
 						position={"Faculty Advisor"}
 						deparment={"MPE"}
 					></TeamMember>
 					<TeamMember
 						name={"Md. Ishtiaque Hossain"}
-						image={""}
+						image={"Md Ishtiaque Hossain.png"}
 						position={"Faculty Co-Advisor"}
 						deparment={"MPE"}
 					></TeamMember>
@@ -35,19 +35,19 @@ const TeamContent = () => {
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col mt-24"}>
 					<TeamMember
 						name={"Anas AL Rafin"}
-						image={""}
+						image={"Anas AL Rafin.png"}
 						position={"Chair"}
 						deparment={"ME"}
 					></TeamMember>
 					<TeamMember
 						name={"Tahzeeb Rahman Alvi"}
-						image={""}
+						image={"Tahzeeb Rahman Alvi.png"}
 						position={"Vice Chair"}
 						deparment={"ME"}
 					></TeamMember>
 					<TeamMember
-						name={"Nakibul Islam    "}
-						image={""}
+						name={"Nakibul Islam"}
+						image={"Nakibul Islam.png"}
 						position={"Secretary"}
 						deparment={"ME"}
 					></TeamMember>
@@ -56,19 +56,19 @@ const TeamContent = () => {
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col"}>
 					<TeamMember
 						name={"Rifah Tasfia Kabir"}
-						image={""}
+						image={"Rifah Tasfia Kabir.png"}
 						position={"Additional Secretary"}
 						deparment={"EEE"}
 					></TeamMember>
 					<TeamMember
 						name={"Fabbiha Tahsin Prova"}
-						image={""}
+						image={"Fabbiha Tahsin Prova.png"}
 						position={"Additional Secretary"}
 						deparment={"CSE"}
 					></TeamMember>
 					<TeamMember
 						name={"Munshi Redwan Elahi"}
-						image={""}
+						image={"Munshi Redwan Elahi.png"}
 						position={"Treasurer"}
 						deparment={"ME"}
 					></TeamMember>
@@ -204,7 +204,7 @@ const TeamContent = () => {
 					></TeamMember>
 					<TeamMember
 						name={"Samin Yeaser"}
-						image={""}
+						image={"Samin Yeaser.png"}
 						position={"Technical Projects Executive"}
 						deparment={"EEE"}
 					></TeamMember>
@@ -256,7 +256,7 @@ const TeamContent = () => {
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col mt-24"}>
 					<TeamMember
 						name={"Zubayer Bin Rahman"}
-						image={""}
+						image={"Zubayer Bin Rahman.png"}
 						position={"Public Relations & Digital Marketing Executive"}
 						deparment={"EEE"}
 					></TeamMember>
