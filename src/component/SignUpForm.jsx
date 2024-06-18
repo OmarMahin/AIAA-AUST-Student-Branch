@@ -5,37 +5,57 @@ import Flex from "./Flex"
 import Image from "./Image"
 import axios from "axios"
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 const SignUpForm = () => {
-	axios.defaults.withCredentials = true
-	let [name, setName] = useState('')
-	let [email, setEmail] = useState('')
-	let [id, setId] = useState('')
-	let [password, setPassword] = useState('')
-	let [confirmPassword, setConfirmPassword] = useState('')
 
-	let sendUserData = (e)=>{
-		e.preventDefault()
-		setName("")
-		setEmail("")
-		setId("")
-		setPassword("")
-		setConfirmPassword("")
+	const navigation = useNavigate()
+
+	axios.defaults.withCredentials = true
+
+	let [name, setName] = useState("")
+	let [email, setEmail] = useState("")
+	let [id, setId] = useState("")
+	let [password, setPassword] = useState("")
+	let [confirmPassword, setConfirmPassword] = useState("")
+
+	let sendUserData = (e) => {
+		// e.preventDefault()
+		axios
+			.post("http://localhost:3000/api/v1/auth/signup", {
+				name,
+				email,
+				membershipId: id,
+				password,
+			})
+			.then((data) => {
+				setName("")
+				setEmail("")
+				setId("")
+				setPassword("")
+				setConfirmPassword("")
+				navigation("/login",{replace: false})
+				
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+			
 	}
 
-	let nameInput = (e)=>{
+	let nameInput = (e) => {
 		setName(e.target.value)
 	}
-	let emailInput = (e)=>{
+	let emailInput = (e) => {
 		setEmail(e.target.value)
 	}
-	let idInput = (e)=>{
+	let idInput = (e) => {
 		setId(e.target.value)
 	}
-	let passwordInput = (e)=>{
+	let passwordInput = (e) => {
 		setPassword(e.target.value)
 	}
-	let conformPasswordInput = (e)=>{
+	let conformPasswordInput = (e) => {
 		setConfirmPassword(e.target.value)
 	}
 
@@ -51,39 +71,41 @@ const SignUpForm = () => {
 							type={"text"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 							placeholder={"Username"}
-							value = {name}
-							onChange = {nameInput}
+							value={name}
+							onChange={nameInput}
 						></input>
 						<input
 							type={"text"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 							placeholder={"Email"}
-							value = {email}
-							onChange = {emailInput}
+							value={email}
+							onChange={emailInput}
 						></input>
 						<input
 							type={"text"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 							placeholder={"AIAA membership ID"}
-							value = {id}
-							onChange = {idInput}
+							value={id}
+							onChange={idInput}
 						></input>
 						<input
 							type={"password"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 							placeholder={"Password"}
-							value = {password}
-							onChange = {passwordInput}
+							value={password}
+							onChange={passwordInput}
 						></input>
 						<input
 							type={"password"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 							placeholder={"Confirm Password"}
-							value = {confirmPassword}
-							onChange = {conformPasswordInput}
+							value={confirmPassword}
+							onChange={conformPasswordInput}
 						></input>
 
-						<Button className={"mb-10"} onClick = {sendUserData}>Sign Up</Button>
+						<Button className={"mb-10"} onClick={sendUserData}>
+							Sign Up
+						</Button>
 					</Flex>
 				</form>
 				<Image

@@ -14,6 +14,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import Team from "./pages/Team"
+import WelcomePage from "./pages/WelcomePage"
 
 function App() {
 	const router = createBrowserRouter(
@@ -29,6 +30,7 @@ function App() {
 				<Route path='/contact' element={<ContactUs></ContactUs>}></Route>
 				<Route path='/login' element={<Login></Login>}></Route>
 				<Route path='/signup' element={<SignUp></SignUp>}></Route>
+				<Route path='/welcome' element={<WelcomePage></WelcomePage>}></Route>
 			</Route>
 		)
 	)
