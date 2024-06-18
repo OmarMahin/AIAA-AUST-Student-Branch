@@ -11,6 +11,8 @@ import About from "./pages/About"
 import Activities from "./pages/Activities"
 import ContactUs from "./pages/ContactUs"
 import Home from "./pages/Home"
+import Login from "./pages/Login"
+import SignUp from "./pages/SignUp"
 import Team from "./pages/Team"
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
 				<Route path='/activites' element={<Activities></Activities>}></Route>
 				<Route path='/team' element={<Team></Team>}></Route>
 				<Route path='/contact' element={<ContactUs></ContactUs>}></Route>
+				<Route path='/login' element={<Login></Login>}></Route>
+				<Route path='/signup' element={<SignUp></SignUp>}></Route>
 			</Route>
 		)
 	)
