@@ -9,7 +9,7 @@ const AnimatePage = ({ children }) => {
 	}
 
 	return (
-		<motion.div variants={animations} initial='initial' animate='animate' exit={"exit"} transition = {{duration: 0.7}}>
+		<motion.div variants={animations} initial='initial' animate='animate' exit={"exit"} transition = {{duration: 0.9}}>
 			{children}
 		</motion.div>
 	)

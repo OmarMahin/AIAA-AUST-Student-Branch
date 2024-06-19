@@ -61,7 +61,7 @@ const SignUpForm = () => {
 
 	return (
 		<Container>
-			<div className='lg:mt-11 lg:w-[40%] mt-6 bg-[#E7ECF1] lg:my-20 my-40 rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
+			<div className='lg:mt-11 lg:w-[40%] mt-40 bg-[#E7ECF1] lg:my-20 my-40 rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
 				<form>
 					<Flex className={"flex flex-col items-center px-6 gap-5"}>
 						<h3 className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-3xl'>
