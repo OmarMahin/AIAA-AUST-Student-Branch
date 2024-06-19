@@ -2,6 +2,7 @@ import React from "react"
 import { useEffect } from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios"
 import Container from "./Container"
 import Flex from "./Flex"
 import Image from "./Image"
@@ -14,15 +15,34 @@ import { useRef } from "react"
 import ScrollToTopButton from "./ScrollToTopButton"
 
 const Navbar = () => {
+	axios.defaults.withCredentials = true
+
 	let [state, setState] = useState(false)
 	let [accountList, setAccountList] = useState(false)
 	let [navShadow, setNavShadow] = useState(false)
+	let [userLoggedIn, setUserLoggedIn] = useState(false)
+	let [userProfileName, setUserProfileName] = useState("")
+	let [fullName, setFullName] = useState("")
 	let navref = useRef()
 	let accountref = useRef()
 
 	let changeState = () => {
 		setState(!state)
 		setNavShadow(false)
+	}
+
+	let logOutUser = ()=>{
+		console.log("Clicked")
+		axios
+			.get("http://localhost:3000/api/v1/auth/unauthorize")
+			.then((data) => {
+				console.log("Logged out")
+				window.location.pathname = '/'
+			})
+			.catch((error) => {
+				console.log("error")
+				console.log(error)
+			})
 	}
 
 	let linkChangeState = () => {
@@ -72,7 +92,27 @@ const Navbar = () => {
 				}
 			}
 		})
-	}, [])
+
+		axios
+			.get("http://localhost:3000/api/v1/auth/authorized")
+			.then((data) => {
+				if (data.data.authorized == false) {
+					setUserLoggedIn(false)
+				} else {
+					setUserLoggedIn(true)
+					let userData = data.data
+					let name = userData.name
+					let nameParts = name.split(" ")
+					let userName = nameParts[0][0] + nameParts.pop()[0]
+					setUserProfileName(userName)
+					setFullName(name)
+				}
+			})
+			.catch((error) => {
+				console.log("error")
+				console.log(error)
+			})
+	}, [userLoggedIn])
 
 	window.addEventListener("scroll", () => {
 		if (window.scrollY == 0 || state) {
@@ -183,41 +223,64 @@ const Navbar = () => {
 										className={`flex flex-col lg:flex-row font-poppins font-medium text-[15px] hover:cursor-pointer relative`}
 									>
 										<Flex
-											className={`lg:border-2 lg:border-white lg:py-1 py-2 lg:px-3 lg:rounded-3xl text-white ${
-												accountList ? "lg:text-light-blue lg:bg-white" : "lg:text-white lg:bg-none"
-											} duration-300 flex items-center w-full justify-between relative lg:after:content-none after:absolute after:w-full after:bottom-[-13px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8]`}
+											className={`lg:border-2 lg:border-white lg:py-1 py-3 duration-300 ${
+												userLoggedIn ? "lg:pr-3 lg:pl-[5px]" : "lg:px-3"
+											} lg:rounded-3xl text-white ${
+												accountList
+													? "lg:text-light-blue lg:bg-white"
+													: "lg:text-white lg:bg-none "
+											}  flex items-center w-full justify-between relative lg:after:content-none after:absolute after:w-full after:bottom-[-13px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8]`}
 											onClick={changeAccountList}
 										>
-											<h3>Account</h3>
+											<Flex className={"flex items-center gap-2"}>
+												{userLoggedIn ? (
+													<div className='w-8 h-8 bg-[#aebed4] rounded-full text-center relative'>
+														<span className='text-black font-poppins font-bold text-[14px] py-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+															{userProfileName}
+														</span>
+													</div>
+												) : (
+													""
+												)}
+												<h3>Account</h3>
+											</Flex>
 											<FaPlus className='mr-4 lg:hidden' />
 										</Flex>
 										<List
-											className={`flex flex-col mt-[13px] lg:mt-0 absolute right-0 translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-6 lg:z-20 lg:border-[1px] lg:border-[#aeb1b563]
-											${accountList ? "fixed bottom-[-20px] opacity-1" : "bottom-[0px] opacity-0"} duration-300 cursor-default`}
+											className={`flex flex-col mt-[13px] lg:mt-0 absolute right-0 translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-6 lg:px-4 lg:z-20 lg:border-[1px] lg:border-[#aeb1b563]
+											${
+												accountList
+													? "fixed bottom-[-20px] opacity-1"
+													: "bottom-[0px] opacity-0"
+											} duration-300 cursor-default`}
 										>
 											<ListItem
 												className={
 													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white"
 												}
-												onClick = {linkChangeState}
+												onClick={linkChangeState}
 											>
 												<Link to={"/signup"} onClick={changeAccountList}>
-													Sign Up
+													{userLoggedIn ? "My Account" : "Sign Up"}
 												</Link>
 											</ListItem>
 											<ListItem
 												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white"}
-												onClick = {linkChangeState}
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] lg:border-none border-b-[1px] border-[#92A2B8] text-white"
+												}
+												onClick={linkChangeState}
 											>
-												<Link to={"/login"} onClick={changeAccountList}>
-													Login
-												</Link>
+												{userLoggedIn ? (
+													<Link onClick={logOutUser}>Log Out</Link>
+												) : (
+													<Link to={"/login"} onClick={changeAccountList}>
+														Login
+													</Link>
+												)}
 											</ListItem>
 										</List>
 									</ListItem>
 								</div>
-								
 							</List>
 						</Flex>
 					</Container>

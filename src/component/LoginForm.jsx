@@ -5,12 +5,15 @@ import Flex from "./Flex"
 import Image from "./Image"
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const LoginForm = () => {
 	axios.defaults.withCredentials = true
 
 	let [email, setEmail] = useState("")
 	let [password, setPassword] = useState("")
+
+	let navigation = useNavigate()
 
 	let sendUserData = (e) => {
 		// e.preventDefault()
@@ -23,7 +26,7 @@ const LoginForm = () => {
 			.then((data) => {
 				setEmail("")
 				setPassword("")
-				navigation("/",{replace: false})
+				window.location.pathname = '/'
 				// console.log(data)
 			})
 			.catch((err) => {
