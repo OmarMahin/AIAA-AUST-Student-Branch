@@ -260,7 +260,7 @@ const Navbar = () => {
 												}
 												onClick={linkChangeState}
 											>
-												<Link to={"/signup"} onClick={changeAccountList}>
+												<Link to={userLoggedIn ? "/myaccount" : "/signup"} onClick={changeAccountList}>
 													{userLoggedIn ? "My Account" : "Sign Up"}
 												</Link>
 											</ListItem>

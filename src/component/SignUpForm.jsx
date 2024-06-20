@@ -75,7 +75,7 @@ const SignUpForm = () => {
 							onChange={nameInput}
 						></input>
 						<input
-							type={"text"}
+							type={"email"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 							placeholder={"Email"}
 							value={email}
@@ -84,7 +84,7 @@ const SignUpForm = () => {
 						<input
 							type={"text"}
 							className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
-							placeholder={"AIAA membership ID"}
+							placeholder={"AASB membership ID"}
 							value={id}
 							onChange={idInput}
 						></input>
