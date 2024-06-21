@@ -1,6 +1,8 @@
 import React from "react"
+import { useState } from "react"
 import { useRef } from "react"
 import { MdOutlineFileUpload } from "react-icons/md"
+import axios from "axios"
 import Button from "./Button"
 import Container from "./Container"
 import Flex from "./Flex"
@@ -8,7 +10,11 @@ import Title from "./Title"
 
 const UserAccount = (data) => {
 
+	axios.defaults.withCredentials = true
+
 	let imageInputRef = useRef()
+
+	let [imageData, setImageData] = useState()
 
 	let userData = data.data
 	let dataKey = []
@@ -26,6 +32,21 @@ const UserAccount = (data) => {
 		imageInputRef.current.click()
 	}
 
+	let uploadImage = (e)=>{
+		setImageData(e.target.files[0])
+		axios
+			.post("http://localhost:3000/api/v1/file/imageUpload", {
+				imageData
+			})
+			.then((data) => {
+				console.log(data)
+				
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+
 	return (
 		<Container>
 			<Title>Account Details</Title>
@@ -37,7 +58,7 @@ const UserAccount = (data) => {
 						<MdOutlineFileUpload className=' w-7 h-7' />
 						<span>Upload Image</span>
 						</Flex>
-						<input type={'file'} accept = {'.png, .jpg, .jpeg'} ref={imageInputRef} className = {'hidden'}></input>
+						<input type={'file'} accept = {'.png, .jpg, .jpeg'} ref={imageInputRef} className = {'hidden'} onChange = {uploadImage}></input>
 					</div>
 					{dataValue[1] === null ? (
 						""

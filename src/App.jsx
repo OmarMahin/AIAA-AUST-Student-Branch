@@ -9,6 +9,7 @@ import {
 import RootLayout from "./component/layout/RootLayout"
 import About from "./pages/About"
 import Activities from "./pages/Activities"
+import AdminPage from "./pages/AdminPage"
 import ContactUs from "./pages/ContactUs"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
@@ -31,6 +32,7 @@ function App() {
 				<Route path='/login' element={<Login></Login>}></Route>
 				<Route path='/signup' element={<SignUp></SignUp>}></Route>
 				<Route path='/myaccount' element={<MyAccount></MyAccount>}></Route>
+				<Route path='/admin' element={<AdminPage></AdminPage>}></Route>
 			</Route>
 		)
 	)

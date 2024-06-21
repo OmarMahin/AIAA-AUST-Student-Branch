@@ -19,6 +19,7 @@ const MyAccount = () => {
 	let [imageURL, setImageURL] = useState("")
 	let [membershipId, setMemberShipId] = useState("")
 	let [contact, setContact] = useState("")
+	let [refresh, setRefresh] = useState(false)
 
   
 	useLayoutEffect(() => {
@@ -39,13 +40,20 @@ const MyAccount = () => {
 					setMemberShipId(userData.membershipId)
 					setEmail(userData.email)
 					setImageURL(userData.profilePictureUrl)
+
+					setTimeout(()=>{
+						setRefresh(!refresh)
+					}, 300000)
 				}
 			})
 			.catch((error) => {
 				console.log("error")
 				console.log(error)
 			})
-	}, [])
+	}, [refresh])
+
+	
+
 	return (
 		<AnimatePage>
 			<UserAccount

@@ -23,6 +23,7 @@ const Navbar = () => {
 	let [userLoggedIn, setUserLoggedIn] = useState(false)
 	let [userProfileName, setUserProfileName] = useState("")
 	let [fullName, setFullName] = useState("")
+	let [refresh, setRefresh] = useState(false)
 	let navref = useRef()
 	let accountref = useRef()
 
@@ -32,12 +33,11 @@ const Navbar = () => {
 	}
 
 	let logOutUser = ()=>{
-		console.log("Clicked")
 		axios
 			.get("http://localhost:3000/api/v1/auth/unauthorize")
 			.then((data) => {
 				console.log("Logged out")
-				window.location.pathname = '/'
+				window.location.pathname = '/login'
 			})
 			.catch((error) => {
 				console.log("error")
@@ -106,13 +106,19 @@ const Navbar = () => {
 					let userName = nameParts[0][0] + nameParts.pop()[0]
 					setUserProfileName(userName)
 					setFullName(name)
+
+					setTimeout(()=>{
+						setRefresh(!refresh)
+					}, 300000)
 				}
 			})
 			.catch((error) => {
 				console.log("error")
 				console.log(error)
 			})
-	}, [userLoggedIn])
+	}, [userLoggedIn, refresh])
+
+	
 
 	window.addEventListener("scroll", () => {
 		if (window.scrollY == 0 || state) {
