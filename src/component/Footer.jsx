@@ -24,10 +24,12 @@ const Footer = () => {
 						}
 					>
 						<div className='lg:w-[25%] md:w-[80%] w-[60%]'>
+							<Link to={'/'}>
 							<Image
 								src={"images/Footer_Logo.png"}
 								className='lg:w-[70%] md:w-[40%] w-[70%]  mx-auto lg:mx-0 lg:mb-0 mb-6'
 							></Image>
+							</Link>
 						</div>
 						<div className='lg:w-[25%] md:w-[30%] w-[45%]'>
 							<List className={"flex-col lg:gap-6 gap-4 flex"}>
