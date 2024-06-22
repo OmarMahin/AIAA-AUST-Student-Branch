@@ -6,65 +6,118 @@ import TeamMember from "./TeamMember"
 const TeamContent = () => {
 	return (
 		<div className=' mt-16'>
-			<Flex className={"flex flex-col items-center gap-3 mb-24"}>
-				<h3 className=' font-poppins font-bold text-darker_blue lg:text-3xl text-2xl'>
+			<Flex className={"flex flex-col items-center gap-3 mb-12 lg:mb-16"}>
+				<h3 className=' font-poppins font-bold text-darker_blue lg:text-3xl text-2xl text-center'>
 					Executive Committee Fall 2023
 				</h3>
-				<h3 className='mt-3 font-poppins font-bold text-darker_blue lg:text-3xl text-xl'>
-					Founding Members
+				<h3 className='mt-16 font-poppins font-semibold text-white lg:text-2xl text-lg py-2 lg:px-12 px-8 bg-light-blue rounded-full '>
+					FACULTY ADVISOR
 				</h3>
+				{/* <h3 className='mt-16 font-poppins font-bold text-light-blue lg:text-2xl text-lg py-2 lg:px-12 px-8 border-b-4 border-darker_blue'>
+					FACULTY ADVISOR
+				</h3> */}
 			</Flex>
 			<Flex className={"flex flex-col items-center gap-5 mb-40"}>
 				{/* Professor */}
-				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col pb-10 mb-10 px-20 border-b-2 border-light-blue"}>
+				<Flex
+					className={
+						"flex lg:gap-20 gap-8 lg:flex-row flex-col py-10 mb-10 px-2 lg:px-20 lg:border-b-4 border-b-2 border-light-blue"
+					}
+				>
 					<TeamMember
-						name={"Prof. Dr. Mazharul Islam"}
+						name={"Dr. Mazharul Islam"}
 						image={"Prof Dr Mazharul Islam.png"}
-						position={"Faculty Advisor"}
-						deparment={"MPE "}
-						deparment2={"(Mechanical Engineering)"}
+						position={"Professor"}
+						deparment={"Dept. of MPE, AUST"}
 					></TeamMember>
 					<TeamMember
 						name={"Md. Ishtiaque Hossain"}
 						image={"Md Ishtiaque Hossain.png"}
-						position={"Faculty Co-Advisor"}
-						deparment={"MPE"}
-						deparment2={"(Mechanical Engineering)"}
+						position={"Lecturer"}
+						deparment={"Dept. of MPE, AUST"}
 					></TeamMember>
 				</Flex>
 
 				{/* Chairs */}
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col mt-24"}>
-					<TeamMember
-						name={"Tahzeeb Rahman Alvi"}
-						image={"Tahzeeb Rahman Alvi.png"}
-						position={"Vice Chair"}
-						deparment={"ME"}
-						className = {'mt-10'}
-					></TeamMember>
-					<TeamMember
-						name={"Anas AL Rafin"}
-						image={"Anas AL Rafin.png"}
-						position={"Chair"}
-						deparment={"ME"}
-					></TeamMember>
-					<TeamMember
-						name={"Munshi Redwan Elahi"}
-						image={"Munshi Redwan Elahi.png"}
-						position={"Treasurer"}
-						deparment={"ME"}
-						className = {'mt-10'}
-					></TeamMember>
-					
+					{window.innerWidth < 769 ? (
+						<>
+							<TeamMember
+								name={"Anas AL Rafin"}
+								image={"Anas AL Rafin.png"}
+								position={"Chair"}
+								deparment={"ME"}
+							></TeamMember>{" "}
+							<TeamMember
+								name={"Tahzeeb Rahman Alvi"}
+								image={"Tahzeeb Rahman Alvi.png"}
+								position={"Vice Chair"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Munshi Redwan Elahi"}
+								image={"Munshi Redwan Elahi.png"}
+								position={"Treasurer"}
+								deparment={"ME"}
+							></TeamMember>
+						</>
+					) : (
+						<>
+							<TeamMember
+								name={"Tahzeeb Rahman Alvi"}
+								image={"Tahzeeb Rahman Alvi.png"}
+								position={"Vice Chair"}
+								deparment={"ME"}
+								className={"mt-10"}
+							></TeamMember>
+							<TeamMember
+								name={"Anas AL Rafin"}
+								image={"Anas AL Rafin.png"}
+								position={"Chair"}
+								deparment={"ME"}
+							></TeamMember>{" "}
+							<TeamMember
+								name={"Munshi Redwan Elahi"}
+								image={"Munshi Redwan Elahi.png"}
+								position={"Treasurer"}
+								deparment={"ME"}
+								className={"mt-10"}
+							></TeamMember>
+						</>
+					)}
 				</Flex>
 
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col"}>
-					<TeamMember
+					{window.innerWidth < 769 ? (
+						<>
+						<TeamMember
+						name={"Nakibul Islam"}
+						image={"Nakibul Islam.png"}
+						position={"Secretary"}
+						deparment={"ME"}
+					></TeamMember>
+							<TeamMember
 						name={"Rifah Tasfia Kabir"}
 						image={"Rifah Tasfia Kabir.png"}
 						position={"Additional Secretary"}
 						deparment={"EEE"}
-						className = {'mt-10'}
+					></TeamMember>
+					
+					<TeamMember
+						name={"Fabbiha Tahsin Prova"}
+						image={"Fabbiha Tahsin Prova.png"}
+						position={"Additional Secretary"}
+						deparment={"CSE"}
+					></TeamMember>
+						</>
+					) : (
+						<>
+							<TeamMember
+						name={"Rifah Tasfia Kabir"}
+						image={"Rifah Tasfia Kabir.png"}
+						position={"Additional Secretary"}
+						deparment={"EEE"}
+						className={"mt-10"}
 					></TeamMember>
 					<TeamMember
 						name={"Nakibul Islam"}
@@ -77,59 +130,111 @@ const TeamContent = () => {
 						image={"Fabbiha Tahsin Prova.png"}
 						position={"Additional Secretary"}
 						deparment={"CSE"}
-						className = {'mt-10'}
+						className={"mt-10"}
 					></TeamMember>
+						</>
+					)}
 					
 				</Flex>
 
 				{/* Admin Team */}
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col mt-32"}>
-					
-					<TeamMember
-						name={"Yeasin Arafath Mahid"}
-						image={"Yeasin Arafath Mahid.png"}
-						position={"Administrative Operations Executive"}
-						deparment={"ME"}
-						className = {'mt-10'}
-					></TeamMember>
-					<TeamMember
-						name={"Mohtasim Ahsan Labib"}
-						image={"Mohtasim Ahsan Labib.png"}
-						position={"Administrative Operations Director"}
-						deparment={"ME"}
-					></TeamMember>
-					<TeamMember
-						name={"Jahirul Islam"}
-						image={"Jahirul Islam.png"}
-						position={"Administrative Operations Executive"}
-						deparment={"ME"}
-						className = {'mt-10'}
-					></TeamMember>
+					{window.innerWidth < 769 ? (
+						<>
+							<TeamMember
+								name={"Mohtasim Ahsan Labib"}
+								image={"Mohtasim Ahsan Labib.png"}
+								position={"Administrative Operations Director"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Yeasin Arafath Mahid"}
+								image={"Yeasin Arafath Mahid.png"}
+								position={"Administrative Operations Executive"}
+								deparment={"ME"}
+							></TeamMember>
+
+							<TeamMember
+								name={"Jahirul Islam"}
+								image={"Jahirul Islam.png"}
+								position={"Administrative Operations Executive"}
+								deparment={"ME"}
+							></TeamMember>
+						</>
+					) : (
+						<>
+							<TeamMember
+								name={"Yeasin Arafath Mahid"}
+								image={"Yeasin Arafath Mahid.png"}
+								position={"Administrative Operations Executive"}
+								deparment={"ME"}
+								className={"mt-10"}
+							></TeamMember>
+							<TeamMember
+								name={"Mohtasim Ahsan Labib"}
+								image={"Mohtasim Ahsan Labib.png"}
+								position={"Administrative Operations Director"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Jahirul Islam"}
+								image={"Jahirul Islam.png"}
+								position={"Administrative Operations Executive"}
+								deparment={"ME"}
+								className={"mt-10"}
+							></TeamMember>
+						</>
+					)}
 				</Flex>
 
 				{/* Organizing Team*/}
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col mt-32"}>
-					
-					<TeamMember
-						name={"Shahedul Alam"}
-						image={"Shahedul Alam.png"}
-						position={"Organizing Executive"}
-						deparment={"EEE"}
-						className = {'mt-10'}
-					></TeamMember>
-					<TeamMember
-						name={"Sakib Md. Minhajul Alam"}
-						image={"Sakib Md Minhajul Alam.png"}
-						position={"Organizing Director"}
-						deparment={"ME"}
-					></TeamMember>
-					<TeamMember
-						name={"Md. Zawadul Islam Rafee"}
-						image={"Md Zawadul Islam Rafee.png"}
-						position={"Organizing Executive"}
-						deparment={"EEE"}
-						className = {'mt-10'}
-					></TeamMember>
+					{window.innerWidth < 769 ? (
+						<>
+							<TeamMember
+								name={"Sakib Md. Minhajul Alam"}
+								image={"Sakib Md Minhajul Alam.png"}
+								position={"Organizing Director"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Shahedul Alam"}
+								image={"Shahedul Alam.png"}
+								position={"Organizing Executive"}
+								deparment={"EEE"}
+							></TeamMember>
+
+							<TeamMember
+								name={"Md. Zawadul Islam Rafee"}
+								image={"Md Zawadul Islam Rafee.png"}
+								position={"Organizing Executive"}
+								deparment={"EEE"}
+							></TeamMember>
+						</>
+					) : (
+						<>
+							<TeamMember
+								name={"Shahedul Alam"}
+								image={"Shahedul Alam.png"}
+								position={"Organizing Executive"}
+								deparment={"EEE"}
+								className={"mt-10"}
+							></TeamMember>
+							<TeamMember
+								name={"Sakib Md. Minhajul Alam"}
+								image={"Sakib Md Minhajul Alam.png"}
+								position={"Organizing Director"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Md. Zawadul Islam Rafee"}
+								image={"Md Zawadul Islam Rafee.png"}
+								position={"Organizing Executive"}
+								deparment={"EEE"}
+								className={"mt-10"}
+							></TeamMember>
+						</>
+					)}
 				</Flex>
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col"}>
 					<TeamMember
@@ -154,27 +259,52 @@ const TeamContent = () => {
 
 				{/* Creative Team*/}
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col mt-32"}>
-					
-					<TeamMember
-						name={"Ashiqur Islam Niloy"}
-						image={"Ashiqur Islam Niloy.png"}
-						position={"Creative Design and Media Executive"}
-						deparment={"ME"}
-						className = {'mt-10'}
-					></TeamMember>
-					<TeamMember
-						name={"Abdullah Al Mreenmay"}
-						image={"Abdullah Al Mreenmay.png"}
-						position={"Creative Design and Media Director"}
-						deparment={"ME"}
-					></TeamMember>
-					<TeamMember
-						name={"Md. Ahsanul Kabir"}
-						image={"MD AHSANUL KABIR.png"}
-						position={"Creative Design and Media Executive"}
-						deparment={"ME"}
-						className = {'mt-10'}
-					></TeamMember>
+					{window.innerWidth < 769 ? (
+						<>
+							<TeamMember
+								name={"Abdullah Al Mreenmay"}
+								image={"Abdullah Al Mreenmay.png"}
+								position={"Creative Design and Media Director"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Ashiqur Islam Niloy"}
+								image={"Ashiqur Islam Niloy.png"}
+								position={"Creative Design and Media Executive"}
+								deparment={"ME"}
+							></TeamMember>
+
+							<TeamMember
+								name={"Md. Ahsanul Kabir"}
+								image={"MD AHSANUL KABIR.png"}
+								position={"Creative Design and Media Executive"}
+								deparment={"ME"}
+							></TeamMember>
+						</>
+					) : (
+						<>
+							<TeamMember
+								name={"Ashiqur Islam Niloy"}
+								image={"Ashiqur Islam Niloy.png"}
+								position={"Creative Design and Media Executive"}
+								deparment={"ME"}
+								className={"mt-10"}
+							></TeamMember>
+							<TeamMember
+								name={"Abdullah Al Mreenmay"}
+								image={"Abdullah Al Mreenmay.png"}
+								position={"Creative Design and Media Director"}
+								deparment={"ME"}
+							></TeamMember>
+							<TeamMember
+								name={"Md. Ahsanul Kabir"}
+								image={"MD AHSANUL KABIR.png"}
+								position={"Creative Design and Media Executive"}
+								deparment={"ME"}
+								className={"mt-10"}
+							></TeamMember>
+						</>
+					)}
 				</Flex>
 				<Flex className={"flex lg:gap-20 gap-8 lg:flex-row flex-col"}>
 					<TeamMember

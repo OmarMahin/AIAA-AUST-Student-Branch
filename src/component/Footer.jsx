@@ -44,14 +44,14 @@ const Footer = () => {
 									<Link to={"https://aust.edu/"}  target = {'_blank'}>About AUST</Link>
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"/team"}>Our Team</Link>
+									<Link to={"/committee"}>Committee</Link>
 								</ListItem>
 							</List>
 						</div>
 						<div className='lg:w-[25%] md:w-[30%] w-[30%]'>
 							<List className={"flex-col lg:gap-6 gap-4 flex"}>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"/activites"}>Our Activities</Link>
+									<Link to={"/activites"}>Activities</Link>
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
 									<Link to={"/"}>Events</Link>

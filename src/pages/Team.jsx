@@ -8,7 +8,7 @@ const Team = () => {
 	return (
 		<AnimatePage>
 			<Container>
-				<Title>Team</Title>
+				<Title>Committee</Title>
 				<TeamContent></TeamContent>
 			</Container>
 		</AnimatePage>
