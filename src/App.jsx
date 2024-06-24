@@ -12,6 +12,7 @@ import Activities from "./pages/Activities"
 import AdminPage from "./pages/AdminPage"
 import ContactUs from "./pages/ContactUs"
 import Home from "./pages/Home"
+import JoinUs from "./pages/JoinUs"
 import Login from "./pages/Login"
 import MyAccount from "./pages/MyAccount"
 import SignUp from "./pages/SignUp"
@@ -28,6 +29,7 @@ function App() {
 				<Route path='/about' element={<About></About>}></Route>
 				<Route path='/activites' element={<Activities></Activities>}></Route>
 				<Route path='/committee' element={<Team></Team>}></Route>
+				<Route path='/joinus' element={<JoinUs></JoinUs>}></Route>
 				<Route path='/contact' element={<ContactUs></ContactUs>}></Route>
 				<Route path='/login' element={<Login></Login>}></Route>
 				<Route path='/signup' element={<SignUp></SignUp>}></Route>

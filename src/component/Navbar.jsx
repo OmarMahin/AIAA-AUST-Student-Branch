@@ -217,6 +217,18 @@ const Navbar = () => {
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
 									<Link
+										to='/joinus'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={linkChangeState}
+									>
+										Join Us
+									</Link>
+								</ListItem>
+								<ListItem
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
+								>
+									<Link
 										to='/contact'
 										className='hover:font-semibold lg:hover:font-medium'
 										onClick={linkChangeState}

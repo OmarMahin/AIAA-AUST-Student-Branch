@@ -60,7 +60,7 @@ const UserAccount = (data) => {
 						</Flex>
 						<input type={'file'} accept = {'.png, .jpg, .jpeg'} ref={imageInputRef} className = {'hidden'} onChange = {uploadImage}></input>
 					</div>
-					{dataValue[1] === null ? (
+					{dataValue[1] == 'N/A' ? (
 						""
 					) : (
 						<span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-poppins font-bold text-[80px]'>

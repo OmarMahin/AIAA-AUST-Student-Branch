@@ -5,16 +5,112 @@ import List from "./List"
 import ListItem from "./ListItem"
 import Button from "./Button"
 import Image from "./Image"
+import axios from "axios"
+import { MdDelete } from "react-icons/md"
+import { useEffect } from "react"
+import { useRef } from "react"
 
 const AdminPanel = () => {
+	axios.defaults.withCredentials = true
+
+	let confirmRef = useRef()
+
 	let [current, setCurrent] = useState(0)
-	let [memberData, setMemberData] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+	let [memberData, setMemberData] = useState([])
 	let [memberType, setMemberType] = useState("General")
+	let [memberSession, setMemberSession] = useState("Fall 2023")
+	let [aasbId, setAasbId] = useState("")
+	let [aiaaId, setAiaaId] = useState("")
+	let [refresh, setRefresh] = useState(false)
+	let [showConfirmMessage, setShowConfirmMessage] = useState(false)
+	let [confirmDelete, setConfirmDelete] = useState(false)
+	let [currentId, setCurrentId] = useState("")
 
 	let handleCurrentMenu = (e) => {
 		const _id = e.target.id
 		setCurrent(_id)
 	}
+
+	let handleAasbId = (e) => {
+		setAasbId(e.target.value)
+	}
+	let handleAiaaId = (e) => {
+		setAiaaId(e.target.value)
+	}
+	let handleMemberType = (e) => {
+		setMemberType(e.target.value)
+	}
+	let handleMemberSession = (e) => {
+		setMemberSession(e.target.value)
+	}
+
+	let closeConfirmMessage = () => {
+		setShowConfirmMessage(false)
+		setCurrentId("")
+	}
+
+	let handleAddMember = () => {
+		axios
+			.post("http://localhost:3000/api/v1/auth/initialSignUp", {
+				name: "N/A",
+				email: "N/A",
+				AASBmembershipId: aasbId,
+				AIAAmembershipId: aiaaId,
+				password: "N/A",
+				memberType,
+				memberSession,
+			})
+			.then((data) => {
+				setAasbId("")
+				setAiaaId("")
+				setMemberType("General")
+				setMemberSession("Fall 2023")
+				setRefresh(!refresh)
+				console.log(data)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+
+	useEffect(() => {
+		if (confirmDelete) {
+			axios
+				.delete("http://localhost:3000/api/v1/auth/deleteMember", {
+					data: {id: currentId},
+				})
+				.then((data) => {
+					console.log(data)
+					setCurrentId('')
+					setConfirmDelete(false)
+					setShowConfirmMessage(false)
+					axios
+						.get("http://localhost:3000/api/v1/auth/getAllMembers")
+						.then((data) => {
+							setMemberData(data.data)
+							console.log(data)
+						})
+						.catch((error) => {
+							console.log(error)
+						})
+					
+				})
+		}
+		else{
+
+			axios
+				.get("http://localhost:3000/api/v1/auth/getAllMembers")
+				.then((data) => {
+					setMemberData(data.data)
+					console.log(data)
+				})
+				.catch((error) => {
+					console.log(error)
+				})
+		}
+		console.log("Refresh")
+	}, [refresh, confirmDelete])
+
 	return (
 		<Container>
 			<h3 className=' text-darknest_blue text-center font-poppins font-bold text-3xl my-10'>
@@ -65,13 +161,21 @@ const AdminPanel = () => {
 								<span className='font-poppins font-medium text-lg text-darker_blue'>
 									AASB Id :
 								</span>
-								<input className='w-[60%] py-2 px-2 rounded-lg border-[2px] border-slate-500 font-poppins font-medium text-gray-800'></input>
+								<input
+									className='w-[60%] py-2 px-2 rounded-lg border-[2px] border-slate-500 font-poppins font-medium text-gray-800'
+									onChange={handleAasbId}
+									value={aasbId}
+								></input>
 							</Flex>
 							<Flex className={"gap-10 items-center justify-between"}>
 								<span className='font-poppins font-medium text-lg text-darker_blue'>
 									AIAA Id :
 								</span>
-								<input className='w-[60%] py-2 px-2 rounded-lg border-[2px] border-slate-500 font-poppins font-medium text-gray-800'></input>
+								<input
+									className='w-[60%] py-2 px-2 rounded-lg border-[2px] border-slate-500 font-poppins font-medium text-gray-800'
+									onChange={handleAiaaId}
+									value={aiaaId}
+								></input>
 							</Flex>
 							<Flex className={"gap-10 items-center justify-between"}>
 								<span className='font-poppins font-medium text-lg text-darker_blue'>
@@ -86,9 +190,8 @@ const AdminPanel = () => {
 											? "bg-green-500 border-green-500 text-black"
 											: "bg-white text-gray-800"
 									}`}
-									onChange={(e) => {
-										setMemberType(e.target.value)
-									}}
+									onChange={handleMemberType}
+									value={memberType}
 								>
 									<option selected value={"General"} className={"bg-white"}>
 										General
@@ -108,22 +211,23 @@ const AdminPanel = () => {
 								<select
 									id='memberType'
 									className={` block w-[40%] p-2.5 rounded-lg border-2 border-slate-500 font-poppins font-medium bg-white text-gray-800`}
-									onChange={(e) => {
-										setMemberType(e.target.value)
-									}}
+									onChange={handleMemberSession}
+									value={memberSession}
 								>
 									<option selected value={"Fall 2023"} className={"bg-white"}>
 										Fall 2023
 									</option>
 								</select>
 							</Flex>
-							<div className="mt-10 text-center">
-
-							<Button>Add Member</Button>
+							<div className='mt-10 text-center'>
+								<Button onClick={handleAddMember}>Add Member</Button>
 							</div>
-
 						</Flex>
-							<Image src={'images/ContactDesign.png'} alt = 'Admin Design' className={'absolute right-8 top-1/2 -translate-y-1/2'}></Image>
+						<Image
+							src={"images/ContactDesign.png"}
+							alt='Admin Design'
+							className={"absolute right-8 top-1/2 -translate-y-1/2"}
+						></Image>
 					</div>
 					<div
 						className={`px-4 pt-8 w-full top-0 left-0 ${
@@ -153,65 +257,89 @@ const AdminPanel = () => {
 							</span>
 						</Flex>
 						<div className='h-[80%] overflow-auto mt-7'>
-							<List className={"flex flex-col w-full gap-6 overflow-auto px-3 pt-1"}>
-								{memberData.map((data, index) =>
-									index % 2 == 0 ? (
-										<ListItem
-											className={
-												"px-3 bg-[#bdd8f3] py-4 rounded-lg hover:shadow-md duration-300"
-											}
-										>
-											<Flex className={"w-full justify-evenly"}>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-16 text-center '>
-													12345
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-16 text-center '>
-													12345
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-56 text-center '>
-													Dummy Dummy name
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-56 text-center '>
-													Dummy@dummy.com
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-28 text-center '>
-													Dummy
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-40 text-center'>
-													Fall 2023
-												</span>
-											</Flex>
-										</ListItem>
-									) : (
-										<ListItem className={"px-3 bg-[#d7e2ec] py-4 rounded-lg"}>
-											<Flex className={"w-full justify-evenly"}>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-16 text-center '>
-													12345
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-16 text-center '>
-													12345
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-56 text-center '>
-													Dummy Dummy name
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-56 text-center '>
-													Dummy@dummy.com
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-28 text-center '>
-													Dummy
-												</span>
-												<span className='font-poppins font-medium text-light-blue text-[15px] w-40 text-center'>
-													Fall 2023
-												</span>
-											</Flex>
-										</ListItem>
-									)
-								)}
+							<List className={"flex flex-col w-full gap-6 overflow-auto px-3 py-2"}>
+								{memberData.map((data, index) => (
+									<ListItem
+										className={`px-3 ${
+											index % 2 == 0 ? "bg-[#bdd8f3]" : "bg-[#d7e2ec]"
+										} rounded-lg hover:shadow-md duration-300 relative group `}
+									>
+										<Flex className={"w-full justify-evenly items-center "}>
+											<span className='font-poppins font-medium text-light-blue text-[14px] w-16 text-center '>
+												{data.AASBmembershipId}
+											</span>
+											<span className='font-poppins font-medium text-light-blue text-[14px] w-16 text-center '>
+												{data.AIAAmembershipId}
+											</span>
+											<span className='font-poppins font-medium text-light-blue text-[14px] w-56 text-center '>
+												{data.name}
+											</span>
+											<span className='font-poppins font-medium text-light-blue text-[14px] w-56 text-center '>
+												{data.email}
+											</span>
+											<span
+												className={`font-poppins font-medium text-light-blue text-[14px] w-28 py-[5px] my-2 text-center rounded-full ${
+													data.memberType == "Admin"
+														? "bg-red-500 text-white"
+														: data.memberType == "Executive"
+														? "bg-green-400 text-white"
+														: ""
+												}`}
+											>
+												{data.memberType}
+											</span>
+											<span className='font-poppins font-medium text-light-blue text-[14px] w-40 text-center'>
+												{data.memberSession}
+											</span>
+										</Flex>
+										<MdDelete
+											className='absolute top-1/2 right-3 -translate-y-1/2 bg-[#f4f5f7] text-red-500 rounded-full w-6 h-6 p-[3px] hover:cursor-pointer'
+											onClick={() => {
+												setShowConfirmMessage(!showConfirmMessage)
+												setCurrentId(data._id)
+												console.log(data._id)
+											}}
+										/>
+									</ListItem>
+								))}
 							</List>
 						</div>
 					</div>
 				</div>
 			</Flex>
+
+			<div
+				className={` w-[100vw] h-[100vh] fixed top-0 left-0 ${
+					showConfirmMessage ? "z-20 bg-black/40 duration-300" : "z-[-1] bg-transparent"
+				} `}
+				onClick={closeConfirmMessage}
+			>
+				<Flex
+					className={`absolute p-8 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center rounded-xl gap-10 ${
+						showConfirmMessage ? "scale-100" : "scale-0"
+					} duration-300`}
+				>
+					<span className={"font-poppins font-semibold text-darknest_blue text-xl"}>
+						Are you sure you want to delete the user data?
+					</span>
+					<Flex className={"gap-4"}>
+						<div
+							className={`py-2 px-5 bg-red-500 rounded-lg inline-block text-white lg:text-[15px] text-[16px] border-2 border-red-500 hover:bg-red-300 hover:text-font-color duration-150 hover:cursor-pointer`}
+							onClick={() => {
+								setConfirmDelete(true)
+							}}
+						>
+							<span className='font-poppins font-medium'>Confirm</span>
+						</div>
+						<div
+							className={`py-2 px-5 bg-light-blue rounded-lg inline-block text-white lg:text-[15px] text-[16px] border-2 border-light-blue hover:bg-[#EAF3FF] hover:text-font-color duration-150 hover:cursor-pointer`}
+							onClick={closeConfirmMessage}
+						>
+							<span className='font-poppins font-medium'>Cancel</span>
+						</div>
+					</Flex>
+				</Flex>
+			</div>
 		</Container>
 	)
 }
