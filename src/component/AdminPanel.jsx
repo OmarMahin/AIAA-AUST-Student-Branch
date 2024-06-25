@@ -49,6 +49,11 @@ const AdminPanel = () => {
 		setCurrentId("")
 	}
 
+	let handleIdStore = (id) => {
+		setShowConfirmMessage(!showConfirmMessage)
+		setCurrentId(id)
+	}
+
 	let handleAddMember = () => {
 		axios
 			.post("http://localhost:3000/api/v1/auth/initialSignUp", {
@@ -73,43 +78,30 @@ const AdminPanel = () => {
 			})
 	}
 
-	useEffect(() => {
-		if (confirmDelete) {
-			axios
-				.delete("http://localhost:3000/api/v1/auth/deleteMember", {
-					data: {id: currentId},
-				})
-				.then((data) => {
-					console.log(data)
-					setCurrentId('')
-					setConfirmDelete(false)
-					setShowConfirmMessage(false)
-					axios
-						.get("http://localhost:3000/api/v1/auth/getAllMembers")
-						.then((data) => {
-							setMemberData(data.data)
-							console.log(data)
-						})
-						.catch((error) => {
-							console.log(error)
-						})
-					
-				})
-		}
-		else{
+	let handleDeleteUser = () => {
+		// console.log(currentId.type)
+		axios
+			.delete("http://localhost:3000/api/v1/auth/deleteMember", {
+				data: { id: currentId },
+			})
+			.then((data) => {
+				console.log(data)
+				setRefresh(!refresh)
+			})
+	}
 
-			axios
-				.get("http://localhost:3000/api/v1/auth/getAllMembers")
-				.then((data) => {
-					setMemberData(data.data)
-					console.log(data)
-				})
-				.catch((error) => {
-					console.log(error)
-				})
-		}
-		console.log("Refresh")
-	}, [refresh, confirmDelete])
+	useEffect(() => {
+
+		axios
+			.get("http://localhost:3000/api/v1/auth/getAllMembers")
+			.then((data) => {
+				setMemberData(data.data)
+				console.log(data)
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+	}, [refresh])
 
 	return (
 		<Container>
@@ -185,9 +177,9 @@ const AdminPanel = () => {
 									id='memberType'
 									className={` block w-[40%] p-2.5 rounded-lg border-2 border-slate-500 font-poppins font-medium ${
 										memberType == "Admin"
-											? "bg-red-500 border-red-500 text-black"
+											? "bg-red-300 border-red-300 text-black"
 											: memberType == "Executive"
-											? "bg-green-500 border-green-500 text-black"
+											? "bg-green-300 border-green-300 text-black"
 											: "bg-white text-gray-800"
 									}`}
 									onChange={handleMemberType}
@@ -294,11 +286,7 @@ const AdminPanel = () => {
 										</Flex>
 										<MdDelete
 											className='absolute top-1/2 right-3 -translate-y-1/2 bg-[#f4f5f7] text-red-500 rounded-full w-6 h-6 p-[3px] hover:cursor-pointer'
-											onClick={() => {
-												setShowConfirmMessage(!showConfirmMessage)
-												setCurrentId(data._id)
-												console.log(data._id)
-											}}
+											onClick={() => handleIdStore(data._id)}
 										/>
 									</ListItem>
 								))}
@@ -327,6 +315,7 @@ const AdminPanel = () => {
 							className={`py-2 px-5 bg-red-500 rounded-lg inline-block text-white lg:text-[15px] text-[16px] border-2 border-red-500 hover:bg-red-300 hover:text-font-color duration-150 hover:cursor-pointer`}
 							onClick={() => {
 								setConfirmDelete(true)
+								handleDeleteUser()
 							}}
 						>
 							<span className='font-poppins font-medium'>Confirm</span>
