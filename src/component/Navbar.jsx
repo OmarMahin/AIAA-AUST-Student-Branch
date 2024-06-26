@@ -78,7 +78,7 @@ const Navbar = () => {
 		})
 
 		document.addEventListener("click", (e) => {
-			if (navref != null) {
+			if (navref !== null) {
 				if (!navref.current.contains(e.target)) {
 					setState(false)
 					if (window.scrollY != 0) {
@@ -97,7 +97,7 @@ const Navbar = () => {
 			.get("http://localhost:3000/api/v1/auth/authorized")
 			.then((data) => {
 				if (data.data.authorized == false) {
-					setUserLoggedIn(false)
+					setUserLoggedIn(false)			
 				} else {
 					setUserLoggedIn(true)
 					let userData = data.data
