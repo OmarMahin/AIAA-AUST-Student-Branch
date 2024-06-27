@@ -162,17 +162,17 @@ const SignUpForm = () => {
 		<Container>
 			<Flex
 				className={`fixed z-20 ${
-					accountExist ? "top-3 opacity-1" : "top-[-120%] opacity-0"
-				} left-1/2 -translate-x-1/2 items-center bg-red-200 p-4 w-[40%] rounded-lg justify-between ease-in-out duration-700`}
+					accountExist ? "lg:top-3 top-24 opacity-1" : "top-[-120%] opacity-0"
+				} left-1/2 -translate-x-1/2 items-center bg-red-200 p-4 lg:w-[40%] w-[90%] rounded-lg justify-between ease-in-out duration-700 flex`}
 			>
-				<Flex className={"flex items-center gap-3 text-red-700"}>
-					<TiInfoOutline className={"w-5 h-5"} />
-					<span className=' font-poppins font-medium'>
-						Error! An account already exists with this Id
+				<Flex className={"flex items-center lg:gap-3 gap-2 text-red-700"}>
+					<TiInfoOutline className={"lg:w-5 lg:h-5 w-4 h-4"} />
+					<span className=' font-poppins font-medium lg:text-base text-[13px]'>
+						Error! An account already exists with this Id.
 					</span>
 				</Flex>
 				<MdCancel
-					className={"text-red-700 w-5 h-5 cursor-pointer"}
+					className={"text-red-700 lg:w-5 lg:h-5 w-4 h-4 cursor-pointer"}
 					onClick={() => {
 						setAccountExist(false)
 					}}

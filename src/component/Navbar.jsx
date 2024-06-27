@@ -24,7 +24,6 @@ const Navbar = () => {
 	let [userProfileName, setUserProfileName] = useState("")
 	let [fullName, setFullName] = useState("")
 	let [refresh, setRefresh] = useState(false)
-	let navref = useRef()
 	let accountref = useRef()
 
 	let changeState = () => {
@@ -66,26 +65,8 @@ const Navbar = () => {
 		}
 		checkWindowSize()
 		window.addEventListener("resize", checkWindowSize)
-		document.addEventListener("touchstart", (e) => {
-			if (navref) {
-				if (!navref.current.contains(e.target)) {
-					setState(false)
-					if (window.scrollY != 0) {
-						setNavShadow(true)
-					}
-				}
-			}
-		})
 
 		document.addEventListener("click", (e) => {
-			if (navref !== null) {
-				if (!navref.current.contains(e.target)) {
-					setState(false)
-					if (window.scrollY != 0) {
-						setNavShadow(true)
-					}
-				}
-			}
 			if (accountref != null) {
 				if (!accountref.current.contains(e.target)) {
 					setAccountList(false)
@@ -134,8 +115,8 @@ const Navbar = () => {
 				className={`lg:hidden w-[100vw] h-[100vh] top-0 left-0  ${
 					state ? "bg-black/50 z-40 fixed" : "bg-transparent z-[-1] absolute"
 				} duration-300`}
-			></div>
-			<nav ref={navref}>
+			onClick = {()=>{setState(false)}}></div>
+			<nav>
 				<div
 					className={`w-full lg:bg-darker_blue ${
 						state ? "bg-transparent" : "bg-darker_blue"
@@ -229,6 +210,18 @@ const Navbar = () => {
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
 									<Link
+										to='/blog'
+										className='hover:font-semibold lg:hover:font-medium'
+										onClick={linkChangeState}
+									>
+										Blog
+									</Link>
+								</ListItem>
+								<ListItem
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
+								>
+									<Link
 										to='/contact'
 										className='hover:font-semibold lg:hover:font-medium'
 										onClick={linkChangeState}
@@ -274,17 +267,7 @@ const Navbar = () => {
 										>
 											<ListItem
 												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white"
-												}
-												onClick={linkChangeState}
-											>
-												<Link to={userLoggedIn ? "/myaccount" : "/signup"} onClick={changeAccountList}>
-													{userLoggedIn ? "My Account" : "Sign Up"}
-												</Link>
-											</ListItem>
-											<ListItem
-												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] lg:border-none border-b-[1px] border-[#92A2B8] text-white"
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white pl-2 lg:pl-0"
 												}
 												onClick={linkChangeState}
 											>
@@ -295,6 +278,16 @@ const Navbar = () => {
 														Login
 													</Link>
 												)}
+											</ListItem>
+											<ListItem
+												className={
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] lg:border-none border-b-[1px] border-[#92A2B8] text-white pl-2 lg:pl-0"
+												}
+												onClick={linkChangeState}
+											>
+												<Link to={userLoggedIn ? "/myaccount" : "/signup"} onClick={changeAccountList}>
+													{userLoggedIn ? "My Account" : "Sign Up"}
+												</Link>
 											</ListItem>
 										</List>
 									</ListItem>

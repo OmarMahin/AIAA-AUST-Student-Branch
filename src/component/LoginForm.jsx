@@ -77,12 +77,12 @@ const LoginForm = () => {
 		<Container>
 			<Flex
 				className={`fixed z-20 ${
-					accountExist ? "top-3 opacity-1" : "top-[-120%] opacity-0"
-				} left-1/2 -translate-x-1/2 items-center bg-red-200 p-4 w-[43%] rounded-lg justify-between ease-in-out duration-700`}
+					accountExist ? "lg:top-3 top-24 opacity-1" : "top-[-120%] opacity-0"
+				} left-1/2 -translate-x-1/2 items-center bg-red-200 lg:p-4 p-2 lg:w-[43%] w-[90%] rounded-lg justify-between ease-in-out duration-700 flex`}
 			>
 				<Flex className={"flex items-center gap-3 text-red-700"}>
 					<TiInfoOutline className={"w-5 h-5"} />
-					<span className=' font-poppins font-medium text-[14px]'>
+					<span className=' font-poppins font-medium lg:text-[14px] text-[12px]'>
 						Invalid Credentials! Please check your email address and password.
 					</span>
 				</Flex>

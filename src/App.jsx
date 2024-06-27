@@ -10,6 +10,7 @@ import RootLayout from "./component/layout/RootLayout"
 import About from "./pages/About"
 import Activities from "./pages/Activities"
 import AdminPage from "./pages/AdminPage"
+import Blog from "./pages/Blog"
 import ContactUs from "./pages/ContactUs"
 import Home from "./pages/Home"
 import JoinUs from "./pages/JoinUs"
@@ -30,6 +31,7 @@ function App() {
 				<Route path='/activites' element={<Activities></Activities>}></Route>
 				<Route path='/committee' element={<Team></Team>}></Route>
 				<Route path='/joinus' element={<JoinUs></JoinUs>}></Route>
+				<Route path='/blog' element={<Blog></Blog>}></Route>
 				<Route path='/contact' element={<ContactUs></ContactUs>}></Route>
 				<Route path='/login' element={<Login></Login>}></Route>
 				<Route path='/signup' element={<SignUp></SignUp>}></Route>

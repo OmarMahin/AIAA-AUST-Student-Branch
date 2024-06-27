@@ -31,7 +31,6 @@ const MyAccount = () => {
 			.then((data) => {
 				
 				if (data.data.authorized == false) {
-					console.log("yes?")
 					window.location.pathname = "/login"
 				} else {
 					const user_Id = data.data.userId
