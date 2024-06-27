@@ -7,40 +7,51 @@ import Button from "./Button"
 import Container from "./Container"
 import Flex from "./Flex"
 import Title from "./Title"
+import { useLayoutEffect } from "react"
 
 const UserAccount = (data) => {
+	const user_data = data.data
 
 	axios.defaults.withCredentials = true
 
 	let imageInputRef = useRef()
 
-	let [imageData, setImageData] = useState()
+	let [imageData, setImageData] = useState("")
 
-	let userData = data.data
 	let dataKey = []
 	let dataValue = []
 
-	for (let [key, value] of Object.entries(userData)) {
+	for (let [key, value] of Object.entries(user_data)) {
 		if (key.split("_").length > 1) {
 			key = key.split("_")[0] + " " + key.split("_")[1]
 		}
-		dataKey.push(key)
-		dataValue.push(value)
+		if (key != "profileImage") {
+			if (key == "name") {
+				dataKey.push(key)
+				dataValue.push(value)
+			} else {
+				dataKey.push(key)
+				dataValue.push(value)
+			}
+		}
 	}
+	
+	let name = user_data.name
+	let nameParts = name.split(" ")
+	let userName = nameParts[0][0] + nameParts.pop()[0]
 
-	let handleImageUploadClick = (e)=>{
+	let handleImageUploadClick = (e) => {
 		imageInputRef.current.click()
 	}
 
-	let uploadImage = (e)=>{
+	let uploadImage = (e) => {
 		setImageData(e.target.files[0])
 		axios
 			.post("http://localhost:3000/api/v1/file/imageUpload", {
-				imageData
+				imageData,
 			})
 			.then((data) => {
 				console.log(data)
-				
 			})
 			.catch((err) => {
 				console.log(err)
@@ -51,20 +62,28 @@ const UserAccount = (data) => {
 		<Container>
 			<Title>Account Details</Title>
 			<Flex className={"mt-10 flex flex-col w-[60%] mx-auto mb-40 "}>
-				<div className='w-60 mt-8 h-60 rounded-full bg-[#aebed4] mx-auto relative hover:cursor-pointer overflow-hidden group ' onClick={handleImageUploadClick}>
+				<div
+					className='w-60 mt-8 h-60 rounded-full bg-[#aebed4] mx-auto relative hover:cursor-pointer overflow-hidden group '
+					onClick={handleImageUploadClick}
+				>
 					<div className='w-full h-[40%] absolute bottom-[-100%] duration-300 group-hover:bottom-0 bg-gradient-to-t from-black/80'>
-						<Flex className=" flex flex-col items-center text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-
-						<MdOutlineFileUpload className=' w-7 h-7' />
-						<span>Upload Image</span>
+						<Flex className=' flex flex-col items-center text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+							<MdOutlineFileUpload className=' w-7 h-7' />
+							<span>Upload Image</span>
 						</Flex>
-						<input type={'file'} accept = {'.png, .jpg, .jpeg'} ref={imageInputRef} className = {'hidden'} onChange = {uploadImage}></input>
+						<input
+							type={"file"}
+							accept={".png, .jpg, .jpeg"}
+							ref={imageInputRef}
+							className={"hidden"}
+							onChange={uploadImage}
+						></input>
 					</div>
-					{dataValue[1] == 'N/A' ? (
+					{user_data.profileImage != "N/A" ? (
 						""
 					) : (
 						<span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-poppins font-bold text-[80px]'>
-							{dataValue[0]}
+							{userName}
 						</span>
 					)}
 				</div>
