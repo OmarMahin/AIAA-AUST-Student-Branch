@@ -216,7 +216,7 @@ const AdminPanel = () => {
 							</div>
 						</Flex>
 						<Image
-							src={"images/ContactDesign.png"}
+							src={"/images/ContactDesign.png"}
 							alt='Admin Design'
 							className={"absolute right-8 top-1/2 -translate-y-1/2"}
 						></Image>

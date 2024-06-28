@@ -27,7 +27,7 @@ const Banner = () => {
 			<AnimatePage>
 				<Container>
 					<Image
-						src={`images/${smallerDisplay ? banner_for_phone : normal_banner}`}
+						src={`/images/${smallerDisplay ? banner_for_phone : normal_banner}`}
 						className='h-full'
 						alt={"Banner Image"}
 					></Image>

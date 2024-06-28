@@ -32,7 +32,7 @@ const ContactCard = () => {
 							</span>
 						</Flex>
 					</div>
-                    <Image src={'images/ContactDesign.png'} className = {'absolute lg:bottom-12 bottom-4 left-2/3 -translate-x-1/2 lg:w-[55%] w-[45%]'}></Image>
+                    <Image src={'/images/ContactDesign.png'} className = {'absolute lg:bottom-12 bottom-4 left-2/3 -translate-x-1/2 lg:w-[55%] w-[45%]'}></Image>
 				</Flex>
 				<div className='lg:w-[2px] w-[80%] lg:h-auto h-[2px] bg-light-blue/40 lg:my-10 my-5 mx-auto'></div>
 				<div className='lg:w-[49%] lg:mt-11 mt-6'>

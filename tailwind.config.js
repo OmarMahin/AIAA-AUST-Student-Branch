@@ -26,6 +26,7 @@ export default {
       },
       boxShadow: {
         'around': '0px 0px 38px -8px rgba(0,0,0,0.75)',
+        'around-small': '0px 0px 15px -8px rgba(0,0,0,0.6)',
       }
     },
   },

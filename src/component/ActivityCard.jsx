@@ -35,7 +35,7 @@ const ActivityCard = () => {
 						<Flex className={" gap-4 justify-between flex flex-col"}>
 							<div className='relative overflow-hidden h-[400px]'>
 								<Image
-									src={"images/GM_Recruitment.jpg"}
+									src={"/images/GM_Recruitment.jpg"}
 									className='absolute bottom-0 left-0 translate-y-[0%]'
 									alt={"Activity Image"}
 								></Image>
@@ -70,7 +70,7 @@ const ActivityCard = () => {
 						<Flex className={" gap-7 justify-between flex"}>
 							<div className='w-[35%] relative overflow-hidden'>
 								<Image
-									src={"images/GM_Recruitment.jpg"}
+									src={"/images/GM_Recruitment.jpg"}
 									className=' absolute bottom-0 left-0 translate-y-[0%] inline-block duration-500 lg:group-hover:scale-[1.05]'
 									alt={"Activity Image"}
 								></Image>

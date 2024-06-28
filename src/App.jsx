@@ -17,26 +17,30 @@ import JoinUs from "./pages/JoinUs"
 import Login from "./pages/Login"
 import MyAccount from "./pages/MyAccount"
 import SignUp from "./pages/SignUp"
+import Swashplate_Blog from "./pages/Swashplate_Blog"
 import Team from "./pages/Team"
 
 function App() {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route
-				path='/'
-				element={<RootLayout />}
-			>
+			<Route path='/' element={<RootLayout />}>
 				<Route index element={<Home></Home>}></Route>
-				<Route path='/about' element={<About></About>}></Route>
-				<Route path='/activites' element={<Activities></Activities>}></Route>
-				<Route path='/committee' element={<Team></Team>}></Route>
-				<Route path='/joinus' element={<JoinUs></JoinUs>}></Route>
-				<Route path='/blog' element={<Blog></Blog>}></Route>
-				<Route path='/contact' element={<ContactUs></ContactUs>}></Route>
-				<Route path='/login' element={<Login></Login>}></Route>
-				<Route path='/signup' element={<SignUp></SignUp>}></Route>
-				<Route path='/myaccount' element={<MyAccount></MyAccount>}></Route>
-				<Route path='/admin' element={<AdminPage></AdminPage>}></Route>
+				<Route path='about' element={<About></About>}></Route>
+				<Route path='activites' element={<Activities></Activities>}></Route>
+				<Route path='committee' element={<Team></Team>}></Route>
+				<Route path='joinus' element={<JoinUs></JoinUs>}></Route>
+				<Route path='/blog' >
+					<Route index element={<Blog></Blog>}></Route>
+				<Route
+					path='the_swashplate_of_a_helicopter'
+					element={<Swashplate_Blog></Swashplate_Blog>}
+				></Route>
+				</Route>
+				<Route path='contact' element={<ContactUs></ContactUs>}></Route>
+				<Route path='login' element={<Login></Login>}></Route>
+				<Route path='signup' element={<SignUp></SignUp>}></Route>
+				<Route path='myaccount' element={<MyAccount></MyAccount>}></Route>
+				<Route path='admin' element={<AdminPage></AdminPage>}></Route>
 			</Route>
 		)
 	)

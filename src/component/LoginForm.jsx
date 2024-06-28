@@ -143,7 +143,7 @@ const LoginForm = () => {
 					</Flex>
 				</form>
 				<Image
-					src={"images/ContactDesign.png"}
+					src={"/images/ContactDesign.png"}
 					alt={"Place Image"}
 					className={"absolute bottom-[-20px] right-14 w-[30%]"}
 				></Image>

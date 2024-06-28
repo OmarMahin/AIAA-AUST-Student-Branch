@@ -1,8 +1,13 @@
 import React from 'react'
+import Image from './Image'
 
 const BlogContent = () => {
   return (
-    <div>BlogContent</div>
+    <Image
+					src={"/images/blog/swashplate/cardBanner.jpg"}
+					alt={"Banner"}
+					
+				></Image>
   )
 }
 
