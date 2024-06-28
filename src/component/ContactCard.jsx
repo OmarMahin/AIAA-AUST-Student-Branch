@@ -20,8 +20,8 @@ const ContactCard = () => {
 						Contact Us
 					</h3>
 					<div className='px-9 mt-12'>
-						<p className='font-poppins font-medium lg:text-lg text-base'>
-							Have a query? Or want to give us a feedback? Then, please feel free to contact
+						<p className='font-poppins font-medium lg:text-lg text-base text-font-color'>
+							Have a query? Or want to give us feedback? Then, please feel free to contact
 							us using the form or the social media and phone number given below.
 						</p>
 						<SocialMediaIcons className={"text-light-blue mt-6"}></SocialMediaIcons>

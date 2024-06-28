@@ -210,7 +210,7 @@ const Navbar = () => {
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
 									<Link
-										to='/blog'
+										to='/'
 										className='hover:font-semibold lg:hover:font-medium'
 										onClick={linkChangeState}
 									>

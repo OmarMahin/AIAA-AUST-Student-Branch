@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 const ActivityCard = () => {
 	let [smallerDisplay, setSmallerDisplay] = useState(false)
 	const word_limit = 200
-	let shortInfo = `AIAA AUST Student Branch has started it’s journey with General Member Recruitment Fall’23 dated from 02 June, 2024 to 04 June, 2024. Over three action-packed days, the campus of Ahsanullah University of Science and Technology(AUST) buzzed with energy, enthusiasm, and endless fun. From thrilling dart board games to the challenging buzz wire contest, our booth was the ultimate hub of student engagement!
+	let shortInfo = `AIAA AUST Student Branch has started its journey with General Member Recruitment Fall’23, dated from 02 June 2024 to 04 June 2024. Over three action-packed days, the campus of Ahsanullah University of Science and Technology(AUST) buzzed with energy, enthusiasm, and endless fun. From thrilling dart board games to the challenging buzz-wire contest, our booth was the ultimate hub of student engagement!
 	`
 	if (shortInfo.length > word_limit){
 		shortInfo = shortInfo.slice(0,word_limit) + '. . . '
@@ -53,7 +53,7 @@ const ActivityCard = () => {
 									</Flex>
 								</Flex>
 								<Flex className={"flex flex-col items-center"}>
-									<p className='font-poppins font-medium text-white text-[15px] mt-10 mb-12 leading-8 text-justify'>
+									<p className='font-poppins font-medium text-white text-[15px] mt-10 mb-12 leading-8 text-pretty'>
 										{shortInfo}
 									</p>
 									<Button className={"mb-5"} invert='true' link={'/activites'}>
@@ -91,7 +91,7 @@ const ActivityCard = () => {
 										</span>
 									</Flex>
 								</Flex>
-								<p className='font-poppins font-medium text-white lg:text-lg text-[16px] mt-10 lg:mb-24 mb-12 lg:leading-8 leading-6 text-justify'>
+								<p className='font-poppins font-medium text-white lg:text-lg text-[16px] mt-10 lg:mb-24 mb-12 lg:leading-8 leading-6 text-pretty'>
 									{shortInfo}
 								</p>
 								<Button

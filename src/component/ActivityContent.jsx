@@ -13,7 +13,7 @@ const ActivityContent = ({ image, heading, date, content, videoHeading, video, v
 					<h4 className=' font-poppins font-medium text-white lg:text-lg text-sm block'>{date}</h4>
 				</div>
 			</Flex>
-			<div className=" lg:mt-24 mt-10 font-poppins font-medium text-lg leading-8 text-justify">
+			<div className=" lg:mt-16 mt-10 font-poppins font-medium text-lg leading-8 text-pretty text-font-color">
         {paras.map((para) => (para ? <p>{para}</p> : <br></br>))}
       </div>
       {videoHeading && video ?
