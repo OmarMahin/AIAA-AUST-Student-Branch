@@ -210,7 +210,7 @@ const Navbar = () => {
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
 									<Link
-										to='/'
+										to='/blog'
 										className='hover:font-semibold lg:hover:font-medium'
 										onClick={linkChangeState}
 									>
@@ -258,11 +258,11 @@ const Navbar = () => {
 											<FaPlus className='mr-4 lg:hidden' />
 										</Flex>
 										<List
-											className={`flex flex-col mt-[13px] lg:mt-0 absolute right-0 translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-6 lg:px-4 lg:z-20 lg:border-[1px] lg:border-[#aeb1b563]
+											className={`flex flex-col mt-[13px] lg:mt-0 absolute right-0 translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-6 lg:px-4 lg:border-[1px] lg:border-[#aeb1b563]
 											${
 												accountList
-													? "fixed bottom-[-20px] opacity-1"
-													: "bottom-[0px] opacity-0"
+													? "fixed bottom-[-20px] opacity-1 lg:z-20"
+													: "bottom-[0px] opacity-0 z-[-1]"
 											} duration-300 cursor-default`}
 										>
 											<ListItem
