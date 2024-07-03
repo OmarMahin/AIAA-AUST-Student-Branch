@@ -8,7 +8,7 @@ const Swashplate_Blog = () => {
   return (
     <AnimatePage>
         <Container>
-            <BlogContent></BlogContent>
+            <BlogContent content = {"HIbigi sdasdhahjsgd <<Title>>Hi<<Title>> dsawad"}></BlogContent>
             <BlogComment></BlogComment>
         </Container>
         
