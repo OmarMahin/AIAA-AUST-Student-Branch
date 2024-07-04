@@ -9,8 +9,8 @@ import { FaStar } from "react-icons/fa"
 import { useState } from "react"
 
 const BlogContent = ({content}) => {
-	let result = content.split(/<<|>>/)
-	console.log(result)
+	let result = content.split(" ")
+
 
 	let [liked, setLiked] = useState(false)
 	let [favourtie, setFavourtie] = useState(false)

@@ -17,8 +17,9 @@ import JoinUs from "./pages/JoinUs"
 import Login from "./pages/Login"
 import MyAccount from "./pages/MyAccount"
 import SignUp from "./pages/SignUp"
-import Swashplate_Blog from "./pages/Swashplate_Blog"
 import Team from "./pages/Team"
+import Swashplate from "./pages/Blogs/Swashplate"
+import Proppeller from "./pages/Blogs/Propeller"
 
 function App() {
 	const router = createBrowserRouter(
@@ -33,7 +34,11 @@ function App() {
 					<Route index element={<Blog></Blog>}></Route>
 				<Route
 					path='the_swashplate_of_a_helicopter'
-					element={<Swashplate_Blog></Swashplate_Blog>}
+					element={<Swashplate></Swashplate>}
+				></Route>
+				<Route
+					path='propeller_of_an_aircraft'
+					element={<Proppeller></Proppeller>}
 				></Route>
 				</Route>
 				<Route path='contact' element={<ContactUs></ContactUs>}></Route>
