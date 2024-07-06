@@ -15,35 +15,17 @@ const Swashplate = () => {
 	return (
 		<AnimatePage>
 			<Container>
-				{/* <BlogContent
-					content={
-						`<<BannerImage>>swashplate/blogBanner.png<</BannerImage>> 
-
-            <<Title>>The Swashplate of a Helicopter: Engineering Marvel in Rotary Wing Flight<</Title>> 
-
-            <<FirstPara>> Helicopters are marvels of modern engineering, capable of taking off, landing vertically, and hovering in place. At the heart of this functionality lies a critical component known as the swashplate. Understanding the swashplate’s role in helicopter flight reveals much about the intricate mechanics of rotary-wing aircraft.<</FirstPara>>
-
-            A Swashplate is a key component in controlling a Helicopter. It is a mechanical
-					  device that translates input via the helicopter flight controls into the motion of
-					  the main rotor blades. The swashplate consists of two main parts: a stationary
-					  swashplate and a rotating swashplate. The stationary swashplate is mounted on the
-					  main rotor mast and is connected to the cyclic and collective controls by a series of
-					  pushrods. The rotating swashplate is mounted to the stationary swashplate using a
-					  bearing and is allowed to rotate with the main rotor mast.
-            `
-					}
-				></BlogContent> */}
 				<Flex className={"flex flex-col mt-8"}>
 					<Flex
 						className={
-							"items-center font-poppins font-bold text-darker_blue mb-9 text-[14px] gap-1 justify-end"
+							"flex mt-20 justify-center lg:mt-0 items-center font-poppins font-bold text-darker_blue mb-9 text-[14px] gap-1 lg:justify-end"
 						}
 					>
-						<Flex className='py-2 px-4 rounded-full bg-[#d2deeb] items-center gap-2'>
+						<Flex className='flex py-2 px-4 rounded-full bg-[#d2deeb] items-center gap-2'>
 							<FaBookOpen className={"text-darker_blue"} />
 							<span>5 min read</span>
 						</Flex>
-						<Flex className='h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
+						<Flex className='flex h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
 							<span>
 								{liked ? (
 									<FaHeart
@@ -62,7 +44,7 @@ const Swashplate = () => {
 								)}
 							</span>
 						</Flex>
-						<Flex className='h-8 max-w-8 px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
+						<Flex className='flex h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
 							<span>
 								{favourtie ? (
 									<FaStar
@@ -84,7 +66,7 @@ const Swashplate = () => {
 					</Flex>
 					<div
 						className={
-							"relative w-full h-[400px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden rounded-xl"
+							"relative w-full h-[300px] lg:h-[400px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden rounded-xl"
 						}
 					>
 						<Image
@@ -96,13 +78,13 @@ const Swashplate = () => {
 						></Image>
 					</div>
 
-					<h1 className='my-10 font-poppins text-center font-bold text-darknest_blue text-3xl'>
+					<h1 className='my-10 font-poppins text-center font-bold text-darknest_blue lg:text-3xl text-2xl'>
 						The Swashplate of a Helicopter: Engineering Marvel in Rotary Wing Flight
 					</h1>
 
 					<Flex
 						className={
-							"flex flex-col gap-7 font-poppins font-medium text-lg leading-9 text-font-color"
+							"flex flex-col gap-7 font-poppins font-medium lg:text-lg lg:leading-9 leading-8 text-font-color"
 						}
 					>
 						<p className=' indent-10'>
@@ -187,8 +169,8 @@ const Swashplate = () => {
 							pitch link attachment point on the swashplate and the blade it’s connected to.
 						</p>
 
-						<Flex className={"w-full gap-10 justify-center mt-10"}>
-							<Flex className={"flex-col items-center gap-3 w-[40%]"}>
+						<Flex className={"flex flex-col items-center lg:flex-row lg:w-full gap-10 justify-center mt-10"}>
+							<Flex className={"flex flex-col items-center gap-3 lg:w-[40%] w-[90%]"}>
 								<video className=' rounded-2xl' controls autoPlay muted loop>
 									<source
 										src={`/videos/blog/swashplate/video1.webm`}
@@ -197,14 +179,14 @@ const Swashplate = () => {
 								</video>
 								<span className=' text-darker_blue font-semibold'>Figure 2.1</span>
 							</Flex>
-							<Flex className={"flex-col items-center gap-3 w-[40%]"}>
+							<Flex className={"flex flex-col items-center gap-3 lg:w-[40%] w-[90%]"}>
 								<video className='rounded-2xl' controls autoPlay muted loop>
 									<source
 										src={`/videos/blog/swashplate/video2.webm`}
 										type={`video/webm`}
 									/>
 								</video>
-								<span className=' text-darker_blue font-semibold'>Figure 2.1</span>
+								<span className=' text-darker_blue font-semibold'>Figure 2.2</span>
 							</Flex>
 						</Flex>
 

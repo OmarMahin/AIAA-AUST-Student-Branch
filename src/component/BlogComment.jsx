@@ -10,7 +10,7 @@ const BlogComment = () => {
 				<h3 className='font-poppins font-bold text-darker_blue text-2xl mb-10'>
 					Leave a comment
 				</h3>
-				<Flex className={"justify-center items-start gap-7"}>
+				<Flex className={"flex justify-center items-start gap-7"}>
 					<div className='w-14 h-14 rounded-full bg-[#D6DDE5] relative overflow-hidden'>
 						<Image
 							className={
@@ -19,10 +19,10 @@ const BlogComment = () => {
 							src={"/images/members/Fall'23/Default_Image.png"}
 						></Image>
 					</div>
-					<Flex className={"flex flex-col items-start w-[60%] gap-7"}>
+					<Flex className={"flex flex-col items-start lg:w-[60%] w-[70%] gap-7"}>
 						<textarea
 							type={"textarea"}
-							className='w-full lg:h-[170px] h-[70px] bg-white lg:py-4 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 resize-none'
+							className='w-full lg:h-[170px] h-[120px] bg-white lg:py-4 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 resize-none'
 							placeholder={"Your comment"}
 						></textarea>
 						<Button>Submit</Button>

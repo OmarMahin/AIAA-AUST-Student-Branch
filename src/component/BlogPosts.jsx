@@ -3,9 +3,10 @@ import BlogPostCard from "./BlogPostCard"
 import Flex from "./Flex"
 
 const BlogPosts = () => {
+
 	return (
 		<div className='mb-40 mt-20'>
-			<Flex className={"flex-wrap justify-evenly gap-20"}>
+			<Flex className={"flex flex-wrap justify-evenly gap-20"}>
 			<BlogPostCard
 					cardImage={"propeller/cardBanner.png"}
 					heading={"  Propeller of Aircrafts"}

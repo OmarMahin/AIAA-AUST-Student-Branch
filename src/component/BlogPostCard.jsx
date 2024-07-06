@@ -41,8 +41,8 @@ const BlogPostCard = ({
 					"pt-5 pb-10 px-4 border-[1px] border-gray-300 border-t-0 rounded-xl rounded-t-none h-full"
 				}
 			>
-				<Flex className={"mb-5 justify-between items-center text-[13px]"}>
-					<Flex className={"gap-2 "}>
+				<Flex className={" flex mb-5 justify-between items-center text-[13px]"}>
+					<Flex className={"flex gap-2 "}>
 						{latest && (
 							<span className='py-1 px-4 bg-darker_blue rounded-full font-poppins font-semibold text-white shadow-around'>
 								Latest
@@ -67,8 +67,8 @@ const BlogPostCard = ({
 				>
 					{shortDis}
 				</p>
-				<Flex className={"items-center gap-4 mt-10 justify-between"}>
-					<Flex className={"gap-[5px] items-end"}>
+				<Flex className={"flex items-center gap-4 mt-10 justify-between"}>
+					<Flex className={"flex gap-[5px] items-end"}>
 						<span className='font-poppins font-medium text-light-blue'>By</span>
 						<span className='font-poppins font-bold text-darker_blue'>{by}</span>
 					</Flex>
