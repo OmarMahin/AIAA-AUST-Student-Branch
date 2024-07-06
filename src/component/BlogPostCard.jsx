@@ -31,7 +31,7 @@ const BlogPostCard = ({
 						src={`/images/blog/${cardImage}`}
 						alt={"Banner"}
 						className={
-							"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 h-[100%] group-hover:scale-105 duration-500"
+							"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 h-auto w-full lg:h-[100%] group-hover:scale-105 duration-500"
 						}
 					></Image>
 				</div>
@@ -57,12 +57,12 @@ const BlogPostCard = ({
 					<span className='font-poppins font-bold text-darker_blue '>{date}</span>
 				</Flex>
 				<Link to={blogLink}>
-					<h2 className={"font-poppins font-bold text-lg text-darknest_blue h-16"}>{heading}</h2>
+					<h2 className={"font-poppins font-bold text-lg text-darknest_blue lg:h-16"}>{heading}</h2>
 				</Link>
 
 				<p
 					className={
-						"font-poppins font-semibold text-[15px] text-font-color mt-4 h-[70px] truncate text-wrap"
+						"font-poppins font-semibold text-[15px] text-font-color mt-10 lg:mt-4 h-[70px] truncate text-wrap"
 					}
 				>
 					{shortDis}

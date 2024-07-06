@@ -82,7 +82,7 @@ const Swashplate = () => {
 							src={"/images/blog/swashplate/blogBanner.png"}
 							alt={"Banner"}
 							className={
-								"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 h-full lg:w-[100%]"
+								"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-full"
 							}
 						></Image>
 					</div>
