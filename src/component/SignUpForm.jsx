@@ -12,6 +12,8 @@ import validateEmail from "../helperFunctions/ValidateEmail"
 import { FaEye } from "react-icons/fa"
 import { FaEyeSlash } from "react-icons/fa"
 
+
+
 const SignUpForm = () => {
 	const navigation = useNavigate()
 
@@ -97,7 +99,7 @@ const SignUpForm = () => {
 				AASBmembershipId: aasbId,
 			})
 			.then((data) => {
-				if (data.data.found == "true" && data.data.accountState == "False") {
+				if (data.data.found == "true" && data.data.accountState == "False") {	
 					axios
 						.post("http://localhost:3000/api/v1/auth/signup", {
 							name,
@@ -245,7 +247,7 @@ const SignUpForm = () => {
 						</div>
 						<div className='relative w-full'>
 							<input
-								type={"password"}
+								type={showConfirmPassword ? "text" : "password"}
 								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Confirm Password"}
 								value={confirmPassword}
