@@ -24,7 +24,7 @@ const BlogPostCard = ({
 			<Link to={blogLink}>
 				<div
 					className={
-						"relative h-[270px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden"
+						"relative h-[200px] lg:h-[270px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden"
 					}
 				>
 					<Image

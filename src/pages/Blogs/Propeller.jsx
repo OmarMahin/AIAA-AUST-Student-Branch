@@ -3,10 +3,11 @@ import { useState } from "react"
 import { FaBookOpen, FaHeart, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa"
 import AnimatePage from "../../component/AnimatePage"
 import BlogComment from "../../component/BlogComment"
-import BlogContent from "../../component/BlogContent"
+import { HiArrowSmLeft } from "react-icons/hi";
 import Container from "../../component/Container"
 import Flex from "../../component/Flex"
 import Image from "../../component/Image"
+import { Link } from "react-router-dom"
 
 const Proppeller = () => {
 	let [liked, setLiked] = useState(false)
@@ -18,9 +19,15 @@ const Proppeller = () => {
 				<Flex className={"flex flex-col mt-8"}>
 					<Flex
 						className={
-							"flex mt-20 justify-center lg:mt-0 items-center font-poppins font-bold text-darker_blue mb-9 text-[14px] gap-1 lg:justify-end"
+							"flex mt-20 justify-center lg:mt-0 items-center font-poppins font-bold text-darker_blue mb-9 text-[14px] gap-1 lg:justify-between"
 						}
-					>
+					>	
+					<Link to={'/blog'}>
+						<HiArrowSmLeft className="h-8 w-8 p-1 bg-[#d2deeb] rounded-full "/>
+					</Link>
+					
+						<Flex className={'flex lg:justify-end justify-center gap-1'}>
+
 						<Flex className='flex py-2 px-4 rounded-full bg-[#d2deeb] items-center gap-2'>
 							<FaBookOpen className={"text-darker_blue"} />
 							<span>6 min read</span>
@@ -63,17 +70,18 @@ const Proppeller = () => {
 								)}
 							</span>
 						</Flex>
+						</Flex>
 					</Flex>
 					<div
 						className={
-							"relative w-full h-[300px] lg:h-[400px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden rounded-xl"
+							"relative w-full h-[200px] lg:h-[400px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden rounded-xl"
 						}
 					>
 						<Image
 							src={"/images/blog/propeller/blogBanner.png"}
 							alt={"Banner"}
 							className={
-								"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[100%]"
+								"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 h-full w-auto lg:w-full lg:h-auto"
 							}
 						></Image>
 					</div>
@@ -109,7 +117,7 @@ const Proppeller = () => {
 							<Image
 								src={"/images/blog/propeller/image1.png"}
 								alt={"content image 1"}
-								className={"w-[60%] rounded-2xl"}
+								className={"w-[90%] lg:w-[60%] rounded-2xl"}
 							></Image>
 							<span className=' text-darker_blue font-semibold'>
 								Figure 1.1: The basic principle of generating thrust by the propeller.{" "}

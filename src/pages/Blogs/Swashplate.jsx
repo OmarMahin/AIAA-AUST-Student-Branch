@@ -1,6 +1,8 @@
 import React from "react"
 import { useState } from "react"
 import { FaBookOpen, FaRegHeart, FaRegStar } from "react-icons/fa"
+import { HiArrowSmLeft } from "react-icons/hi"
+import { Link } from "react-router-dom"
 import AnimatePage from "../../component/AnimatePage"
 import BlogComment from "../../component/BlogComment"
 import BlogContent from "../../component/BlogContent"
@@ -18,9 +20,15 @@ const Swashplate = () => {
 				<Flex className={"flex flex-col mt-8"}>
 					<Flex
 						className={
-							"flex mt-20 justify-center lg:mt-0 items-center font-poppins font-bold text-darker_blue mb-9 text-[14px] gap-1 lg:justify-end"
+							"flex mt-20 justify-center lg:mt-0 items-center font-poppins font-bold text-darker_blue mb-9 text-[14px] gap-1 lg:justify-between"
 						}
 					>
+						<Link to={'/blog'}>
+						<HiArrowSmLeft className="h-8 w-8 p-1 bg-[#d2deeb] rounded-full "/>
+					</Link>
+					<Flex className={'flex lg:justify-end justify-center gap-1'}>
+						
+
 						<Flex className='flex py-2 px-4 rounded-full bg-[#d2deeb] items-center gap-2'>
 							<FaBookOpen className={"text-darker_blue"} />
 							<span>5 min read</span>
@@ -64,16 +72,17 @@ const Swashplate = () => {
 							</span>
 						</Flex>
 					</Flex>
+					</Flex>
 					<div
 						className={
-							"relative w-full h-[300px] lg:h-[400px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden rounded-xl"
+							"relative w-full h-[200px] lg:h-[400px] after:bg-black/5 after:absolute after:w-full after:h-full overflow-hidden rounded-xl"
 						}
 					>
 						<Image
 							src={"/images/blog/swashplate/blogBanner.png"}
 							alt={"Banner"}
 							className={
-								"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[100%]"
+								"absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 h-full lg:w-[100%]"
 							}
 						></Image>
 					</div>
