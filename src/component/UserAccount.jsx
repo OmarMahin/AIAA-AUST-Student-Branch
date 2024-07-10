@@ -7,7 +7,8 @@ import Button from "./Button"
 import Container from "./Container"
 import Flex from "./Flex"
 import Title from "./Title"
-import { useLayoutEffect } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom"
 
 const UserAccount = (data) => {
@@ -56,47 +57,23 @@ const UserAccount = (data) => {
 
 	let sendToOTP_Page = () => {
 		if (!otpSend) {
-			
 			axios
 				.post("http://localhost:3000/api/v1/auth/sendOTP", {
 					email: user_data.email,
 				})
 				.then((data) => {
-					// setEmailError("")
 					if (data.data.error) {
-						// setEmail("")
-						// setEmailError(data.data.error)
 					} else {
 						setOtpSend(true)
 						console.log("otp Sent")
 						navigation(`/user-otp/${data.data.pageLink}`)
-
+						toast.success("An OTP has been sent to your email.")
 					}
 				})
 				.catch((err) => {
 					console.log(err)
 				})
-		} 
-		// else if (otpSend) {
-		// 	axios
-		// 		.post("http://localhost:3000/api/v1/auth/verifyOTP", {
-		// 			email,
-		// 			otp,
-		// 		})
-		// 		.then((data) => {
-		// 			setEmailError("")
-		// 			setOtpError("")
-		// 			console.log(data)
-		// 			if (data.data.error && data.data.otp_valid == false) {
-		// 				setOtpError(data.data.error)
-		// 				return
-		// 			}
-		// 			navigator(`/password-change/${data.data.pageLink}`)
-		// 		})
-		// 		.catch((err) => {
-		// 			console.log(err)
-		// 		})
-		// }
+		}
 	}
 
 	let uploadImage = (e) => {
@@ -121,6 +98,7 @@ const UserAccount = (data) => {
 
 	return (
 		<Container>
+			
 			<Flex
 				className={` w-[100vw] h-[100vh] fixed top-0 left-0 ${
 					showConfirmMessage ? "z-20 bg-black/40 duration-300" : "z-[-1] bg-transparent"
@@ -138,9 +116,7 @@ const UserAccount = (data) => {
 					<Flex className={"gap-4"}>
 						<div
 							className={`py-2 px-5 bg-red-500 rounded-lg inline-block text-white lg:text-[15px] text-[16px] border-2 border-red-500 hover:bg-red-300 hover:text-font-color duration-150 hover:cursor-pointer`}
-							onClick={
-								sendToOTP_Page
-							}
+							onClick={sendToOTP_Page}
 						>
 							<span className='font-poppins font-medium'>Confirm</span>
 						</div>

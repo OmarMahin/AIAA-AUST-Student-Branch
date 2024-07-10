@@ -8,6 +8,8 @@ import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaEye } from "react-icons/fa"
 import { FaEyeSlash } from "react-icons/fa"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PasswordChangeForm = ({user_email}) => {
     console.log(user_email)
@@ -54,7 +56,10 @@ const PasswordChangeForm = ({user_email}) => {
 				setPasswordError("")
 
 				if (!data.data.error) {
+					toast.success("Password has been changed successfully.")
+					console.log('password changed')
 					navigation('/myaccount')
+
 				} else {
                     console.log(data.data.error)
 				}

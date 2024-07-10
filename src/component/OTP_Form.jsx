@@ -45,7 +45,7 @@ const OTP_Form = ({ user_email }) => {
 
 	return (
 		<Container>
-			<div className='lg:mt-11 lg:w-[40%] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
+			<div className='lg:mt-11 lg:w-[40%] my-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
 				<form className='relative z-10'>
 					<Flex className={"flex flex-col items-center px-6 gap-6"}>
 						<p className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-lg'>

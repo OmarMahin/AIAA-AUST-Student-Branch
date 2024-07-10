@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom"
 import validateEmail from "../helperFunctions/ValidateEmail"
 import { TiInfoOutline } from "react-icons/ti"
 import { MdCancel } from "react-icons/md"
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgetPasswordForm = () => {
 	axios.defaults.withCredentials = true
@@ -47,6 +49,7 @@ const ForgetPasswordForm = () => {
 						setEmailError(data.data.error)
 					} else {
 						setOtpSend(true)
+						toast.success("An OTP has been sent to your email.")
 					}
 				})
 				.catch((err) => {

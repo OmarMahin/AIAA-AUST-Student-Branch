@@ -31,7 +31,7 @@ const MyAccount = () => {
 			.then((data) => {
 				
 				if (data.data.authorized == false) {
-					window.location.pathname = "/login"
+					navigation('/login')
 				} else {
 					const user_Id = data.data.userId
 					axios

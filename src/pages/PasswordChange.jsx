@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import AnimatePage from "../component/AnimatePage"
 import PasswordChangeForm from "../component/PasswordChangeForm"
 
+
 const PasswordChange = () => {
 	axios.defaults.withCredentials = true
 
