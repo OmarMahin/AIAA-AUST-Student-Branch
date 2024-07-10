@@ -20,6 +20,9 @@ import SignUp from "./pages/SignUp"
 import Team from "./pages/Team"
 import Swashplate from "./pages/Blogs/Swashplate"
 import Proppeller from "./pages/Blogs/Propeller"
+import ForgetPassword from "./pages/ForgetPassword"
+import PasswordChange from "./pages/PasswordChange"
+import OTP_Page from "./pages/OTP_Page"
 
 function App() {
 	const router = createBrowserRouter(
@@ -43,6 +46,9 @@ function App() {
 				</Route>
 				<Route path='contact' element={<ContactUs></ContactUs>}></Route>
 				<Route path='login' element={<Login></Login>}></Route>
+				<Route path='forget-password' element={<ForgetPassword></ForgetPassword>}></Route>
+				<Route path='password-change/:id' element={<PasswordChange></PasswordChange>}></Route>
+				<Route path='user-otp/:id' element={<OTP_Page></OTP_Page>}></Route>
 				<Route path='signup' element={<SignUp></SignUp>}></Route>
 				<Route path='myaccount' element={<MyAccount></MyAccount>}></Route>
 				<Route path='admin' element={<AdminPage></AdminPage>}></Route>

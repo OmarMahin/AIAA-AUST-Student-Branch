@@ -160,7 +160,7 @@ const LoginForm = () => {
 						Sign Up
 					</Link>
 				</Flex>
-				<Link className='font-poppins font-semibold text-[14px] text-light-blue'>
+				<Link to={'/forget-password'} className='font-poppins font-semibold text-[14px] text-light-blue'>
 					Forget Password?
 				</Link>
 			</Flex>

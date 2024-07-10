@@ -8,15 +8,21 @@ import Container from "./Container"
 import Flex from "./Flex"
 import Title from "./Title"
 import { useLayoutEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 const UserAccount = (data) => {
 	const user_data = data.data
 
 	axios.defaults.withCredentials = true
 
+	const navigation = useNavigate()
+
 	let imageInputRef = useRef()
 
 	let [imageData, setImageData] = useState("")
+	let [showConfirmMessage, setShowConfirmMessage] = useState(false)
+	let [otpError, setOtpError] = useState(false)
+	let [otpSend, setOtpSend] = useState(false)
 
 	let dataKey = []
 	let dataValue = []
@@ -35,13 +41,62 @@ const UserAccount = (data) => {
 			}
 		}
 	}
-	
+
 	let name = user_data.name
 	let nameParts = name.split(" ")
 	let userName = nameParts[0][0] + nameParts.pop()[0]
 
 	let handleImageUploadClick = (e) => {
 		imageInputRef.current.click()
+	}
+
+	let closeConfirmMessage = () => {
+		setShowConfirmMessage(false)
+	}
+
+	let sendToOTP_Page = () => {
+		if (!otpSend) {
+			
+			axios
+				.post("http://localhost:3000/api/v1/auth/sendOTP", {
+					email: user_data.email,
+				})
+				.then((data) => {
+					// setEmailError("")
+					if (data.data.error) {
+						// setEmail("")
+						// setEmailError(data.data.error)
+					} else {
+						setOtpSend(true)
+						console.log("otp Sent")
+						navigation(`/user-otp/${data.data.pageLink}`)
+
+					}
+				})
+				.catch((err) => {
+					console.log(err)
+				})
+		} 
+		// else if (otpSend) {
+		// 	axios
+		// 		.post("http://localhost:3000/api/v1/auth/verifyOTP", {
+		// 			email,
+		// 			otp,
+		// 		})
+		// 		.then((data) => {
+		// 			setEmailError("")
+		// 			setOtpError("")
+		// 			console.log(data)
+		// 			if (data.data.error && data.data.otp_valid == false) {
+		// 				setOtpError(data.data.error)
+		// 				return
+		// 			}
+		// 			navigator(`/password-change/${data.data.pageLink}`)
+		// 		})
+		// 		.catch((err) => {
+		// 			console.log(err)
+		// 		})
+		// }
 	}
 
 	let uploadImage = (e) => {
@@ -58,8 +113,46 @@ const UserAccount = (data) => {
 			})
 	}
 
+	document.addEventListener("click", (e) => {
+		if (e.target.id === "background") {
+			setShowConfirmMessage(false)
+		}
+	})
+
 	return (
 		<Container>
+			<Flex
+				className={` w-[100vw] h-[100vh] fixed top-0 left-0 ${
+					showConfirmMessage ? "z-20 bg-black/40 duration-300" : "z-[-1] bg-transparent"
+				} `}
+				id={"background"}
+			>
+				<Flex
+					className={`absolute p-8 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center rounded-xl gap-10 ${
+						showConfirmMessage ? "scale-100" : "scale-0"
+					} duration-300`}
+				>
+					<span className={"font-poppins font-semibold text-darknest_blue text-xl"}>
+						Are you sure you want to change your password?
+					</span>
+					<Flex className={"gap-4"}>
+						<div
+							className={`py-2 px-5 bg-red-500 rounded-lg inline-block text-white lg:text-[15px] text-[16px] border-2 border-red-500 hover:bg-red-300 hover:text-font-color duration-150 hover:cursor-pointer`}
+							onClick={
+								sendToOTP_Page
+							}
+						>
+							<span className='font-poppins font-medium'>Confirm</span>
+						</div>
+						<div
+							className={`py-2 px-5 bg-light-blue rounded-lg inline-block text-white lg:text-[15px] text-[16px] border-2 border-light-blue hover:bg-[#EAF3FF] hover:text-font-color duration-150 hover:cursor-pointer`}
+							onClick={closeConfirmMessage}
+						>
+							<span className='font-poppins font-medium'>Cancel</span>
+						</div>
+					</Flex>
+				</Flex>
+			</Flex>
 			<Title>Account Details</Title>
 			<Flex className={"mt-10 flex flex-col w-[60%] mx-auto mb-40 "}>
 				<div
@@ -122,7 +215,13 @@ const UserAccount = (data) => {
 						</Flex>
 					</Flex>
 					<Flex className={"flex gap-5 mt-12 w-[80%]"}>
-						<Button>Change Password</Button>
+						<Button
+							onClick={() => {
+								setShowConfirmMessage(true)
+							}}
+						>
+							Change Password
+						</Button>
 						<Button>Edit Information</Button>
 					</Flex>
 				</div>
