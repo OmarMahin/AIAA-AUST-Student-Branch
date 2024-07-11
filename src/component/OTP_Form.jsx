@@ -22,7 +22,7 @@ const OTP_Form = ({ user_email }) => {
 		}
 
 		axios
-			.post("http://localhost:3000/api/v1/auth/verifyOTP", {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/verifyOTP`, {
 				email: user_email,
 				otp,
 			})

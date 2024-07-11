@@ -17,7 +17,7 @@ const OTP_Page = () => {
     useLayoutEffect(()=>{
 
         axios
-            .post("http://localhost:3000/api/v1/auth/verifyPage", {
+            .post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/verifyPage`, {
                 id,
             })
             .then((data) => {

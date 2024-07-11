@@ -33,7 +33,7 @@ const Navbar = () => {
 
 	let logOutUser = ()=>{
 		axios
-			.get("http://localhost:3000/api/v1/auth/unauthorize")
+			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/unauthorize`)
 			.then((data) => {
 				console.log("Logged out")
 				window.location.pathname = '/login'

@@ -47,7 +47,7 @@ const PasswordChangeForm = ({user_email}) => {
 
 
 		axios
-			.post("http://localhost:3000/api/v1/auth/changePassword", {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/changePassword`, {
 				email: user_email,
 				password,
 			})

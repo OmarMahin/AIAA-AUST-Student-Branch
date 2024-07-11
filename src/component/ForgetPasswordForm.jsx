@@ -37,9 +37,8 @@ const ForgetPasswordForm = () => {
 		}
 
 		if (!otpSend) {
-			console.log("otp Sent")
 			axios
-				.post("http://localhost:3000/api/v1/auth/sendOTP", {
+				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/sendOTP`, {
 					email,
 				})
 				.then((data) => {
@@ -57,7 +56,7 @@ const ForgetPasswordForm = () => {
 				})
 		} else if (otpSend) {
 			axios
-				.post("http://localhost:3000/api/v1/auth/verifyOTP", {
+				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/verifyOTP`, {
 					email,
 					otp,
 				})

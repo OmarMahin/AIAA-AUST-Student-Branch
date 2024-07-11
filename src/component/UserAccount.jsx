@@ -58,7 +58,7 @@ const UserAccount = (data) => {
 	let sendToOTP_Page = () => {
 		if (!otpSend) {
 			axios
-				.post("http://localhost:3000/api/v1/auth/sendOTP", {
+				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/sendOTP`, {
 					email: user_data.email,
 				})
 				.then((data) => {
@@ -79,7 +79,7 @@ const UserAccount = (data) => {
 	let uploadImage = (e) => {
 		setImageData(e.target.files[0])
 		axios
-			.post("http://localhost:3000/api/v1/file/imageUpload", {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, {
 				imageData,
 			})
 			.then((data) => {

@@ -10,6 +10,7 @@ import validateEmail from "../helperFunctions/ValidateEmail"
 import { TiInfoOutline } from "react-icons/ti"
 import { MdCancel } from "react-icons/md"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { toast } from "react-toastify"
 
 const LoginForm = () => {
 	axios.defaults.withCredentials = true
@@ -45,7 +46,7 @@ const LoginForm = () => {
 		}
 
 		axios
-			.post("http://localhost:3000/api/v1/auth/login", {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/login`, {
 				email,
 				password,
 			})
@@ -58,7 +59,8 @@ const LoginForm = () => {
 				if (data.data.found) {
 					window.location.pathname = "/"
 				} else {
-					setAccountExist(true)
+					setAccountExist(false)
+					toast.error("Invalid Credentials! Please check your email and password.")
 				}
 			})
 			.catch((err) => {
@@ -75,24 +77,6 @@ const LoginForm = () => {
 
 	return (
 		<Container>
-			<Flex
-				className={`fixed z-20 ${
-					accountExist ? "lg:top-3 top-24 opacity-1" : "top-[-120%] opacity-0"
-				} left-1/2 -translate-x-1/2 items-center bg-red-200 lg:p-4 p-2 lg:w-[43%] w-[90%] rounded-lg justify-between ease-in-out duration-700 flex`}
-			>
-				<Flex className={"flex items-center gap-3 text-red-700"}>
-					<TiInfoOutline className={"w-5 h-5"} />
-					<span className=' font-poppins font-medium lg:text-[14px] text-[12px]'>
-						Invalid Credentials! Please check your email address and password.
-					</span>
-				</Flex>
-				<MdCancel
-					className={"text-red-700 w-5 h-5 cursor-pointer"}
-					onClick={() => {
-						setAccountExist(false)
-					}}
-				/>
-			</Flex>
 
 			<div className='lg:mt-11 lg:w-[40%] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
 				<form>
@@ -160,7 +144,7 @@ const LoginForm = () => {
 						Sign Up
 					</Link>
 				</Flex>
-				<Link to={'/forget-password'} className='font-poppins font-semibold text-[14px] text-light-blue'>
+				<Link to={'/forget-password'} className='font-poppins font-bold text-[14px] text-darknest_blue'>
 					Forget Password?
 				</Link>
 			</Flex>

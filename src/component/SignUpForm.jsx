@@ -11,6 +11,7 @@ import { MdCancel } from "react-icons/md"
 import validateEmail from "../helperFunctions/ValidateEmail"
 import { FaEye } from "react-icons/fa"
 import { FaEyeSlash } from "react-icons/fa"
+import { toast } from "react-toastify"
 
 
 
@@ -95,13 +96,13 @@ const SignUpForm = () => {
 		}
 
 		axios
-			.post("http://localhost:3000/api/v1/auth/findMemberByAASBId", {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/findMemberByAASBId`, {
 				AASBmembershipId: aasbId,
 			})
 			.then((data) => {
 				if (data.data.found == "true" && data.data.accountState == "False") {	
 					axios
-						.post("http://localhost:3000/api/v1/auth/signup", {
+						.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/signup`, {
 							name,
 							email,
 							AASBmembershipId: aasbId,
@@ -115,6 +116,7 @@ const SignUpForm = () => {
 							setConfirmPassword("")
 							setAccountExist(false)
 							setIdError("")
+							toast.success("Account created successfully.")
 							navigation("/login", { replace: false })
 						})
 						.catch((err) => {
@@ -122,7 +124,6 @@ const SignUpForm = () => {
 						})
 				} else {
 					if (data.data.accountState == "True") {
-						setAccountExist(true)
 						setEmailError(false)
 						setNameError(false)
 						setPasswordError(false)
@@ -133,6 +134,7 @@ const SignUpForm = () => {
 						setAasbId("")
 						setPassword("")
 						setConfirmPassword("")
+						toast.error("Error! An account already exists with these credentials.")
 					} else if (data.data.found == "false") {
 						setIdError("Invalid Id.")
 						setEmailError(false)
@@ -162,24 +164,6 @@ const SignUpForm = () => {
 
 	return (
 		<Container>
-			<Flex
-				className={`fixed z-20 ${
-					accountExist ? "lg:top-3 top-24 opacity-1" : "top-[-120%] opacity-0"
-				} left-1/2 -translate-x-1/2 items-center bg-red-200 p-4 lg:w-[40%] w-[90%] rounded-lg justify-between ease-in-out duration-700 flex`}
-			>
-				<Flex className={"flex items-center lg:gap-3 gap-2 text-red-700"}>
-					<TiInfoOutline className={"lg:w-5 lg:h-5 w-4 h-4"} />
-					<span className=' font-poppins font-medium lg:text-base text-[13px]'>
-						Error! An account already exists with this Id.
-					</span>
-				</Flex>
-				<MdCancel
-					className={"text-red-700 lg:w-5 lg:h-5 w-4 h-4 cursor-pointer"}
-					onClick={() => {
-						setAccountExist(false)
-					}}
-				/>
-			</Flex>
 
 			<div className='lg:mt-11 lg:w-[40%] max-w-[400px] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-haasbIdden'>
 				<form>

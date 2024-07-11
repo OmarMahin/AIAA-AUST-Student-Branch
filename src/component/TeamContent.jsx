@@ -11,11 +11,8 @@ const TeamContent = () => {
 					Executive Committee Fall 2023
 				</h3>
 				<h3 className='mt-16 font-poppins font-semibold text-white lg:text-2xl text-lg py-2 lg:px-12 px-8 bg-light-blue rounded-full '>
-					ADVISORS
+					FACULTY ADVISORS
 				</h3>
-				{/* <h3 className='mt-16 font-poppins font-bold text-light-blue lg:text-2xl text-lg py-2 lg:px-12 px-8 border-b-4 border-darker_blue'>
-					FACULTY ADVISOR
-				</h3> */}
 			</Flex>
 			<Flex className={"flex flex-col items-center gap-5 mb-40"}>
 				{/* Professor */}

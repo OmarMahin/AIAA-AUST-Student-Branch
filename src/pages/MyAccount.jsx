@@ -27,7 +27,7 @@ const MyAccount = () => {
 	useLayoutEffect(() => {
 		setLoaded(false)
 		axios
-			.get("http://localhost:3000/api/v1/auth/authorized")
+			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/authorized`)
 			.then((data) => {
 				
 				if (data.data.authorized == false) {

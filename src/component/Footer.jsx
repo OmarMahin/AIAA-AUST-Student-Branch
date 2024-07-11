@@ -13,7 +13,6 @@ import { FaPhoneAlt } from "react-icons/fa"
 import SocialMediaIcons from "./SocialMediaIcons"
 
 const Footer = () => {
-
 	return (
 		<>
 			<div className='w-full bg-darker_blue md:px-6 lg:px-0'>
@@ -24,11 +23,11 @@ const Footer = () => {
 						}
 					>
 						<div className='lg:w-[25%] md:w-[80%] w-[60%]'>
-							<Link to={'/'}>
-							<Image
-								src={"/images/Footer_Logo.png"}
-								className='lg:w-[70%] md:w-[40%] w-[70%]  mx-auto lg:mx-0 lg:mb-0 mb-6'
-							></Image>
+							<Link to={"/"}>
+								<Image
+									src={"/images/Footer_Logo.png"}
+									className='lg:w-[70%] md:w-[40%] w-[70%]  mx-auto lg:mx-0 lg:mb-0 mb-6'
+								></Image>
 							</Link>
 						</div>
 						<div className='lg:w-[25%] md:w-[30%] w-[45%]'>
@@ -40,29 +39,27 @@ const Footer = () => {
 									<Link to={"/about"}>About Us</Link>
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"https://www.aiaa.org/"}  target = {'_blank'}>About AIAA</Link>
+									<Link to={"https://www.aiaa.org/"} target={"_blank"}>
+										About AIAA
+									</Link>
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"https://aust.edu/"}  target = {'_blank'}>About AUST</Link>
-								</ListItem>
-								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"/committee"}>Committee</Link>
+									<Link to={"https://aust.edu/"} target={"_blank"}>
+										About AUST
+									</Link>
 								</ListItem>
 							</List>
 						</div>
 						<div className='lg:w-[25%] md:w-[30%] w-[30%]'>
 							<List className={"flex-col lg:gap-6 gap-4 flex"}>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
+									<Link to={"/committee"}>Committee</Link>
+								</ListItem>
+								<ListItem className={"font-poppins font-medium text-lg text-white"}>
 									<Link to={"/activites"}>Activities</Link>
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"/"}>Events</Link>
-								</ListItem>
-								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"/"}>Blog</Link>
-								</ListItem>
-								<ListItem className={"font-poppins font-medium text-lg text-white"}>
-									<Link to={"/"}>News</Link>
+									<Link to={"/blog"}>Blog</Link>
 								</ListItem>
 							</List>
 						</div>
@@ -72,7 +69,7 @@ const Footer = () => {
 									Get In Touch
 								</ListItem>
 								<ListItem>
-									<SocialMediaIcons className = {'text-white'}></SocialMediaIcons>
+									<SocialMediaIcons className={"text-white"}></SocialMediaIcons>
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
 									<Flex className={"gap-3 items-center flex"}>
