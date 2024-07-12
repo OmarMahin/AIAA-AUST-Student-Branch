@@ -9,6 +9,7 @@ import axios from "axios"
 import { MdDelete } from "react-icons/md"
 import { useEffect } from "react"
 import { useRef } from "react"
+import { toast } from "react-toastify"
 
 const AdminPanel = () => {
 	axios.defaults.withCredentials = true
@@ -66,12 +67,12 @@ const AdminPanel = () => {
 				memberSession,
 			})
 			.then((data) => {
+				toast.success(`User ${aasbId} created successfully`)
 				setAasbId("")
 				setAiaaId("")
 				setMemberType("General")
 				setMemberSession("Fall 2023")
 				setRefresh(!refresh)
-				console.log(data)
 			})
 			.catch((err) => {
 				console.log(err)

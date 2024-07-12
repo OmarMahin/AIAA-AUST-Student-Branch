@@ -19,6 +19,8 @@ const MyAccount = () => {
 	let [user_department, setUser_Department] = useState('')
 	let [user_year_semester, setUser_Year_Semester] = useState('')
 	let [user_profileImage, setUser_ProfileImage] = useState('')
+	let [user_contact, setUser_Contact] = useState('')
+	let [user_id, setUser_id] = useState('')
 
 
 	let [refresh, setRefresh] = useState(false)
@@ -48,6 +50,8 @@ const MyAccount = () => {
 							setUser_Department(data.department)
 							setUser_Year_Semester(data.yearAndSemester)
 							setUser_ProfileImage(data.profileImage)
+							setUser_Contact(data.contact)
+							setUser_id(data._id)
 							setLoaded(true)
 						})
 						.catch((error) => {
@@ -78,7 +82,9 @@ const MyAccount = () => {
 						"AIAA_ID": user_aiaaId,
 						"Department": user_department,
 						"Year/Semester": user_year_semester,
-						profileImage: user_profileImage
+						"Contact No.": !user_contact ? 'N/A' : use,
+						profileImage: user_profileImage,
+						id: user_id
 					}}
 				></UserAccount>
 			) : (

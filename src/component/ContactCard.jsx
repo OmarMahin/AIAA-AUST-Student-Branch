@@ -25,12 +25,6 @@ const ContactCard = () => {
 							us using the form or the social media and phone number given below.
 						</p>
 						<SocialMediaIcons className={"text-light-blue mt-6"}></SocialMediaIcons>
-						<Flex className={"gap-3 items-center flex mt-6"}>
-							<FaPhoneAlt className={"text-light-blue h-5 w-6"} />
-							<span className='font-poppins font-semibold text-lg text-slate-500'>
-								01860-718012
-							</span>
-						</Flex>
 					</div>
                     <Image src={'/images/ContactDesign.png'} className = {'absolute lg:bottom-12 bottom-4 left-2/3 -translate-x-1/2 lg:w-[55%] w-[45%]'}></Image>
 				</Flex>

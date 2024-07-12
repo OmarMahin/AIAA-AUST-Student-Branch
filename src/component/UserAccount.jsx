@@ -8,7 +8,7 @@ import Container from "./Container"
 import Flex from "./Flex"
 import Title from "./Title"
 import { ToastContainer, toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
+import { validateMIMEType } from "validate-image-type";
 import { useNavigate } from "react-router-dom"
 
 const UserAccount = (data) => {
@@ -20,7 +20,7 @@ const UserAccount = (data) => {
 
 	let imageInputRef = useRef()
 
-	let [imageData, setImageData] = useState("")
+	let [originalImageData, setOriginialImageData] = useState("")
 	let [showConfirmMessage, setShowConfirmMessage] = useState(false)
 	let [otpError, setOtpError] = useState(false)
 	let [otpSend, setOtpSend] = useState(false)
@@ -32,7 +32,7 @@ const UserAccount = (data) => {
 		if (key.split("_").length > 1) {
 			key = key.split("_")[0] + " " + key.split("_")[1]
 		}
-		if (key != "profileImage") {
+		if (key != "profileImage" && key != 'id') {
 			if (key == "name") {
 				dataKey.push(key)
 				dataValue.push(value)
@@ -76,12 +76,30 @@ const UserAccount = (data) => {
 		}
 	}
 
-	let uploadImage = (e) => {
-		setImageData(e.target.files[0])
-		axios
-			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, {
-				imageData,
-			})
+	let uploadImage = async (e) => {
+
+		setOriginialImageData(e.target.files[0])
+		console.log(originalImageData)
+
+		// const result = await validateMIMEType(image, {
+		// 	allowMimeTypes: ['image/jpeg', 'image/gif', 'image/png', 'image/svg+xml']
+		// });
+		// if (!result.ok) {
+		// 	console.error(result.error);
+		// 	return;
+		// }
+		// console.log("This image is supported!");
+		
+		const imageData = new File([originalImageData], `${user_data.id}`, {
+			type: originalImageData.type,
+			lastModified: originalImageData.lastModified,
+		})
+
+		let imageFormData = new FormData()
+		imageFormData.append("file", imageData)
+
+		let sendData = await axios
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, imageFormData)
 			.then((data) => {
 				console.log(data)
 			})
@@ -98,7 +116,6 @@ const UserAccount = (data) => {
 
 	return (
 		<Container>
-			
 			<Flex
 				className={` w-[100vw] h-[100vh] fixed top-0 left-0 ${
 					showConfirmMessage ? "z-20 bg-black/40 duration-300" : "z-[-1] bg-transparent"
@@ -140,9 +157,12 @@ const UserAccount = (data) => {
 							<MdOutlineFileUpload className=' w-7 h-7' />
 							<span>Upload Image</span>
 						</Flex>
+						{/* <form action={`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`} method = "POST">
+
+						</form> */}
 						<input
 							type={"file"}
-							accept={".png, .jpg, .jpeg"}
+							accept={"image/*"}
 							ref={imageInputRef}
 							className={"hidden"}
 							onChange={uploadImage}

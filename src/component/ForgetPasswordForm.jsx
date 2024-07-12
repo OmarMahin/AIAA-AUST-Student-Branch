@@ -10,7 +10,7 @@ import validateEmail from "../helperFunctions/ValidateEmail"
 import { TiInfoOutline } from "react-icons/ti"
 import { MdCancel } from "react-icons/md"
 import { ToastContainer, toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css"
 
 const ForgetPasswordForm = () => {
 	axios.defaults.withCredentials = true
@@ -111,7 +111,13 @@ const ForgetPasswordForm = () => {
 						<p className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-lg'>
 							Please input your email to rececive an otp
 						</p>
-						<div className='relative w-full'>
+						<div
+							className={`${
+								otpSend
+									? "after:absolute after:w-full after:h-full after:bg-black after:z-10 after:left-0 after:rounded-xl after:opacity-10 hover:cursor-no-drop"
+									: "cursor-auto"
+							} relative w-full`}
+						>
 							<input
 								type={"email"}
 								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
