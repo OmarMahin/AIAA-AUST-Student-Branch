@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import ActivityPageCover from "./ActivityPageCover"
 
-const ImageSlider = ( {images}) => {
+const ImageSlider = ( {images, event}) => {
 	console.log(images.map((data)=>{console.log(data)}))
 	let settings = {
 		dots: true,
@@ -12,12 +12,12 @@ const ImageSlider = ( {images}) => {
 		infinite: true,
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		speed: 400,
+		speed: 500,
 	}
 	return (
 		<Slider {...settings}>
 			{images.map((image, index) => (
-				<ActivityPageCover image={images[index]}></ActivityPageCover>
+				<ActivityPageCover image={images[index]} event = {event}></ActivityPageCover>
 			))}
 		</Slider>
 	)

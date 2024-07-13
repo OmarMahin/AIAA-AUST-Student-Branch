@@ -1,15 +1,37 @@
 import React from "react"
 import ActivityPageCover from "./ActivityPageCover"
 import Flex from "./Flex"
-import Slider from "react-slick"
+import { HiArrowSmLeft } from "react-icons/hi"
 import ImageSlider from "./ImageSlider"
+import GalleryImageSlider from "./GalleryImageSlider"
+import { Link } from "react-router-dom"
 
-const ActivityContent = ({ images, heading, date, content, videoHeading, video, videoType }) => {
+const ActivityContent = ({
+	images,
+	heading,
+	date,
+	content,
+	videoHeading,
+	video,
+	videoType,
+	event,
+	ImageHeading,
+	imageContent,
+}) => {
 	let paras = content.split(/\r?\n|\r|\n/g)
-	
+
 	return (
 		<div className=' mb-28'>
-			<ImageSlider images={images}></ImageSlider>
+			<Flex
+				className={
+					"flex mt-20 justify-center lg:mt-10 items-center font-poppins font-bold text-darker_blue text-[14px] gap-1 lg:justify-between"
+				}
+			>
+				<Link to={"/activites"}>
+					<HiArrowSmLeft className='h-8 w-8 p-1 bg-[#d2deeb] rounded-full ' />
+				</Link>
+			</Flex>
+			<ImageSlider images={images} event={event}></ImageSlider>
 			<Flex
 				className={
 					"lg:justify-between mt-11 lg:items-center items-start flex lg:flex-row flex-col lg:gap-0 gap-5"
@@ -38,6 +60,15 @@ const ActivityContent = ({ images, heading, date, content, videoHeading, video, 
 				</div>
 			) : (
 				""
+			)}
+			{imageContent && (
+				<div>
+					<h3 className=' mt-16 font-poppins font-bold text-light-blue lg:text-[26px] text-xl mb-7'>
+						{ImageHeading}
+					</h3>
+
+					<GalleryImageSlider images={imageContent} event={event}></GalleryImageSlider>
+				</div>
 			)}
 		</div>
 	)

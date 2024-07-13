@@ -23,6 +23,8 @@ import Proppeller from "./pages/Blogs/Propeller"
 import ForgetPassword from "./pages/ForgetPassword"
 import PasswordChange from "./pages/PasswordChange"
 import OTP_Page from "./pages/OTP_Page"
+import GM_Recruitment_F23 from "./pages/Activites/GM_Recruitment_F23"
+import Seminer_F23 from "./pages/Activites/Seminer_F23"
 
 function App() {
 	const router = createBrowserRouter(
@@ -30,19 +32,26 @@ function App() {
 			<Route path='/' element={<RootLayout />}>
 				<Route index element={<Home></Home>}></Route>
 				<Route path='about' element={<About></About>}></Route>
-				<Route path='activites' element={<Activities></Activities>}></Route>
+				<Route path='activites'>
+					<Route index element={<Activities></Activities>}></Route>
+					<Route
+						path='gm_recruitment_fall23'
+						element={<GM_Recruitment_F23></GM_Recruitment_F23>}
+					></Route>
+					<Route
+						path='aasb_seminar_fall23'
+						element={<Seminer_F23></Seminer_F23>}
+					></Route>
+				</Route>
 				<Route path='committee' element={<Team></Team>}></Route>
 				<Route path='joinus' element={<JoinUs></JoinUs>}></Route>
-				<Route path='/blog' >
+				<Route path='/blog'>
 					<Route index element={<Blog></Blog>}></Route>
-				<Route
-					path='the_swashplate_of_a_helicopter'
-					element={<Swashplate></Swashplate>}
-				></Route>
-				<Route
-					path='propeller_of_an_aircraft'
-					element={<Proppeller></Proppeller>}
-				></Route>
+					<Route
+						path='the_swashplate_of_a_helicopter'
+						element={<Swashplate></Swashplate>}
+					></Route>
+					<Route path='propeller_of_an_aircraft' element={<Proppeller></Proppeller>}></Route>
 				</Route>
 				<Route path='contact' element={<ContactUs></ContactUs>}></Route>
 				<Route path='login' element={<Login></Login>}></Route>
