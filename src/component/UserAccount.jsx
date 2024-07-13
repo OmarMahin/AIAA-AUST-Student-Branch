@@ -12,6 +12,8 @@ import { validateMIMEType } from "validate-image-type"
 import { useNavigate } from "react-router-dom"
 import Image from "./Image"
 import { useEffect } from "react"
+import List from "./List"
+import ListItem from "./ListItem"
 
 const UserAccount = (data) => {
 	const user_data = data.data
@@ -25,26 +27,24 @@ const UserAccount = (data) => {
 
 	let [refresh, setRefresh] = useState("")
 	let [showConfirmMessage, setShowConfirmMessage] = useState(false)
-	let [otpError, setOtpError] = useState(false)
+	let [editInformation, setEditInformation] = useState(false)
 	let [otpSend, setOtpSend] = useState(false)
 
-	let dataKey = []
-	let dataValue = []
+	let [user_name, setUser_name] = useState(user_data.name)
+	let [user_aasbId, setUser_AasbId] = useState(user_data.AASB_ID)
+	let [user_aiaaId, setUser_AiaaId] = useState(user_data.AIAA_ID)
+	let [user_email, setUser_Email] = useState(user_data.email)
+	let [user_department, setUser_Department] = useState(user_data.Department)
+	let [user_studentId, setUser_StudentId] = useState(user_data.Student_ID)
+	let [user_year_semester, setUser_Year_Semester] = useState(user_data.YS)
+	let [user_profileImage, setUser_ProfileImage] = useState(user_data.profileImage)
+	let [user_contact, setUser_Contact] = useState(user_data.Contact_No)
+	let [user_id, setUser_id] = useState(user_data.id)
 
-	for (let [key, value] of Object.entries(user_data)) {
-		if (key.split("_").length > 1) {
-			key = key.split("_")[0] + " " + key.split("_")[1]
-		}
-		if (key != "profileImage" && key != "id") {
-			if (key == "name") {
-				dataKey.push(key)
-				dataValue.push(value)
-			} else {
-				dataKey.push(key)
-				dataValue.push(value)
-			}
-		}
-	}
+	let [updated_user_student_id, setUpdated_user_student_id] = useState("")
+	let [updated_user_department, setUpdated_user_department] = useState("")
+	let [updated_user_ys, setUpdated_user_ys] = useState("")
+	let [updated_user_contact, setUpdated_user_contact] = useState("")
 
 	let name = user_data.name
 	let nameParts = name.split(" ")
@@ -56,6 +56,14 @@ const UserAccount = (data) => {
 
 	let closeConfirmMessage = () => {
 		setShowConfirmMessage(false)
+	}
+
+	let handleEditInformation = () => {
+		if (!editInformation) {
+			setEditInformation(true)
+		} else {
+			setEditInformation(false)
+		}
 	}
 
 	let sendToOTP_Page = () => {
@@ -82,7 +90,7 @@ const UserAccount = (data) => {
 	let uploadImage = async (e) => {
 		const originalImage = e.target.files[0]
 
-		const imageData = new File([originalImage], `${user_data.id}-${originalImage.name}`, {
+		const imageData = new File([originalImage], `${user_id}-${originalImage.name}`, {
 			type: originalImage.type,
 			lastModified: originalImage.lastModified,
 		})
@@ -93,7 +101,7 @@ const UserAccount = (data) => {
 		await axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, imageFormData)
 			.then((response) => {
-				if (response.data.status){
+				if (response.data.status) {
 					user_data.profileImage = response.data.result
 					setRefresh(!refresh)
 				}
@@ -109,7 +117,48 @@ const UserAccount = (data) => {
 		}
 	})
 
-	useEffect(()=>{console.log("Refreshed")},[refresh])
+	let handleUpdate = () => {
+		axios
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/updateUser`, {
+				id: user_id,
+				data: {
+					StudentId: updated_user_student_id ? updated_user_student_id : user_studentId == 'N/A' ? null : user_studentId,
+					department: updated_user_department ? updated_user_department : user_department,
+					yearAndSemester: updated_user_ys ? updated_user_ys : user_year_semester,
+					contact: updated_user_contact ? updated_user_contact : user_contact == 'N/A' ? null : user_contact,
+				},
+			})
+			.then((response) => {
+				if (response.data.status) {
+					toast.success(response.data.result)
+					setEditInformation(false)
+					setUser_StudentId(
+						updated_user_student_id ? updated_user_student_id : user_data.Student_ID
+					)
+					setUser_Department(
+						updated_user_department ? updated_user_department : user_data.Department
+					)
+					setUser_Year_Semester(
+						updated_user_ys ? updated_user_ys : user_data.YS
+					)
+					setUser_Contact(
+						updated_user_contact ? updated_user_contact : user_data.Contact_No
+					)
+
+					setUpdated_user_contact('')
+					setUpdated_user_department('')
+					setUpdated_user_student_id('')
+					setUpdated_user_ys('')
+				}
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+	}
+
+	useEffect(() => {
+		console.log("Refreshed")
+	}, [refresh])
 
 	return (
 		<Container>
@@ -164,7 +213,13 @@ const UserAccount = (data) => {
 						></input>
 					</div>
 					{user_data.profileImage != "N/A" ? (
-						<Image src={user_data.profileImage} alt = {'User Profile Picture'} className={"absolute -translate-x-1/2 -translate-y-1/2 w-full top-1/2 left-1/2"}></Image>
+						<Image
+							src={user_data.profileImage}
+							alt={"User Profile Picture"}
+							className={
+								"absolute -translate-x-1/2 -translate-y-1/2 w-full top-1/2 left-1/2"
+							}
+						></Image>
 					) : (
 						<span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-poppins font-bold text-[80px]'>
 							{userName}
@@ -172,48 +227,219 @@ const UserAccount = (data) => {
 					)}
 				</div>
 				<div className='mt-16 p-8 bg-[#E7ECF1]  rounded-2xl shadow-around shadow-black/40'>
-					<Flex className={""}>
-						<Flex className={"w-[50%] flex flex-col gap-2"}>
-							{dataKey.map((data, index) =>
-								data != "userProfileName" && data != "imageURL" ? (
-									<Flex
-										className={`flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full ${
-											index % 2 == 0 ? "bg-[#d3e0ec]" : ""
-										} p-4 rounded-l-lg`}
-									>
-										<h3>{data[0].toUpperCase() + data.substring(1)}</h3>
-										<h3>:</h3>
-									</Flex>
-								) : (
-									""
-								)
-							)}
+					<Flex>
+						<Flex className={"w-[50%] flex flex-col"}>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={
+										"bg-[#d3e0ec] flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>Name</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>Email</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"bg-[#d3e0ec] flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>AIAA ID</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>AASB ID</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"bg-[#d3e0ec] flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>Student ID</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>Department</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"bg-[#d3e0ec] flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>Year/Semester</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+								<ListItem
+									className={
+										"flex font-poppins font-semibold text-darknest_blue justify-between text-xl w-full p-4 rounded-l-lg"
+									}
+								>
+									{<h3>Contact No</h3>}
+									{<h3>:</h3>}
+								</ListItem>
+							</List>
 						</Flex>
 						<Flex className={"w-[50%] flex flex-col gap-2"}>
-							{dataValue.map((data, index) =>
-								dataKey[index] != "userProfileName" && dataKey[index] != "imageURL" ? (
-									<Flex
-										className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full ${
-											index % 2 == 0 ? "bg-[#d3e0ec]" : ""
-										} p-4 rounded-r-lg`}
-									>
-										<h3>{data}</h3>
-									</Flex>
-								) : (
-									""
-								)
-							)}
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full bg-[#d3e0ec] p-4 rounded-r-lg`}
+								>
+									{<h3>{user_name}</h3>}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full p-4 rounded-r-lg`}
+								>
+									{<h3>{user_email}</h3>}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full bg-[#d3e0ec] p-4 rounded-r-lg`}
+								>
+									{<h3>{user_aiaaId}</h3>}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full  p-4 rounded-r-lg`}
+								>
+									{<h3>{user_aasbId}</h3>}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full bg-[#d3e0ec] ${
+										editInformation ? "py-2 pr-4" : "p-4"
+									} rounded-r-lg`}
+								>
+									{editInformation ? (
+										<input
+											type={"text"}
+											placeholder={user_studentId}
+											className={"bg-transparent py-2 pl-4 placeholder:text-[#5d7d99]"}
+											onChange={(e) => {
+												setUpdated_user_student_id(e.target.value)
+											}}
+										></input>
+									) : (
+										<h3>{user_studentId}</h3>
+									)}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full ${
+										editInformation ? "py-2 pr-4" : "p-4"
+									} rounded-r-lg`}
+								>
+									{editInformation ? (
+										<select
+											className={"bg-transparent py-2 pl-4 w-full text-[#5d7d99]"}
+											onChange={(e) => {
+												setUpdated_user_department(e.target.value)
+											}}
+										>
+											<option >N/A</option>
+											<option >ME</option>
+											<option >CSE</option>
+											<option >EEE</option>
+											<option >CE</option>
+											<option >TE</option>
+											<option >IPE</option>
+											<option >Arch</option>
+										</select>
+									) : (
+										<h3>{user_department}</h3>
+									)}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full bg-[#d3e0ec] ${
+										editInformation ? "py-2 pr-4" : "p-4"
+									} rounded-r-lg`}
+								>
+									{editInformation ? (
+										<select
+											className={"bg-transparent py-2 pl-4 w-full text-[#5d7d99]"}
+											onChange={(e) => {
+												setUpdated_user_ys(e.target.value)
+											}}
+										>
+											<option >N/A</option>
+											<option >1/1</option>
+											<option >1/2</option>
+											<option >2/1</option>
+											<option >2/2</option>
+											<option >3/1</option>
+											<option >3/1</option>
+											<option >4/1</option>
+											<option >4/2</option>
+										</select>
+									) : (
+										<h3>{user_year_semester}</h3>
+									)}
+								</ListItem>
+							</List>
+							<List className={"flex flex-col gap-2"}>
+								<ListItem
+									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full ${
+										editInformation ? "py-2 pr-4" : "p-4"
+									} rounded-r-lg`}
+								>
+									{editInformation ? (
+										<input
+											type={"text"}
+											placeholder={user_contact}
+											className={"bg-transparent py-2 pl-4 placeholder:text-[#5d7d99]"}
+											onChange={(e) => {
+												setUpdated_user_contact(e.target.value)
+											}}
+										></input>
+									) : (
+										<h3>{user_contact}</h3>
+									)}
+								</ListItem>
+							</List>
 						</Flex>
 					</Flex>
 					<Flex className={"flex gap-5 mt-12 w-[80%]"}>
-						<Button
-							onClick={() => {
-								setShowConfirmMessage(true)
-							}}
-						>
-							Change Password
-						</Button>
-						<Button>Edit Information</Button>
+						{editInformation ? (
+							<>
+								<Button onClick={handleUpdate}>Update</Button>
+								<Button onClick={handleEditInformation}>Cancel</Button>
+							</>
+						) : (
+							<>
+								<Button
+									onClick={() => {
+										setShowConfirmMessage(true)
+									}}
+								>
+									Change Password
+								</Button>
+								<Button onClick={handleEditInformation}>Edit Information</Button>
+							</>
+						)}
 					</Flex>
 				</div>
 			</Flex>

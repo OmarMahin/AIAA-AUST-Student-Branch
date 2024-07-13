@@ -17,6 +17,7 @@ const MyAccount = () => {
 	let [user_aiaaId, setUser_AiaaId] = useState('')
 	let [user_email, setUser_Email] = useState('')
 	let [user_department, setUser_Department] = useState('')
+	let [user_studentId, setUser_StudentId] = useState('')
 	let [user_year_semester, setUser_Year_Semester] = useState('')
 	let [user_profileImage, setUser_ProfileImage] = useState('')
 	let [user_contact, setUser_Contact] = useState('')
@@ -48,6 +49,7 @@ const MyAccount = () => {
 							setUser_AasbId(data.AASBmembershipId)
 							setUser_AiaaId(data.AIAAmembershipId)
 							setUser_Department(data.department)
+							setUser_StudentId(data.StudentId)
 							setUser_Year_Semester(data.yearAndSemester)
 							setUser_ProfileImage(data.profileImage)
 							setUser_Contact(data.contact)
@@ -80,9 +82,10 @@ const MyAccount = () => {
 						"email": user_email,
 						"AASB_ID": user_aasbId,
 						"AIAA_ID": user_aiaaId,
+						"Student_ID": !user_studentId ? 'N/A': user_studentId,
 						"Department": user_department,
-						"Year/Semester": user_year_semester,
-						"Contact No.": !user_contact ? 'N/A' : use,
+						"YS": user_year_semester,
+						"Contact_No": !user_contact ? 'N/A' : user_contact,
 						profileImage: user_profileImage,
 						id: user_id
 					}}

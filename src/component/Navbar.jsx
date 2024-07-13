@@ -262,7 +262,7 @@ const Navbar = () => {
 											<Flex className={"flex items-center gap-2"}>
 												{userLoggedIn ? (
 													<div className='w-8 h-8 bg-[#aebed4] rounded-full text-center relative overflow-hidden'>
-														{user_profileImage ? (
+														{user_profileImage != "N/A" ? (
 															<Image
 																src={user_profileImage}
 																alt={"User Profile Image"}
