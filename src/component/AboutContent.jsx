@@ -8,7 +8,7 @@ const AboutContent = () => {
 	return (
 		<div className=' lg:px-10 px-4 text-font-color pt-10'>
 			<p className=' font-poppins font-medium lg:text-lg text-base text-pretty lg:leading-9 leading-9'>
-				Welcome to the <span className=' font-bold'>AIAA AUST Student Branch</span>, he first student branch of the
+				Welcome to the <span className=' font-bold'>AIAA AUST Student Branch</span>, the first student branch of the{" "}
 				<Link
 					to={"https://www.aiaa.org/"}
 					target='_blank'
@@ -36,7 +36,7 @@ const AboutContent = () => {
 				Our Vision
 			</h3>
 			<p className=' mt-5 font-poppins font-medium lg:text-lg text-base text-pretty lg:leading-9 leading-9'>
-				At the <span className=' font-bold'>AIAA AUST Student Branch</span>, our vision is to reach new heights in the Aerospace and Aviation field through
+				At the <span className=' font-bold'>AIAA AUST Student Branch</span>, our vision is to reach new heights in the Aerospace and Aviation field through{" "}
 				<span className=' font-bold'>AIAA</span> by giving:
 				<List className={"md:pl-10 pl-2 mt-4 flex-col flex lg:gap-0 gap-3 text-[17px]"}>
 					<ListItem className={"items-center lg:gap-4 gap-4 flex"}>

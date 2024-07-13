@@ -12,7 +12,7 @@ const ActivityCard = () => {
 	const imagePath = "/images/Activites/Seminar_F23/cardBanner.png"
 	const heading = "Advancement in Aerospace Engineering: Insights and Opportunities"
 	const date = "07 July 2024"
-	const pageLink = 'activites/aasb_seminar_fall23'
+	const pageLink = '/activites/aasb_seminar_fall23'
 	const word_limit = 200
 	let shortInfo = `AIAA AUST Student Branch has started its journey with General Member Recruitment Fall’23, dated from 02 June 2024 to 04 June 2024. Over three action-packed days, the campus of Ahsanullah University of Science and Technology(AUST) buzzed with energy, enthusiasm, and endless fun. From thrilling dart board games to the challenging buzz-wire contest, our booth was the ultimate hub of student engagement!
 	`
@@ -34,7 +34,7 @@ const ActivityCard = () => {
 	return (
 		<Container>
 			{smallerDisplay ? (
-				<Link to={"/activites"}>
+				<Link to={pageLink}>
 					<div className='overflow-hidden bg-darker_blue rounded-xl px-0 mt-3'>
 						<Flex className={" gap-4 justify-between flex flex-col"}>
 							<div className='relative overflow-hidden lg:h-[400px] h-[300px]'>
@@ -69,7 +69,7 @@ const ActivityCard = () => {
 					</div>
 				</Link>
 			) : (
-				<Link to={"/activites"}>
+				<Link to={pageLink}>
 					<div className='w-full overflow-hidden bg-darker_blue rounded-xl px-0 mt-3 hover:shadow-xl hover:shadow-black/30 duration-500 group'>
 						<Flex className={" gap-7 justify-between flex"}>
 							<div className='w-[35%] relative overflow-hidden'>

@@ -211,6 +211,61 @@ const Navbar = () => {
 								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
+									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2 hover:font-semibold lg:hover:font-medium group'
+								>
+									<Link>Get Involved</Link>
+									<Flex
+										className={
+											"flex flex-col items-center absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[100%] pt-0 group-hover:pt-[30px] group-hover:opacity-100 opacity-0 group-hover:z-20 z-[-1] duration-300"
+										}
+									>
+										<List className={"bg-[#d9e3ec] flex flex-col w-[300px] px-4 lg:rounded-md"}>
+											<ListItem
+												className={
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white"
+												}
+												
+											>
+												<Link to={"/design_build_fly"}>Design/Build/Fly Competition</Link>
+											</ListItem>
+											<ListItem
+												className={
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white pl-2 lg:pl-0"
+												}
+												onClick={linkChangeState}
+											>
+												<Link to={"/regional_student_conference"}>Regional Student Conferences</Link>
+											</ListItem>
+											<ListItem
+												className={
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white pl-2 lg:pl-0"
+												}
+												onClick={linkChangeState}
+											>
+												<Link to={"/designCompetition"}>Design Competitions</Link>
+											</ListItem>
+											<ListItem
+												className={
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white pl-2 lg:pl-0"
+												}
+												onClick={linkChangeState}
+											>
+												<Link to={"/spaceport_america_cup"}>Spaceport America Cup</Link>
+											</ListItem>
+											<ListItem
+												className={
+													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 text-[15px] border-b-[1px] border-[#92A2B8] text-white pl-2 lg:pl-0"
+												}
+												onClick={linkChangeState}
+											>
+												<Link to={"/volunteer_opportunities"}>Volunteer Opportunities for AIAA</Link>
+											</ListItem>
+											
+										</List>
+									</Flex>
+								</ListItem>
+								<ListItem
+									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
 								>
 									<Link

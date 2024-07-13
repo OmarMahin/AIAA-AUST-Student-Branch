@@ -96,7 +96,9 @@ const Footer = () => {
 					</Flex>
 				</Container>
 			</div>
-			<div className=' bg-darknest_blue py-6 w-full'></div>
+			<div className=' bg-darknest_blue py-6 w-full'>
+				<Flex className={'items-center justify-center text-white font-poppins'}><h3>&copy; 2024 AIAA AUST Student Branch. All Rights Reserved</h3></Flex>
+			</div>
 		</>
 	)
 }

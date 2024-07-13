@@ -25,6 +25,11 @@ import PasswordChange from "./pages/PasswordChange"
 import OTP_Page from "./pages/OTP_Page"
 import GM_Recruitment_F23 from "./pages/Activites/GM_Recruitment_F23"
 import Seminer_F23 from "./pages/Activites/Seminer_F23"
+import DBF_Information from "./pages/DBF_Information"
+import RegionalStudentConf from "./pages/RegionalStudentConf"
+import DesignCompetition from "./pages/DesignCompetition"
+import SpaceportAmeriacaCup from "./pages/SpaceportAmeriacaCup"
+import VolunteerOpportunites from "./pages/VolunteerOpportunites"
 
 function App() {
 	const router = createBrowserRouter(
@@ -43,6 +48,11 @@ function App() {
 						element={<Seminer_F23></Seminer_F23>}
 					></Route>
 				</Route>
+				<Route path='design_build_fly' element={<DBF_Information></DBF_Information>}></Route>
+				<Route path='regional_student_conference' element={<RegionalStudentConf></RegionalStudentConf>}></Route>
+				<Route path='designCompetition' element={<DesignCompetition></DesignCompetition>}></Route>
+				<Route path='spaceport_america_cup' element={<SpaceportAmeriacaCup></SpaceportAmeriacaCup>}></Route>
+				<Route path='volunteer_opportunities' element={<VolunteerOpportunites></VolunteerOpportunites>}></Route>
 				<Route path='committee' element={<Team></Team>}></Route>
 				<Route path='joinus' element={<JoinUs></JoinUs>}></Route>
 				<Route path='/blog'>
