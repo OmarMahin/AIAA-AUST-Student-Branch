@@ -8,11 +8,14 @@ import Container from "./Container"
 import Flex from "./Flex"
 import Title from "./Title"
 import { ToastContainer, toast } from "react-toastify"
-import { validateMIMEType } from "validate-image-type";
+import { validateMIMEType } from "validate-image-type"
 import { useNavigate } from "react-router-dom"
+import Image from "./Image"
+import { useEffect } from "react"
 
 const UserAccount = (data) => {
 	const user_data = data.data
+	console.log(user_data)
 
 	axios.defaults.withCredentials = true
 
@@ -20,7 +23,7 @@ const UserAccount = (data) => {
 
 	let imageInputRef = useRef()
 
-	let [originalImageData, setOriginialImageData] = useState("")
+	let [refresh, setRefresh] = useState("")
 	let [showConfirmMessage, setShowConfirmMessage] = useState(false)
 	let [otpError, setOtpError] = useState(false)
 	let [otpSend, setOtpSend] = useState(false)
@@ -32,7 +35,7 @@ const UserAccount = (data) => {
 		if (key.split("_").length > 1) {
 			key = key.split("_")[0] + " " + key.split("_")[1]
 		}
-		if (key != "profileImage" && key != 'id') {
+		if (key != "profileImage" && key != "id") {
 			if (key == "name") {
 				dataKey.push(key)
 				dataValue.push(value)
@@ -77,31 +80,23 @@ const UserAccount = (data) => {
 	}
 
 	let uploadImage = async (e) => {
+		const originalImage = e.target.files[0]
 
-		setOriginialImageData(e.target.files[0])
-		console.log(originalImageData)
-
-		// const result = await validateMIMEType(image, {
-		// 	allowMimeTypes: ['image/jpeg', 'image/gif', 'image/png', 'image/svg+xml']
-		// });
-		// if (!result.ok) {
-		// 	console.error(result.error);
-		// 	return;
-		// }
-		// console.log("This image is supported!");
-		
-		const imageData = new File([originalImageData], `${user_data.id}`, {
-			type: originalImageData.type,
-			lastModified: originalImageData.lastModified,
+		const imageData = new File([originalImage], `${user_data.id}-${originalImage.name}`, {
+			type: originalImage.type,
+			lastModified: originalImage.lastModified,
 		})
 
 		let imageFormData = new FormData()
 		imageFormData.append("file", imageData)
-
-		let sendData = await axios
+		console.log("Uploading")
+		await axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, imageFormData)
-			.then((data) => {
-				console.log(data)
+			.then((response) => {
+				if (response.data.status){
+					user_data.profileImage = response.data.result
+					setRefresh(!refresh)
+				}
 			})
 			.catch((err) => {
 				console.log(err)
@@ -113,6 +108,8 @@ const UserAccount = (data) => {
 			setShowConfirmMessage(false)
 		}
 	})
+
+	useEffect(()=>{console.log("Refreshed")},[refresh])
 
 	return (
 		<Container>
@@ -152,14 +149,12 @@ const UserAccount = (data) => {
 					className='w-60 mt-8 h-60 rounded-full bg-[#aebed4] mx-auto relative hover:cursor-pointer overflow-hidden group '
 					onClick={handleImageUploadClick}
 				>
-					<div className='w-full h-[40%] absolute bottom-[-100%] duration-300 group-hover:bottom-0 bg-gradient-to-t from-black/80'>
+					<div className='w-full h-[40%] absolute bottom-[-100%] duration-300 group-hover:bottom-0 bg-gradient-to-t from-black/80 z-10'>
 						<Flex className=' flex flex-col items-center text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
 							<MdOutlineFileUpload className=' w-7 h-7' />
 							<span>Upload Image</span>
 						</Flex>
-						{/* <form action={`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`} method = "POST">
 
-						</form> */}
 						<input
 							type={"file"}
 							accept={"image/*"}
@@ -169,7 +164,7 @@ const UserAccount = (data) => {
 						></input>
 					</div>
 					{user_data.profileImage != "N/A" ? (
-						""
+						<Image src={user_data.profileImage} alt = {'User Profile Picture'} className={"absolute -translate-x-1/2 -translate-y-1/2 w-full top-1/2 left-1/2"}></Image>
 					) : (
 						<span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-poppins font-bold text-[80px]'>
 							{userName}

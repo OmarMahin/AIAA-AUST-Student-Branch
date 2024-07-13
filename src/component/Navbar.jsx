@@ -23,6 +23,7 @@ const Navbar = () => {
 	let [userLoggedIn, setUserLoggedIn] = useState(false)
 	let [userProfileName, setUserProfileName] = useState("")
 	let [fullName, setFullName] = useState("")
+	let [user_profileImage, setUser_ProfileImage] = useState("")
 	let [refresh, setRefresh] = useState(false)
 	let accountref = useRef()
 
@@ -31,12 +32,12 @@ const Navbar = () => {
 		setNavShadow(false)
 	}
 
-	let logOutUser = ()=>{
+	let logOutUser = () => {
 		axios
 			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/unauthorize`)
 			.then((data) => {
 				console.log("Logged out")
-				window.location.pathname = '/login'
+				window.location.pathname = "/login"
 			})
 			.catch((error) => {
 				console.log("error")
@@ -75,10 +76,10 @@ const Navbar = () => {
 		})
 
 		axios
-			.get("http://localhost:3000/api/v1/auth/authorized")
+			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/authorized`)
 			.then((data) => {
 				if (data.data.authorized == false) {
-					setUserLoggedIn(false)			
+					setUserLoggedIn(false)
 				} else {
 					setUserLoggedIn(true)
 					let userData = data.data
@@ -88,7 +89,21 @@ const Navbar = () => {
 					setUserProfileName(userName)
 					setFullName(name)
 
-					setTimeout(()=>{
+					const user_Id = data.data.userId
+					axios
+						.post("http://localhost:3000/api/v1/auth/findMemberByUserId", {
+							user_Id,
+						})
+						.then((user_data) => {
+							const data = user_data.data.user
+							setUser_ProfileImage(data.profileImage)
+							setLoaded(true)
+						})
+						.catch((error) => {
+							console.log(error)
+						})
+
+					setTimeout(() => {
 						setRefresh(!refresh)
 					}, 300000)
 				}
@@ -98,8 +113,6 @@ const Navbar = () => {
 				console.log(error)
 			})
 	}, [userLoggedIn, refresh])
-
-	
 
 	window.addEventListener("scroll", () => {
 		if (window.scrollY == 0 || state) {
@@ -115,7 +128,10 @@ const Navbar = () => {
 				className={`lg:hidden w-[100vw] h-[100vh] top-0 left-0  ${
 					state ? "bg-black/50 z-40 fixed" : "bg-transparent z-[-1] absolute"
 				} duration-300`}
-			onClick = {()=>{setState(false)}}></div>
+				onClick={() => {
+					setState(false)
+				}}
+			></div>
 			<nav>
 				<div
 					className={`w-full lg:bg-darker_blue ${
@@ -245,10 +261,20 @@ const Navbar = () => {
 										>
 											<Flex className={"flex items-center gap-2"}>
 												{userLoggedIn ? (
-													<div className='w-8 h-8 bg-[#aebed4] rounded-full text-center relative'>
-														<span className='text-black font-poppins font-bold text-[14px] py-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-															{userProfileName}
-														</span>
+													<div className='w-8 h-8 bg-[#aebed4] rounded-full text-center relative overflow-hidden'>
+														{user_profileImage ? (
+															<Image
+																src={user_profileImage}
+																alt={"User Profile Image"}
+																className={
+																	"absolute -translate-x-1/2 -translate-y-1/2 w-full top-1/2 left-1/2"
+																}
+															></Image>
+														) : (
+															<span className='text-black font-poppins font-bold text-[14px] py-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+																{userProfileName}
+															</span>
+														)}
 													</div>
 												) : (
 													""
@@ -285,7 +311,10 @@ const Navbar = () => {
 												}
 												onClick={linkChangeState}
 											>
-												<Link to={userLoggedIn ? "/myaccount" : "/signup"} onClick={changeAccountList}>
+												<Link
+													to={userLoggedIn ? "/myaccount" : "/signup"}
+													onClick={changeAccountList}
+												>
 													{userLoggedIn ? "My Account" : "Sign Up"}
 												</Link>
 											</ListItem>
