@@ -24,7 +24,7 @@ const ActivityContent = ({
 		<div className=' mb-28'>
 			<Flex
 				className={
-					"flex mt-20 justify-center lg:mt-10 items-center font-poppins font-bold text-darker_blue text-[14px] gap-1 lg:justify-between"
+					"flex mt-28 lg:mt-10 items-center font-poppins font-bold text-darker_blue text-[14px] gap-1"
 				}
 			>
 				<Link to={"/activites"}>
@@ -34,13 +34,13 @@ const ActivityContent = ({
 			<ImageSlider images={images} event={event}></ImageSlider>
 			<Flex
 				className={
-					"lg:justify-between mt-11 lg:items-center items-start flex lg:flex-row flex-col lg:gap-0 gap-5"
+					"lg:justify-between mt-11 lg:items-center flex lg:flex-row flex-col lg:gap-0 gap-5 items-center"
 				}
 			>
-				<h3 className=' font-poppins font-bold text-darker_blue md:text-[26px] text-xl'>
+				<h3 className=' font-poppins font-bold text-darker_blue md:text-[26px] text-xl text-center'>
 					{heading}
 				</h3>
-				<div className=' bg-darker_blue lg:px-7 py-2 px-4 rounded-3xl'>
+				<div className=' bg-darker_blue lg:px-7 py-[6px] px-4 rounded-3xl'>
 					<h4 className=' font-poppins font-medium text-white lg:text-lg text-sm block'>
 						{date}
 					</h4>
