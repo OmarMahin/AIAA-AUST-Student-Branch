@@ -13,8 +13,6 @@ import { FaEye } from "react-icons/fa"
 import { FaEyeSlash } from "react-icons/fa"
 import { toast } from "react-toastify"
 
-
-
 const SignUpForm = () => {
 	const navigation = useNavigate()
 
@@ -36,113 +34,118 @@ const SignUpForm = () => {
 	let [confirmPasswordError, setConfirmPasswordError] = useState(false)
 	let [accountExist, setAccountExist] = useState(false)
 
+	let [loading, setLoading] = useState(false)
+
+	function setAllErrorToFalse() {
+		setIdError(false)
+		setEmailError(false)
+		setPasswordError(false)
+		setNameError(false)
+		setConfirmPasswordError(false)
+	}
+
+	function resetAllValues() {
+		setName("")
+		setEmail("")
+		setAasbId("")
+		setPassword("")
+		setConfirmPassword("")
+		setAccountExist(false)
+
+		setAllErrorToFalse()
+	}
+
 	let sendUserData = (e) => {
+		e.preventDefault()
 		if (!name) {
-			setIdError(false)
-			setEmailError(false)
-			setPasswordError(false)
+			setAllErrorToFalse()
 			setNameError("Please provide a username.")
-			setConfirmPasswordError(false)
 			return
 		}
 		if (!email) {
-			setIdError(false)
-			setNameError(false)
-			setPasswordError(false)
+			setAllErrorToFalse()
 			setEmailError("Please provide a email.")
-			setConfirmPasswordError(false)
 			return
 		}
 		if (!validateEmail(email)) {
-			setIdError(false)
-			setNameError(false)
-			setPasswordError(false)
+			setAllErrorToFalse()
 			setEmailError("Email address not valid.")
-			setConfirmPasswordError(false)
 			return
 		}
 		if (!aasbId) {
+			setAllErrorToFalse()
 			setIdError("Please provide AASB id.")
-			setNameError(false)
-			setPasswordError(false)
-			setEmailError(false)
-			setConfirmPasswordError(false)
 			return
 		}
 		if (!password) {
-			setIdError(false)
-			setNameError(false)
+			setAllErrorToFalse()
 			setPasswordError("Please provide your password.")
-			setEmailError(false)
-			setConfirmPasswordError(false)
 			return
 		}
 		if (!confirmPassword) {
-			setIdError(false)
-			setNameError(false)
+			setAllErrorToFalse()
 			setConfirmPasswordError("Please confirm your password.")
-			setPasswordError(false)
-			setEmailError(false)
 			return
 		}
 		if (confirmPassword != password) {
-			setIdError(false)
-			setNameError(false)
-			setPasswordError(false)
+			setAllErrorToFalse()
 			setConfirmPasswordError("Password does not match.")
-			setConfirmPassword("")
-			setEmailError(false)
 			return
 		}
 
+		setAllErrorToFalse()
+
+		setLoading(true)
 		axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/findMemberByAASBId`, {
 				AASBmembershipId: aasbId,
 			})
-			.then((data) => {
-				if (data.data.found == "true" && data.data.accountState == "False") {	
-					axios
-						.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/signup`, {
-							name,
-							email,
-							AASBmembershipId: aasbId,
-							password,
-						})
-						.then((data) => {
-							setName("")
-							setEmail("")
-							setAasbId("")
-							setPassword("")
-							setConfirmPassword("")
-							setAccountExist(false)
-							setIdError("")
-							toast.success("Account created successfully.")
-							navigation("/login", { replace: false })
-						})
-						.catch((err) => {
-							console.log(err)
-						})
-				} else {
-					if (data.data.accountState == "True") {
-						setEmailError(false)
-						setNameError(false)
-						setPasswordError(false)
-						setConfirmPasswordError(false)
-						setIdError(false)
-						setName("")
-						setEmail("")
-						setAasbId("")
-						setPassword("")
-						setConfirmPassword("")
-						toast.error("Error! An account already exists with these credentials.")
-					} else if (data.data.found == "false") {
-						setIdError("Invalid Id.")
-						setEmailError(false)
-						setNameError(false)
-						setPasswordError(false)
-						setAccountExist(false)
+			.then((response) => {
+				if (response.status == "200") {
+					const data = response.data
+					if (data.data.found && !data.data.accountState) {
+						axios
+							.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/signup`, {
+								name,
+								email,
+								AASBmembershipId: aasbId,
+								password,
+							})
+							.then((response) => {
+								if (response.status == "200") {
+									const data = response.data
+									console.log(data)
+									if (data.success) {
+										resetAllValues()
+										toast.success(data.message)
+										navigation("/login")
+									} else {
+										resetAllValues()
+										toast.error(data.error)
+										
+									}
+
+									setLoading(false)
+								}
+							})
+							.catch((err) => {
+								toast.error(err.message)
+								setLoading(false)
+							})
+					} else {
+						setLoading(false)
+						if (data.data.accountState) {
+							resetAllValues()
+							toast.error("Error! An account already exists with this ID.")
+						} else if (!data.data.found) {
+							resetAllValues()
+							toast.error("Invalid ID")
+						}
 					}
 				}
+			}).catch((err) => {
+				setLoading(false)
+				console.log(err)
 			})
 	}
 
@@ -164,7 +167,6 @@ const SignUpForm = () => {
 
 	return (
 		<Container>
-
 			<div className='lg:mt-11 lg:w-[40%] max-w-[400px] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-haasbIdden'>
 				<form>
 					<Flex className={"flex flex-col items-center px-6 gap-7"}>
@@ -174,7 +176,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Username"}
 								value={name}
 								onChange={nameInput}
@@ -186,7 +188,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={"email"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Email"}
 								value={email}
 								onChange={emailInput}
@@ -198,7 +200,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"AASB membership Id"}
 								value={aasbId}
 								onChange={aasbIdInput}
@@ -210,7 +212,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={showPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Password"}
 								value={password}
 								onChange={passwordInput}
@@ -232,7 +234,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={showConfirmPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Confirm Password"}
 								value={confirmPassword}
 								onChange={conformPasswordInput}
@@ -252,7 +254,11 @@ const SignUpForm = () => {
 							</span>
 						</div>
 
-						<Button className={"mb-10 relative z-10"} onClick={sendUserData}>
+						<Button
+							className={"mb-10 relative z-10"}
+							onClick={sendUserData}
+							loading={loading}
+						>
 							Sign Up
 						</Button>
 					</Flex>
