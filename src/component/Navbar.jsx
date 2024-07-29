@@ -13,6 +13,7 @@ import { FaBars, FaMinus } from "react-icons/fa"
 import { FaPlus } from "react-icons/fa6"
 import { useRef } from "react"
 import ScrollToTopButton from "./ScrollToTopButton"
+import DropDownMenu from "./DropDownMenu"
 
 const Navbar = () => {
 	axios.defaults.withCredentials = true
@@ -210,83 +211,21 @@ const Navbar = () => {
 										Activites
 									</Link>
 								</ListItem>
+								<DropDownMenu
+									label={"Get Involved"}
+									link={"#"}
+									listComponent={{
+										"Design/Build/Fly Competition": "/design_build_fly",
+										"Regional Student Conferences": "/regional_student_conference",
+										"Design Competitions": "/designCompetition",
+										"Spaceport America Cup": "/spaceport_america_cup",
+										"Volunteer Opportunities for AIAA": "/volunteer_opportunities",
+									}
+								}
+								navbarState = {linkChangeState}
+								showMenu = {state}
+								></DropDownMenu>
 
-								<ListItem
-									className={`text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
-									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 ${
-										showGetInvolved ? "pt-2" : "py-2"
-									} lg:hover:font-medium lg:group lg:flex-row flex-col hover:cursor-pointer`}
-									onClick={() => {
-										setShowGetInvolved(!showGetInvolved)
-									}}
-								>
-									<Flex className={"flex items-center justify-between"}>
-										<Link>Get Involved</Link>
-										{showGetInvolved ? (
-											<FaMinus className='mr-4 lg:hidden'></FaMinus>
-										) : (
-											<FaPlus className='mr-4 lg:hidden'></FaPlus>
-										)}
-									</Flex>
-
-									<Flex
-										className={`flex flex-col items-center static lg:absolute lg:left-1/2 lg:bottom-0 lg:-translate-x-1/2 lg:translate-y-[100%] lg:pt-0 lg:group-hover:pt-[30px] lg:group-hover:opacity-100 lg:opacity-0 lg:group-hover:z-20 lg:z-[-1] lg:duration-300 ${
-											showGetInvolved ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
-										} duration-500`}
-									>
-										<List
-											className={
-												"lg:bg-[#d9e3ec] flex flex-col w-full lg:w-[300px] lg:px-4 pl-4 lg:rounded-md mt-5 lg:mt-0"
-											}
-										>
-											<ListItem
-												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 lg:text-[15px] text-[13px] border-b-[1px] border-t-[1px] lg:border-t-0 border-[#92A2B8] text-white"
-												}
-											>
-												<Link to={"/design_build_fly"}>
-													Design/Build/Fly Competition
-												</Link>
-											</ListItem>
-											<ListItem
-												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 lg:text-[15px] text-[13px] border-b-[1px] lg:border-t-0 border-[#92A2B8] text-white"
-												}
-												onClick={linkChangeState}
-											>
-												<Link to={"/regional_student_conference"}>
-													Regional Student Conferences
-												</Link>
-											</ListItem>
-											<ListItem
-												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 lg:text-[15px] text-[13px] border-b-[1px] lg:border-t-0 border-[#92A2B8] text-white"
-												}
-												onClick={linkChangeState}
-											>
-												<Link to={"/designCompetition"}>Design Competitions</Link>
-											</ListItem>
-											<ListItem
-												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 lg:text-[15px] text-[13px] border-b-[1px] lg:border-t-0 border-[#92A2B8] text-white"
-												}
-												onClick={linkChangeState}
-											>
-												<Link to={"/spaceport_america_cup"}>Spaceport America Cup</Link>
-											</ListItem>
-											<ListItem
-												className={
-													"font-poppins lg:font-semibold font-medium lg:text-light-blue py-4 lg:text-[15px] text-[13px] lg:border-t-0 border-[#92A2B8] text-white"
-												}
-												onClick={linkChangeState}
-											>
-												<Link to={"/volunteer_opportunities"}>
-													Volunteer Opportunities for AIAA
-												</Link>
-											</ListItem>
-										</List>
-									</Flex>
-								</ListItem>
 								<ListItem
 									className=' text-white font-poppins font-medium text-[15px] relative after:absolute after:w-full lg:after:h-[3px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8] lg:after:bottom-[-5px]
 									after:bottom-[-13px] lg:after:scale-x-0 lg:hover:after:scale-x-110 lg:after:duration-150 lg:py-0 py-2'
@@ -359,14 +298,20 @@ const Navbar = () => {
 												)}
 												<h3>Account</h3>
 											</Flex>
-											<FaPlus className='mr-4 lg:hidden' />
+											{
+												!accountList ?
+												<FaPlus className=' lg:hidden' />
+												:
+												<FaMinus className='lg:hidden' ></FaMinus>
+											}
+											
 										</Flex>
 										<List
-											className={`flex flex-col mt-[13px] lg:mt-0 absolute right-0 translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-6 lg:px-4 lg:border-[1px] lg:border-[#aeb1b563]
+											className={`flex flex-col mt-[13px] lg:absolute right-0 lg:translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-4 lg:px-4 lg:border-[1px] lg:border-[#aeb1b563]
 											${
 												accountList
-													? "fixed bottom-[-20px] opacity-1 lg:z-20"
-													: "bottom-[0px] opacity-0 z-[-1]"
+													? "max-h-[200px] lg:max-h-fit lg:bottom-[-20px] opacity-1 lg:z-20"
+													: "max-h-0 lg:max-h-fit lg:bottom-[0px] opacity-0 z-[-1]"
 											} duration-300 cursor-default`}
 										>
 											<ListItem
