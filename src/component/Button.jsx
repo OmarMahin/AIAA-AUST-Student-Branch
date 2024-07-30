@@ -64,7 +64,7 @@ const Button = ({
 
 	return disabled ? (
 		<button
-			className={`${className} relative py-2 px-8 overflow-hidden ${
+			className={`${className} py-2 px-8 overflow-hidden ${
 				invert
 					? "bg-[#EAF3FF] text-font-color border-[#EAF3FF]"
 					: "bg-light-blue text-white border-light-blue"
@@ -103,7 +103,7 @@ const Button = ({
 		</button>
 	) : (
 		<button
-			className={`${className} relative py-2 px-8 overflow-hidden ${
+			className={`${className} py-2 px-8 overflow-hidden ${
 				invert
 					? "bg-[#EAF3FF] text-font-color border-[#EAF3FF]"
 					: "bg-light-blue text-white border-light-blue"

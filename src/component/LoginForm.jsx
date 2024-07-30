@@ -27,6 +27,9 @@ const LoginForm = () => {
 	let navigation = useNavigate()
 
 	let sendUserData = (e) => {
+
+		e.preventDefault()
+
 		if (!email) {
 			setEmailError("Please input your email address.")
 			setPasswordError("")
@@ -87,7 +90,7 @@ const LoginForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Email"}
 								value={email}
 								onChange={emailInput}
@@ -100,7 +103,7 @@ const LoginForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={showPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Password"}
 								value={password}
 								onChange={passwordInput}

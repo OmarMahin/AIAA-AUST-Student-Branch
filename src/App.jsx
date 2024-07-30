@@ -30,6 +30,7 @@ import RegionalStudentConf from "./pages/RegionalStudentConf"
 import DesignCompetition from "./pages/DesignCompetition"
 import SpaceportAmeriacaCup from "./pages/SpaceportAmeriacaCup"
 import VolunteerOpportunites from "./pages/VolunteerOpportunites"
+import PageNotFound from "./pages/PageNotFound"
 
 function App() {
 	const router = createBrowserRouter(
@@ -71,6 +72,8 @@ function App() {
 				<Route path='signup' element={<SignUp></SignUp>}></Route>
 				<Route path='myaccount' element={<MyAccount></MyAccount>}></Route>
 				<Route path='admin' element={<AdminPage></AdminPage>}></Route>
+				<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
+
 			</Route>
 		)
 	)

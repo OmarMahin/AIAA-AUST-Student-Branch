@@ -11,8 +11,7 @@ import { FaEyeSlash } from "react-icons/fa"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const PasswordChangeForm = ({user_email}) => {
-    console.log(user_email)
+const PasswordChangeForm = ({user_id}) => {
 	axios.defaults.withCredentials = true
 
 	let [password, setPassword] = useState("")
@@ -22,50 +21,64 @@ const PasswordChangeForm = ({user_email}) => {
 	let [passwordError, setPasswordError] = useState(false)
 	let [confirmPasswordError, setConfirmPasswordError] = useState(false)
 
+	let [loading, setLoading] = useState(false)
+
 	let navigation = useNavigate()
+
+	function setErrorsToFalse(){
+		setPasswordError(false)
+		setConfirmPasswordError(false)
+	}
+
 	let sendUserData = (e) => {
-		
+
+		e.preventDefault()
+
 		if (!password) {
 			
+			setErrorsToFalse()
 			setPasswordError("Please provide your password.")
-			setConfirmPasswordError(false)
 			return
 		}
 		if (!confirmPassword) {
 
+			setErrorsToFalse()
 			setConfirmPasswordError("Please confirm your password.")
-			setPasswordError(false)
 			return
 		}
 		if (confirmPassword != password) {
 
-			setPasswordError(false)
+			setErrorsToFalse()
 			setConfirmPasswordError("Password does not match.")
-			setConfirmPassword("")
 			return
 		}
 
+		setErrorsToFalse()
+		setLoading(true)
 
 		axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/changePassword`, {
-				email: user_email,
+				id: user_id,
 				password,
 			})
-			.then((data) => {
-				setPassword("")
-				setPasswordError("")
+			.then((response) => {
 
-				if (!data.data.error) {
-					toast.success("Password has been changed successfully.")
-					console.log('password changed')
-					navigation('/myaccount')
-
-				} else {
-                    console.log(data.data.error)
+				if (response.status == '200'){
+					const data = response.data
+					if (data.success){
+						toast.success(data.message)
+						navigation('/myaccount')
+					}
+					else{
+						toast.error(data.message)
+						console.log(data.data.error)
+					}
 				}
+				setLoading(false)
 			})
 			.catch((err) => {
 				console.log(err)
+				setLoading(false)
 			})
 	}
 
@@ -89,7 +102,7 @@ const PasswordChangeForm = ({user_email}) => {
 						<div className='relative w-full'>
 							<input
 								type={showPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Password"}
 								value={password}
 								onChange={passwordInput}
@@ -111,7 +124,7 @@ const PasswordChangeForm = ({user_email}) => {
 						<div className='relative w-full'>
 							<input
 								type={showConfirmPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
 								placeholder={"Confirm Password"}
 								value={confirmPassword}
 								onChange={conformPasswordInput}
@@ -131,7 +144,7 @@ const PasswordChangeForm = ({user_email}) => {
 							</span>
 						</div>
 
-						<Button className={"mb-10"} onClick={sendUserData}>
+						<Button className={"mb-10"} onClick={sendUserData} loading = {loading}>
 							Change Password
 						</Button>
 					</Flex>

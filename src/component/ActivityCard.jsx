@@ -100,7 +100,7 @@ const ActivityCard = () => {
 								</p>
 								<Button
 									className={"absolute lg:bottom-11 lg:right-11 bottom-6 right-6"}
-									invert='true'
+									invert={true}
 									link={pageLink}
 								>
 									Learn More

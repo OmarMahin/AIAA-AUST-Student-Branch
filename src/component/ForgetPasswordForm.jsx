@@ -21,11 +21,20 @@ const ForgetPasswordForm = () => {
 	let [otp, setOtp] = useState("")
 	let [otpSend, setOtpSend] = useState(false)
 
+	let [loading, setLoading] = useState(false)
+
 	let [emailError, setEmailError] = useState(false)
 	let [otpError, setOtpError] = useState(false)
 	let [accountExist, setAccountExist] = useState(false)
 
+	function setErrorsToFalse() {
+		setEmailError(false)
+		setOtpError(false)
+	}
+
 	let sendOTP = (e) => {
+		e.preventDefault()
+
 		if (!email) {
 			setEmailError("Please input your email address.")
 			return
@@ -36,23 +45,31 @@ const ForgetPasswordForm = () => {
 			return
 		}
 
+		setErrorsToFalse()
+		setLoading(true)
+
 		if (!otpSend) {
 			axios
 				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/sendOTP`, {
 					email,
 				})
-				.then((data) => {
-					setEmailError("")
-					if (data.data.error) {
-						setEmail("")
-						setEmailError(data.data.error)
-					} else {
-						setOtpSend(true)
-						toast.success("An OTP has been sent to your email.")
+				.then((response) => {
+					if (response.status == "200") {
+						const data = response.data
+
+						if (data.success) {
+							setOtpSend(true)
+							toast.success(data.message)
+						} else {
+							toast.error(data.message)
+						}
+
+						setLoading(false)
 					}
 				})
 				.catch((err) => {
 					console.log(err)
+					setLoading(false)
 				})
 		} else if (otpSend) {
 			axios
@@ -60,18 +77,22 @@ const ForgetPasswordForm = () => {
 					email,
 					otp,
 				})
-				.then((data) => {
-					setEmailError("")
-					setOtpError("")
-					console.log(data)
-					if (data.data.error && data.data.otp_valid == false) {
-						setOtpError(data.data.error)
-						return
+				.then((response) => {
+					if (response.status == "200") {
+						setLoading(false)
+						const data = response.data
+
+						if (!data.success) {
+							toast.error(data.message)
+							return
+						}
+
+						navigator(`/password-change/${data.data.pageLink}`)
 					}
-					navigator(`/password-change/${data.data.pageLink}`)
 				})
 				.catch((err) => {
 					console.log(err)
+					setLoading(false)
 				})
 		}
 	}
@@ -149,7 +170,7 @@ const ForgetPasswordForm = () => {
 							</span>
 						</div>
 
-						<Button className={"mb-10"} onClick={sendOTP}>
+						<Button className={"mb-10"} onClick={sendOTP} loading={loading}>
 							{!otpSend ? "Send OTP" : "Confirm OTP"}
 						</Button>
 					</Flex>
