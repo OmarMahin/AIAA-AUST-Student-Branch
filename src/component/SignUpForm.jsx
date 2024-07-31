@@ -97,7 +97,7 @@ const SignUpForm = () => {
 
 		setLoading(true)
 		axios
-			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/findMemberByAASBId`, {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/user/findMemberByAASBId`, {
 				AASBmembershipId: aasbId,
 			})
 			.then((response) => {
@@ -114,7 +114,6 @@ const SignUpForm = () => {
 							.then((response) => {
 								if (response.status == "200") {
 									const data = response.data
-									console.log(data)
 									if (data.success) {
 										resetAllValues()
 										toast.success(data.message)
@@ -122,7 +121,6 @@ const SignUpForm = () => {
 									} else {
 										resetAllValues()
 										toast.error(data.error)
-										
 									}
 
 									setLoading(false)
@@ -143,7 +141,8 @@ const SignUpForm = () => {
 						}
 					}
 				}
-			}).catch((err) => {
+			})
+			.catch((err) => {
 				setLoading(false)
 				console.log(err)
 			})

@@ -22,9 +22,15 @@ const LoginForm = () => {
 
 	let [emailError, setEmailError] = useState(false)
 	let [passwordError, setPasswordError] = useState(false)
-	let [accountExist, setAccountExist] = useState(false)
+
+	let [loading, setLoading] = useState(false)
 
 	let navigation = useNavigate()
+
+	function setErrorsToFalse(){
+		setEmailError(false)
+		setPasswordError(false)
+	}
 
 	let sendUserData = (e) => {
 
@@ -48,25 +54,30 @@ const LoginForm = () => {
 			return
 		}
 
+		setErrorsToFalse()
+		setLoading(true)
+
 		axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/login`, {
 				email,
 				password,
 			})
-			.then((data) => {
-				setEmail("")
-				setPassword("")
-				setEmailError("")
-				setPasswordError("")
+			.then((response) => {
+				setLoading(false)
+				if (response.status == '200'){
+					const data = response.data
 
-				if (data.data.found) {
-					window.location.pathname = "/"
-				} else {
-					setAccountExist(false)
-					toast.error("Invalid Credentials! Please check your email and password.")
+					if (data.success){
+						window.location.pathname = "/"
+					}
+					else{
+						toast.error(data.message)
+						console.log(data.data.error)
+					}
 				}
 			})
 			.catch((err) => {
+				setLoading(false)
 				console.log(err)
 			})
 	}
@@ -124,7 +135,7 @@ const LoginForm = () => {
 							)}
 						</div>
 
-						<Button className={"mb-10"} onClick={sendUserData}>
+						<Button className={"mb-10"} onClick={sendUserData} loading = {loading}>
 							Login
 						</Button>
 					</Flex>

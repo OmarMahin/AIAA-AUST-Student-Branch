@@ -82,7 +82,7 @@ const AdminPanel = () => {
 	let handleDeleteUser = () => {
 		// console.log(currentId.type)
 		axios
-			.delete("http://localhost:3000/api/v1/auth/deleteMember", {
+			.delete("http://localhost:3000/api/v1/user/deleteMember", {
 				data: { id: currentId },
 			})
 			.then((data) => {
@@ -94,7 +94,7 @@ const AdminPanel = () => {
 	useEffect(() => {
 
 		axios
-			.get("http://localhost:3000/api/v1/auth/getAllMembers")
+			.get("http://localhost:3000/api/v1/user/getAllMembers")
 			.then((data) => {
 				setMemberData(data.data)
 				console.log(data)

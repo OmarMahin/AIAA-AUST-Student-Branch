@@ -50,7 +50,7 @@ const ForgetPasswordForm = () => {
 
 		if (!otpSend) {
 			axios
-				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/sendOTP`, {
+				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/verification/sendOTP`, {
 					email,
 				})
 				.then((response) => {
@@ -73,7 +73,7 @@ const ForgetPasswordForm = () => {
 				})
 		} else if (otpSend) {
 			axios
-				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/verifyOTP`, {
+				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/verification/verifyOTP`, {
 					email,
 					otp,
 				})

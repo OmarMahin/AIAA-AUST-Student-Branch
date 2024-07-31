@@ -57,7 +57,7 @@ const PasswordChangeForm = ({user_id}) => {
 		setLoading(true)
 
 		axios
-			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/changePassword`, {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/user/changePassword`, {
 				id: user_id,
 				password,
 			})

@@ -1,7 +1,7 @@
 import React from "react"
 import { useEffect } from "react"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import Container from "./Container"
 import Flex from "./Flex"
@@ -14,9 +14,12 @@ import { FaPlus } from "react-icons/fa6"
 import { useRef } from "react"
 import ScrollToTopButton from "./ScrollToTopButton"
 import DropDownMenu from "./DropDownMenu"
+import { toast } from "react-toastify"
 
 const Navbar = () => {
 	axios.defaults.withCredentials = true
+
+	const navigation = useNavigate()
 
 	let [state, setState] = useState(false)
 	let [accountList, setAccountList] = useState(false)
@@ -36,13 +39,14 @@ const Navbar = () => {
 
 	let logOutUser = () => {
 		axios
-			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/unauthorize`)
-			.then((data) => {
-				console.log("Logged out")
-				window.location.pathname = "/login"
+			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/logout`)
+			.then((response) => {
+				if (response.status == "200") {
+					window.location.pathname = '/login'
+				}
 			})
 			.catch((error) => {
-				console.log("error")
+				toast.error("An error occurred")
 				console.log(error)
 			})
 	}
@@ -79,42 +83,62 @@ const Navbar = () => {
 
 		axios
 			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/authorized`)
-			.then((data) => {
-				if (data.data.authorized == false) {
-					setUserLoggedIn(false)
-				} else {
+			.then((respone) => {
+				if (respone.status == "200") {
+					const data = respone.data
+
+					if (!data.authorized) {
+						if (userLoggedIn) {
+							window.location.reload()
+						}
+
+						setUserLoggedIn(false)
+
+						return
+					}
+
 					setUserLoggedIn(true)
+
 					let userData = data.data
-					let name = userData.name
+					let name = userData.user_name
 					let nameParts = name.split(" ")
-					let userName = nameParts[0][0] + nameParts.pop()[0]
-					setUserProfileName(userName)
+					let shortName = nameParts[0][0] + nameParts.pop()[0]
+
+					setUserProfileName(shortName)
 					setFullName(name)
 
-					const user_Id = data.data.userId
+					const user_Id = userData.user_id
+
 					axios
-						.post("http://localhost:3000/api/v1/auth/findMemberByUserId", {
+						.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/user/findMemberByUserId`, {
 							user_Id,
 						})
-						.then((user_data) => {
-							const data = user_data.data.user
-							setUser_ProfileImage(data.profileImage)
-							setLoaded(true)
+						.then((response) => {
+							if (respone.status == "200") {
+								const data = response.data
+								if (data.success) {
+									const user = data.data.user
+									setUser_ProfileImage(user.profileImage)
+								} else {
+									console.log(data.data.error)
+								}
+							}
 						})
 						.catch((error) => {
-							console.log(error)
+							if (error) {
+								console.log(error)
+							}
 						})
-
-					setTimeout(() => {
-						setRefresh(!refresh)
-					}, 300000)
 				}
 			})
 			.catch((error) => {
 				setUserLoggedIn(false)
-				console.log("error")
 				console.log(error)
 			})
+
+		setTimeout(() => {
+			setRefresh(!refresh)
+		}, import.meta.env.VITE_REFRESH_TIME)
 	}, [userLoggedIn, refresh])
 
 	window.addEventListener("scroll", () => {
@@ -221,10 +245,9 @@ const Navbar = () => {
 										"Design Competitions": "/designCompetition",
 										"Spaceport America Cup": "/spaceport_america_cup",
 										"Volunteer Opportunities for AIAA": "/volunteer_opportunities",
-									}
-								}
-								navbarState = {linkChangeState}
-								showMenu = {state}
+									}}
+									navbarState={linkChangeState}
+									showMenu={state}
 								></DropDownMenu>
 
 								<ListItem
@@ -299,13 +322,11 @@ const Navbar = () => {
 												)}
 												<h3>Account</h3>
 											</Flex>
-											{
-												!accountList ?
+											{!accountList ? (
 												<FaPlus className=' lg:hidden' />
-												:
-												<FaMinus className='lg:hidden' ></FaMinus>
-											}
-											
+											) : (
+												<FaMinus className='lg:hidden'></FaMinus>
+											)}
 										</Flex>
 										<List
 											className={`flex flex-col mt-[13px] lg:absolute right-0 lg:translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-4 lg:px-4 lg:border-[1px] lg:border-[#aeb1b563]
