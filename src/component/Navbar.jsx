@@ -111,6 +111,7 @@ const Navbar = () => {
 				}
 			})
 			.catch((error) => {
+				setUserLoggedIn(false)
 				console.log("error")
 				console.log(error)
 			})

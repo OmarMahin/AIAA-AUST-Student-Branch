@@ -72,8 +72,8 @@ function App() {
 				<Route path='signup' element={<SignUp></SignUp>}></Route>
 				<Route path='myaccount' element={<MyAccount></MyAccount>}></Route>
 				<Route path='admin' element={<AdminPage></AdminPage>}></Route>
-				<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 
+				<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 			</Route>
 		)
 	)

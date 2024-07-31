@@ -11,7 +11,7 @@ const AboutUs = () => {
 				<span className=' font-bold'>AIAA AUST Student Branch</span>, the first student branch
 				of the American Institute of Aeronautics and Astronautics(AIAA) in Bangladesh. At the
 				AIAA AUST Student Branch, we are dedicated to pushing the boundaries of aerospace
-				through innovation, research, and professional development with 
+				through innovation, research, and professional development with{" "}
 				<span className=' font-bold'>AIAA.</span>
 			</p>
 			<p

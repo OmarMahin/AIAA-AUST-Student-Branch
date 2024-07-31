@@ -14,53 +14,6 @@ const Button = ({
 	disabled,
 	loading = false,
 }) => {
-	// return invert ? (
-	// 	link ? (
-	// 		<Link to={link} target={newPage ? "_blank" : ""}>
-	// 			<button
-	// 				className={`${className} py-2 px-6 bg-[#EAF3FF] rounded-lg inline-block text-font-color lg:text-lg text-[16px] border-2 border-[#EAF3FF] hover:bg-darknest_blue hover:text-[#EAF3FF] duration-150`}
-	// 				onClick={onClick}
-	// 			>
-	// 				<span className='font-poppins font-medium '>{children}</span>
-	// 			</button>
-	// 		</Link>
-	// 	) : (
-	// 		<button
-	// 			className={`${className} py-2 px-6 bg-[#EAF3FF] rounded-lg inline-block text-font-color lg:text-lg text-[16px] border-2 border-[#EAF3FF] hover:bg-darknest_blue hover:text-[#EAF3FF] duration-150 hover:cursor-pointer`}
-	// 			onClick={onClick}
-	// 		>
-	// 			<span className='font-poppins font-medium '>{children}</span>
-	// 		</button>
-	// 	)
-	// ) : link ? (
-	// 	<Link to={link} target={newPage ? "_blank" : ""}>
-	// 		<button
-	// 			className={`${className} py-2 px-6 bg-light-blue rounded-lg inline-block text-white lg:text-lg text-[16px] border-2 border-light-blue hover:bg-[#EAF3FF] hover:text-font-color duration-150`}
-	// 			onClick={onClick}
-	// 		>
-	// 			<span className='font-poppins font-medium '>{children}</span>
-	// 		</button>
-	// 	</Link>
-	// ) : (
-	// 	<button
-	// 		className={`${className} py-2 px-8 bg-light-blue rounded-lg inline-block text-white lg:text-[17px] text-[16px] border-2 border-light-blue hover:bg-[#EAF3FF] hover:text-font-color duration-150 hover:cursor-pointer`}
-	// 		onClick={onClick}
-	// 	>
-	// 		<Flex className={"flex relative w-full"}>
-	// 			<Flex className={"absolute -left-[26px] top-1/2 -translate-y-1/2"}>
-	// 				<TailSpin
-	// 					visible={true}
-	// 					height='18'
-	// 					width='18'
-	// 					color={"#EAF3FF"}
-	// 					ariaLabel='tail-spin-loading'
-	// 					radius='1'
-	// 				/>
-	// 			</Flex>
-	// 			<span className='font-poppins font-medium '>{children}</span>
-	// 		</Flex>
-	// 	</button>
-	// )
 
 	return disabled ? (
 		<button
@@ -107,7 +60,7 @@ const Button = ({
 				invert
 					? "bg-[#EAF3FF] text-font-color border-[#EAF3FF]"
 					: "bg-light-blue text-white border-light-blue"
-			} rounded-lg inline-block lg:text-[17px] text-[16px] border-2 ${
+			} rounded-full inline-block lg:text-[17px] text-[16px] border-2 ${
 				!loading
 					? invert
 						? "hover:bg-darknest_blue hover:text-[#EAF3FF] duration-150 hover:cursor-pointer"
@@ -142,7 +95,7 @@ const Button = ({
 						{children}
 					</Link>
 				) : (
-					<span className='font-poppins font-medium '>{children}</span>
+					<span className='font-poppins font-medium'>{children}</span>
 				)}
 			</Flex>
 		</button>
