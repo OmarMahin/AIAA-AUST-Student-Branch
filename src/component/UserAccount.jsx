@@ -16,7 +16,6 @@ import ListItem from "./ListItem"
 
 const UserAccount = (data) => {
 	const user_data = data.data
-	console.log(user_data)
 
 	axios.defaults.withCredentials = true
 
@@ -45,6 +44,8 @@ const UserAccount = (data) => {
 	let [updated_user_ys, setUpdated_user_ys] = useState("")
 	let [updated_user_contact, setUpdated_user_contact] = useState("")
 
+	let [dataUpdating, setDataUpdating] = useState(false)
+
 	let name = user_data.name
 	let nameParts = name.split(" ")
 	let userName = nameParts[0][0] + nameParts.pop()[0]
@@ -65,7 +66,10 @@ const UserAccount = (data) => {
 		}
 	}
 
-	let sendToOTP_Page = () => {
+	let sendToOTP_Page = (e) => {
+
+		e.preventDefault()
+
 		if (!otpSend) {
 			axios
 				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/sendOTP`, {
@@ -116,41 +120,66 @@ const UserAccount = (data) => {
 		}
 	})
 
-	let handleUpdate = () => {
+	let handleUpdate = (e) => {
+		e.preventDefault()
+		const data = {
+			StudentId: updated_user_student_id
+				? updated_user_student_id
+				: user_studentId == "N/A"
+				? null
+				: user_studentId,
+			department: updated_user_department ? updated_user_department : user_department,
+			yearAndSemester: updated_user_ys ? updated_user_ys : user_year_semester,
+			contact: updated_user_contact
+				? updated_user_contact
+				: user_contact == "N/A"
+				? null
+				: user_contact,
+		}
+
+		setDataUpdating(true)
+
 		axios
-			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/updateUser`, {
+			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/user/updateUser`, {
 				id: user_id,
-				data: {
-					StudentId: updated_user_student_id ? updated_user_student_id : user_studentId == 'N/A' ? null : user_studentId,
-					department: updated_user_department ? updated_user_department : user_department,
-					yearAndSemester: updated_user_ys ? updated_user_ys : user_year_semester,
-					contact: updated_user_contact ? updated_user_contact : user_contact == 'N/A' ? null : user_contact,
-				},
+				data,
 			})
 			.then((response) => {
-				if (response.data.status) {
-					toast.success(response.data.result)
-					setEditInformation(false)
-					setUser_StudentId(
-						updated_user_student_id ? updated_user_student_id : user_data.Student_ID
-					)
-					setUser_Department(
-						updated_user_department ? updated_user_department : user_data.Department
-					)
-					setUser_Year_Semester(
-						updated_user_ys ? updated_user_ys : user_data.YS
-					)
-					setUser_Contact(
-						updated_user_contact ? updated_user_contact : user_data.Contact_No
-					)
+				if (response.status == "200") {
+					const data = response.data
 
-					setUpdated_user_contact('')
-					setUpdated_user_department('')
-					setUpdated_user_student_id('')
-					setUpdated_user_ys('')
+					if (data.success) {
+
+						toast.success(data.message)
+						setEditInformation(false)
+						setUser_StudentId(
+							updated_user_student_id ? updated_user_student_id : user_data.Student_ID
+						)
+						setUser_Department(
+							updated_user_department ? updated_user_department : user_data.Department
+						)
+						setUser_Year_Semester(updated_user_ys ? updated_user_ys : user_data.YS)
+						setUser_Contact(
+							updated_user_contact ? updated_user_contact : user_data.Contact_No
+						)
+
+						setUpdated_user_contact("")
+						setUpdated_user_department("")
+						setUpdated_user_student_id("")
+						setUpdated_user_ys("")
+
+					}
+
+					else{
+						toast.error(data.message)
+						console.log(data.data.error)
+					}
+
+					setDataUpdating(false)
 				}
 			})
 			.catch((error) => {
+				setDataUpdating(false)
 				console.log(error)
 			})
 	}
@@ -327,7 +356,7 @@ const UserAccount = (data) => {
 							<List className={"flex flex-col gap-2"}>
 								<ListItem
 									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full bg-[#d3e0ec] ${
-										editInformation ? "py-2 pr-4" : "p-4"
+										editInformation ? "py-[8px] pr-4" : "p-4"
 									} rounded-r-lg`}
 								>
 									{editInformation ? (
@@ -347,24 +376,24 @@ const UserAccount = (data) => {
 							<List className={"flex flex-col gap-2"}>
 								<ListItem
 									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full ${
-										editInformation ? "py-2 pr-4" : "p-4"
+										editInformation ? "py-[7px] pr-4" : "p-4"
 									} rounded-r-lg`}
 								>
 									{editInformation ? (
 										<select
-											className={"bg-transparent py-2 pl-4 w-full text-[#5d7d99]"}
+											className={"bg-transparent py-2 pl-[12px] w-full text-[#5d7d99]"}
 											onChange={(e) => {
 												setUpdated_user_department(e.target.value)
 											}}
 										>
-											<option >N/A</option>
-											<option >ME</option>
-											<option >CSE</option>
-											<option >EEE</option>
-											<option >CE</option>
-											<option >TE</option>
-											<option >IPE</option>
-											<option >Arch</option>
+											<option>N/A</option>
+											<option>ME</option>
+											<option>CSE</option>
+											<option>EEE</option>
+											<option>CE</option>
+											<option>TE</option>
+											<option>IPE</option>
+											<option>Arch</option>
 										</select>
 									) : (
 										<h3>{user_department}</h3>
@@ -374,25 +403,25 @@ const UserAccount = (data) => {
 							<List className={"flex flex-col gap-2"}>
 								<ListItem
 									className={`flex font-poppins font-semibold text-darker_blue justify-between text-xl w-full bg-[#d3e0ec] ${
-										editInformation ? "py-2 pr-4" : "p-4"
+										editInformation ? "py-[7px] pr-4" : "p-4"
 									} rounded-r-lg`}
 								>
 									{editInformation ? (
 										<select
-											className={"bg-transparent py-2 pl-4 w-full text-[#5d7d99]"}
+											className={"bg-transparent py-2 pl-[12px] w-full text-[#5d7d99]"}
 											onChange={(e) => {
 												setUpdated_user_ys(e.target.value)
 											}}
 										>
-											<option >N/A</option>
-											<option >1/1</option>
-											<option >1/2</option>
-											<option >2/1</option>
-											<option >2/2</option>
-											<option >3/1</option>
-											<option >3/1</option>
-											<option >4/1</option>
-											<option >4/2</option>
+											<option>N/A</option>
+											<option>1/1</option>
+											<option>1/2</option>
+											<option>2/1</option>
+											<option>2/2</option>
+											<option>3/1</option>
+											<option>3/1</option>
+											<option>4/1</option>
+											<option>4/2</option>
 										</select>
 									) : (
 										<h3>{user_year_semester}</h3>
@@ -424,7 +453,7 @@ const UserAccount = (data) => {
 					<Flex className={"flex gap-5 mt-12 w-[80%]"}>
 						{editInformation ? (
 							<>
-								<Button onClick={handleUpdate}>Update</Button>
+								<Button onClick={handleUpdate} loading = {dataUpdating}>Update</Button>
 								<Button onClick={handleEditInformation}>Cancel</Button>
 							</>
 						) : (
