@@ -98,10 +98,10 @@ const LoginForm = () => {
 						<h3 className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-3xl'>
 							Login
 						</h3>
-						<div className='relative w-full'>
+						<div className='relative w-full font-poppins font-medium text-sm text-font-color'>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"Email"}
 								value={email}
 								onChange={emailInput}
@@ -111,10 +111,10 @@ const LoginForm = () => {
 							</span>
 						</div>
 
-						<div className='relative w-full'>
+						<div className='relative w-full font-poppins font-medium text-sm text-font-color'>
 							<input
 								type={showPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"Password"}
 								value={password}
 								onChange={passwordInput}

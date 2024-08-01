@@ -50,7 +50,7 @@ const ForgetPasswordForm = () => {
 
 		if (!otpSend) {
 			axios
-				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/verification/sendOTP`, {
+				.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/email/sendOTP`, {
 					email,
 				})
 				.then((response) => {
@@ -141,7 +141,7 @@ const ForgetPasswordForm = () => {
 						>
 							<input
 								type={"email"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-medium text-sm text-font-color'
 								placeholder={"Email"}
 								value={email}
 								onChange={emailInput}
@@ -160,7 +160,7 @@ const ForgetPasswordForm = () => {
 						>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 font-poppins font-medium text-sm text-font-color'
 								placeholder={"OTP"}
 								value={otp}
 								onChange={otpInput}

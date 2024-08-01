@@ -65,7 +65,7 @@ const Button = ({
 					? invert
 						? "hover:bg-darknest_blue hover:text-[#EAF3FF] duration-150 hover:cursor-pointer"
 						: "hover:bg-[#EAF3FF] hover:text-font-color duration-150 hover:cursor-pointer"
-					: "after:absolute after:w-full after:h-full after:bg-black/10 after:top-0 after:left-0 after:scale-110 cursor-default"
+					: " cursor-default"
 			}`}
 			onClick={
 				!loading

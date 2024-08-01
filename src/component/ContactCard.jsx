@@ -1,5 +1,9 @@
+import axios from "axios"
 import React from "react"
+import { useState } from "react"
 import { FaPhoneAlt } from "react-icons/fa"
+import { toast } from "react-toastify"
+import validateEmail from "../helperFunctions/ValidateEmail"
 import Button from "./Button"
 import Container from "./Container"
 import Flex from "./Flex"
@@ -7,6 +11,71 @@ import Image from "./Image"
 import SocialMediaIcons from "./SocialMediaIcons"
 
 const ContactCard = () => {
+
+	let [name, setName] = useState('')
+	let [email, setEmail] = useState('')
+	let [message, setMessage] = useState('')
+
+	let [loading, setLoading] = useState(false)
+
+	function emptyValues(){
+		setName('')
+		setEmail('')
+		setMessage('')
+	}
+
+	let sendMessage = (e)=>{
+		e.preventDefault()
+
+
+		if (!name){
+			toast.error("Please input your name")
+			return
+		}
+
+		if (!email){
+			toast.error("Please input an email")
+			return
+		}
+
+		if (!validateEmail(email)){
+			toast.error("Invalid email")
+			return
+		}
+
+		if (!message){
+			toast.error("Please input your message")
+			return
+		}
+
+		setLoading(true)
+
+		axios.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/email/sendMessage`, {
+			name,
+			email,
+			message
+		}).then((response)=>{
+			if (response.status == '200'){
+				const data = response.data
+				setLoading(false)
+				emptyValues()
+				if (data.success){
+					
+					toast.success(data.message)
+				}
+				else{
+					toast.error(data.message)
+					console.log(data.data.error)
+				}
+			}
+		}).catch((error)=>{
+			setLoading(false)
+			emptyValues()
+			toast.error("An error occured")
+			console.log(error)
+		})
+	}
+
 	return (
 		<Container>
 			<Flex
@@ -31,25 +100,31 @@ const ContactCard = () => {
 				<div className='lg:w-[2px] w-[80%] lg:h-auto h-[2px] bg-light-blue/40 lg:my-10 my-5 mx-auto'></div>
 				<div className='lg:w-[49%] lg:mt-11 mt-6'>
 					<form>
-						<Flex className={"flex flex-col items-center px-9 gap-8"}>
+						<Flex className={"flex flex-col items-center px-9 gap-8 font-poppins font-medium text-font-color"}>
 							<input
 								type={"text"}
 								className='w-[100%] bg-white lg:py-4 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500'
 								placeholder={"Name"}
+								value = {name}
+								onChange = {(e)=>{setName(e.target.value)}}
 							></input>
 							<input
 								type={"email"}
 								className='w-[100%] bg-white lg:py-4 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500'
 								placeholder={"Email"}
+								value = {email}
+								onChange = {(e)=>{setEmail(e.target.value)}}
 							></input>
        
 							<textarea
 								type={"textarea"}
 								className='w-[100%] lg:h-[200px] h-[150px] bg-white lg:py-4 py-3 lg:pl-5 px-4 rounded-xl border-2 border-slate-500 resize-none'
 								placeholder={"Message"}
+								value = {message}
+								onChange = {(e)=>{setMessage(e.target.value)}}
 							></textarea>
 
-                            <Button className={'mb-16'}>Send Message</Button>
+                            <Button className={'mb-16'} loading = {loading} onClick = {(e) => sendMessage(e)}>Send Message</Button>
 						</Flex>
 					</form>
 				</div>
