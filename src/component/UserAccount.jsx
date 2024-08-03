@@ -91,29 +91,6 @@ const UserAccount = (data) => {
 		}
 	}
 
-	let uploadImage = async (e) => {
-		const originalImage = e.target.files[0]
-
-		const imageData = new File([originalImage], `${user_id}-${originalImage.name}`, {
-			type: originalImage.type,
-			lastModified: originalImage.lastModified,
-		})
-
-		let imageFormData = new FormData()
-		imageFormData.append("file", imageData)
-		console.log("Uploading")
-		await axios
-			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, imageFormData)
-			.then((response) => {
-				if (response.data.status) {
-					user_data.profileImage = response.data.result
-					setRefresh(!refresh)
-				}
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-	}
 
 	document.addEventListener("click", (e) => {
 		if (e.target.id === "background") {
@@ -223,12 +200,13 @@ const UserAccount = (data) => {
 				closeModal={() => {
 					setShowImageUploadModal(false)
 				}}
+				user_id = {user_id}
 			></ImageUploadModal>
 
 			<Title>Account Details</Title>
 			<Flex className={"mt-10 flex flex-col w-[60%] mx-auto mb-40 "}>
 				<div
-					className='w-60 mt-8 h-60 rounded-full bg-[#aebed4] mx-auto relative hover:cursor-pointer overflow-hidden group '
+					className='w-52 mt-8 h-52 rounded-full bg-[#D6DDE5] mx-auto relative hover:cursor-pointer overflow-hidden group '
 					onClick={() => {
 						setShowImageUploadModal(true)
 					}}
