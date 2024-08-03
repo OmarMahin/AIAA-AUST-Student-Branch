@@ -13,7 +13,8 @@ export default {
         'darker_blue': '#183D6E',
         'darknest_blue': '#112C50',
         'light-blue': '#2B4B77',
-        'font-color': '#1F1F1F'
+        'font-color': '#1F1F1F',
+        'background-color': '#E7ECF1'
       },
       fontFamily:{
         'mark': 'Mark',

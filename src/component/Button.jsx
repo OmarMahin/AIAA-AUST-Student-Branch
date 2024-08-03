@@ -56,7 +56,7 @@ const Button = ({
 		</button>
 	) : (
 		<button
-			className={`${className} py-2 px-8 overflow-hidden ${
+			className={` py-2 px-8 overflow-hidden ${
 				invert
 					? "bg-[#EAF3FF] text-font-color border-[#EAF3FF]"
 					: "bg-light-blue text-white border-light-blue"
@@ -66,7 +66,7 @@ const Button = ({
 						? "hover:bg-darknest_blue hover:text-[#EAF3FF] duration-150 hover:cursor-pointer"
 						: "hover:bg-[#EAF3FF] hover:text-font-color duration-150 hover:cursor-pointer"
 					: " cursor-default"
-			}`}
+			} ${className}`}
 			onClick={
 				!loading
 					? onClick

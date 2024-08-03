@@ -13,6 +13,7 @@ import Image from "./Image"
 import { useEffect } from "react"
 import List from "./List"
 import ListItem from "./ListItem"
+import ImageUploadModal from "./ImageUploadModal"
 
 const UserAccount = (data) => {
 	const user_data = data.data
@@ -25,6 +26,7 @@ const UserAccount = (data) => {
 
 	let [refresh, setRefresh] = useState("")
 	let [showConfirmMessage, setShowConfirmMessage] = useState(false)
+	let [showImageUploadModal, setShowImageUploadModal] = useState(false)
 	let [editInformation, setEditInformation] = useState(false)
 	let [otpSend, setOtpSend] = useState(false)
 
@@ -67,7 +69,6 @@ const UserAccount = (data) => {
 	}
 
 	let sendToOTP_Page = (e) => {
-
 		e.preventDefault()
 
 		if (!otpSend) {
@@ -149,7 +150,6 @@ const UserAccount = (data) => {
 					const data = response.data
 
 					if (data.success) {
-
 						toast.success(data.message)
 						setEditInformation(false)
 						setUser_StudentId(
@@ -167,10 +167,7 @@ const UserAccount = (data) => {
 						setUpdated_user_department("")
 						setUpdated_user_student_id("")
 						setUpdated_user_ys("")
-
-					}
-
-					else{
+					} else {
 						toast.error(data.message)
 						console.log(data.data.error)
 					}
@@ -220,25 +217,27 @@ const UserAccount = (data) => {
 					</Flex>
 				</Flex>
 			</Flex>
+
+			<ImageUploadModal
+				showModal={showImageUploadModal}
+				closeModal={() => {
+					setShowImageUploadModal(false)
+				}}
+			></ImageUploadModal>
+
 			<Title>Account Details</Title>
 			<Flex className={"mt-10 flex flex-col w-[60%] mx-auto mb-40 "}>
 				<div
 					className='w-60 mt-8 h-60 rounded-full bg-[#aebed4] mx-auto relative hover:cursor-pointer overflow-hidden group '
-					onClick={handleImageUploadClick}
+					onClick={() => {
+						setShowImageUploadModal(true)
+					}}
 				>
 					<div className='w-full h-[40%] absolute bottom-[-100%] duration-300 group-hover:bottom-0 bg-gradient-to-t from-black/80 z-10'>
 						<Flex className=' flex flex-col items-center text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
 							<MdOutlineFileUpload className=' w-7 h-7' />
 							<span>Upload Image</span>
 						</Flex>
-
-						<input
-							type={"file"}
-							accept={"image/*"}
-							ref={imageInputRef}
-							className={"hidden"}
-							onChange={uploadImage}
-						></input>
 					</div>
 					{user_data.profileImage != "N/A" ? (
 						<Image
@@ -453,7 +452,9 @@ const UserAccount = (data) => {
 					<Flex className={"flex gap-5 mt-12 w-[80%]"}>
 						{editInformation ? (
 							<>
-								<Button onClick={handleUpdate} loading = {dataUpdating}>Update</Button>
+								<Button onClick={handleUpdate} loading={dataUpdating}>
+									Update
+								</Button>
 								<Button onClick={handleEditInformation}>Cancel</Button>
 							</>
 						) : (
