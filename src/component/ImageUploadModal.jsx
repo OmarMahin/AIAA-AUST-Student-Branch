@@ -4,7 +4,6 @@ import { useRef } from "react"
 import Button from "./Button"
 import Flex from "./Flex"
 import { IoIosCloseCircle } from "react-icons/io"
-import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop"
 import { toast } from "react-toastify"
 import Cropper from "react-easy-crop"
 import getCroppedImg from "../helperFunctions/ImageCrop"
@@ -101,11 +100,10 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 		imageFormData.append("file", imageData)
 		
 		setLoading(true)
-		
+
 		axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, imageFormData)
 			.then((response) => {
-				console.log(response)
 				if (response.status == '200') {
 					const data = response.data
 					if (data){
