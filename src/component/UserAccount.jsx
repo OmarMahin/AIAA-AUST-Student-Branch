@@ -12,7 +12,7 @@ import AccountProfilePicture from "./AccountProfilePicture"
 import Information from "./Information"
 import ChangeAccountPassword from "./ChangeAccountPassword"
 
-const UserAccount = ({ user_id = "66b0ee88583ba1963c9cb989" }) => {
+const UserAccount = ({ user_id }) => {
 
 	const [user_data, setUser_data] = useState({})
 
@@ -96,7 +96,6 @@ const UserAccount = ({ user_id = "66b0ee88583ba1963c9cb989" }) => {
 
 	return (
 		<Container>
-
 			<Title>My Account</Title>
 
 			<Flex
@@ -108,11 +107,22 @@ const UserAccount = ({ user_id = "66b0ee88583ba1963c9cb989" }) => {
 				<Flex className={"flex flex-col md:w-[30%] w-full items-center"}>
 					<AccountProfilePicture user_id={user_id}></AccountProfilePicture>
 					<Flex className={"flex flex-col gap-3 md:w-[70%] mt-20 mb-10 items-center"}>
-						<ChangeAccountPassword className={"md:w-full w-fit"} user_email={user_data.email} user_id={user_id}></ChangeAccountPassword>
+						<ChangeAccountPassword
+							className={"md:w-full w-fit"}
+							user_email={user_data.email}
+							user_id={user_id}
+						></ChangeAccountPassword>
 						{editInformation ? (
 							<Flex className={"flex gap-2"}>
-								<Button className={"w-full"}
-								onClick={(e)=>{handleUpdate(e)}} loading = {dataUpdating}>Save</Button>
+								<Button
+									className={"w-full"}
+									onClick={(e) => {
+										handleUpdate(e)
+									}}
+									loading={dataUpdating}
+								>
+									Save
+								</Button>
 								<Button
 									className={"w-full"}
 									onClick={() => {
@@ -200,7 +210,7 @@ const UserAccount = ({ user_id = "66b0ee88583ba1963c9cb989" }) => {
 								placeholder={user_data.contact}
 								onChange={(e) => setUpdated_Contact(e.target.value)}
 								id={"Contact_No"}
-								type={'tel'}
+								type={"tel"}
 							></Information>
 						</Flex>
 						<Flex className={"flex w-full md:gap-20 justify-between"}>

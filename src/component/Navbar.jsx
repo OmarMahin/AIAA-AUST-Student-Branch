@@ -111,7 +111,7 @@ const Navbar = () => {
 
 					axios
 						.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/user/findMemberByUserId`, {
-							user_Id,
+							_id: user_Id,
 						})
 						.then((response) => {
 							if (respone.status == "200") {

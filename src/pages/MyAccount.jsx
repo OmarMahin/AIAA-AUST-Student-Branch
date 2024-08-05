@@ -14,22 +14,12 @@ const MyAccount = () => {
 
 	let navigation = useNavigate()
 
-	let [user_name, setUser_name] = useState("")
-	let [user_aasbId, setUser_AasbId] = useState("")
-	let [user_aiaaId, setUser_AiaaId] = useState("")
-	let [user_email, setUser_Email] = useState("")
-	let [user_department, setUser_Department] = useState("")
-	let [user_studentId, setUser_StudentId] = useState("")
-	let [user_year_semester, setUser_Year_Semester] = useState("")
-	let [user_profileImage, setUser_ProfileImage] = useState("")
-	let [user_contact, setUser_Contact] = useState("")
 	let [user_id, setUser_id] = useState("")
 
 	let [refresh, setRefresh] = useState(false)
 	let [loaded, setLoaded] = useState(true)
 
 	useEffect(() => {
-		return
 		setLoaded(false)
 		axios
 			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/authorized`)
@@ -41,43 +31,13 @@ const MyAccount = () => {
 						navigation("/login")
 						return
 					}
+					setUser_id(data.data.user_id)
+					setLoaded(true)
 
-					const user_Id = data.data.user_id
-
-					axios
-						.post("http://localhost:3000/api/v1/user/findMemberByUserId", {
-							user_Id,
-						})
-						.then((response) => {
-							if (response.status == "200") {
-								const data = response.data
-
-								if (data.success) {
-									const user = data.data.user
-									setUser_name(user.name)
-									setUser_Email(user.email)
-									setUser_AasbId(user.AASBmembershipId)
-									setUser_AiaaId(user.AIAAmembershipId)
-									setUser_Department(user.department)
-									setUser_StudentId(user.StudentId)
-									setUser_Year_Semester(user.yearAndSemester)
-									setUser_ProfileImage(user.profileImage)
-									setUser_Contact(user.contact)
-									setUser_id(user._id)
-								} else {
-									toast.error(data.message)
-									console.log(data.data.error)
-								}
-							}
-							setLoaded(true)
-						})
-						.catch((error) => {
-							console.log(error)
-							setLoaded(true)
-						})
 				}
 			})
 			.catch((error) => {
+				navigation("/login")
 				console.log("error")
 				console.log(error)
 			})
@@ -90,20 +50,7 @@ const MyAccount = () => {
 	return (
 		<AnimatePage>
 			{loaded ? (
-				<UserAccount
-					data={{
-						name: user_name ? user_name : "N/A",
-						email: user_email ? user_email : "N/A",
-						AASB_ID: user_aasbId ? user_aasbId : "N/A",
-						AIAA_ID: user_aiaaId ? user_aiaaId : "N/A",
-						Student_ID: !user_studentId ? "N/A" : user_studentId,
-						Department: user_department ? user_department : "N/A",
-						YS: user_year_semester ? user_year_semester : "N/A",
-						Contact_No: !user_contact ? "N/A" : user_contact,
-						profileImage: user_profileImage ? user_profileImage : "N/A",
-						id: user_id ? user_id : "N/A",
-					}}
-				></UserAccount>
+				<UserAccount user_id={user_id}></UserAccount>
 			) : (
 				<PageDataLoading></PageDataLoading>
 			)}
