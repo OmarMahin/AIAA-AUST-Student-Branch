@@ -52,15 +52,17 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 
 			imageElement.addEventListener("load", (e) => {
 				const { width, height } = e.currentTarget
+				
 
 				if (width < MIN_WIDTH || height < MIN_WIDTH) {
 					toast.error("Image must be atleast 200 x 200 px")
 					setImgUrl("")
 					return
 				}
+				setImgUrl(imageUrl)
 			})
 
-			setImgUrl(imageUrl)
+			
 		})
 
 		reader.readAsDataURL(file)
@@ -92,7 +94,10 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 
 	const uploadImg = async () => {
 		
-
+		if (!imgUrl) {
+			toast.error("Please select an image")
+			return
+		}
 		const croppedImageUrl = await getCroppedImg(imgUrl, imgCroppedArea)
 		const imageData = dataURLtoFile(croppedImageUrl, `${user_id}-pfp`)
 
@@ -146,7 +151,7 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 						<IoIosCloseCircle className='w-full h-full' />
 					</Flex>
 				</Flex>
-				<Flex className='w-[400px] h-80 flex flex-col overflow-hidden relative border-[1px] border-gray-300 items-center justify-center bg-[#D6DDE5]'>
+				<Flex className='lg:w-[400px] w-[350px] h-80 flex flex-col overflow-hidden relative border-[1px] border-gray-300 items-center justify-center bg-[#D6DDE5]'>
 					{imgUrl && (
 						<Cropper
 							image={imgUrl}
@@ -184,10 +189,10 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 					>
 						
 					</input>
-					<Button className={"lg:text-sm lg:px-3 lg:py-[5px] h-9"} onClick={browseImage}>
+					<Button className={"lg:text-sm lg:px-3 lg:py-[5px] h-9 leading-[9px]"} onClick={browseImage}>
 						Browse
 					</Button>
-					<Button className={`lg:text-sm ${loading ? "lg:px-7 " : 'lg:px-3'} lg:py-[5px] h-9`} onClick={uploadImg} loading = {loading}>
+					<Button className={`lg:text-sm ${loading ? "lg:px-7 " : 'lg:px-3'} lg:py-[5px] h-9 leading-[9px]`} onClick={uploadImg} loading = {loading}>
 						Upload
 					</Button>
 				</Flex>

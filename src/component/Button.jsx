@@ -13,11 +13,12 @@ const Button = ({
 	newPage,
 	disabled,
 	loading = false,
+	
 }) => {
 
 	return disabled ? (
 		<button
-			className={`${className} py-2 px-8 overflow-hidden ${
+			className={` py-2 px-8 overflow-hidden ${
 				invert
 					? "bg-[#EAF3FF] text-font-color border-[#EAF3FF]"
 					: "bg-light-blue text-white border-light-blue"
@@ -27,8 +28,9 @@ const Button = ({
 						? "hover:bg-darknest_blue hover:text-[#EAF3FF] duration-150 hover:cursor-pointer"
 						: "hover:bg-[#EAF3FF] hover:text-font-color duration-150 hover:cursor-pointer"
 					: "after:absolute after:w-full after:h-full after:bg-black/10 after:top-0 after:left-0 after:scale-110 cursor-default"
-			}`}
+			} ${className}`}
 			disabled
+			
 		>
 			<Flex className={"flex relative w-full"}>
 				<Flex className={"absolute -left-[26px] top-1/2 -translate-y-1/2 z-10"}>
@@ -74,8 +76,9 @@ const Button = ({
 							e.preventDefault()
 					  }
 			}
+			
 		>
-			<Flex className={"flex relative w-full"}>
+			<Flex className={"flex relative w-full justify-center"}>
 				<Flex className={"absolute -left-[26px] top-1/2 -translate-y-1/2 z-10"}>
 					<TailSpin
 						visible={loading}

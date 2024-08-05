@@ -110,6 +110,7 @@ const SignUpForm = () => {
 								email,
 								AASBmembershipId: aasbId,
 								password,
+								accountCreatedAt: Date.now()
 							})
 							.then((response) => {
 								if (response.status == "200") {
@@ -167,7 +168,7 @@ const SignUpForm = () => {
 	return (
 		<Container>
 			<div className='lg:mt-11 lg:w-[40%] max-w-[400px] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-haasbIdden'>
-				<form>
+				<form key={'Sign-up-form'}>
 					<Flex className={"flex flex-col items-center px-6 gap-7"}>
 						<h3 className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-3xl'>
 							Sign Up
@@ -176,7 +177,7 @@ const SignUpForm = () => {
 							<input
 								type={"text"}
 								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
-								placeholder={"Username"}
+								placeholder={"Full Name"}
 								value={name}
 								onChange={nameInput}
 							></input>

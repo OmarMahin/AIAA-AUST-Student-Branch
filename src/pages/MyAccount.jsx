@@ -26,9 +26,10 @@ const MyAccount = () => {
 	let [user_id, setUser_id] = useState("")
 
 	let [refresh, setRefresh] = useState(false)
-	let [loaded, setLoaded] = useState(false)
+	let [loaded, setLoaded] = useState(true)
 
 	useEffect(() => {
+		return
 		setLoaded(false)
 		axios
 			.get(`${import.meta.env.VITE_DATABASE_URL}/api/v1/auth/authorized`)
@@ -37,7 +38,7 @@ const MyAccount = () => {
 					const data = response.data
 
 					if (!data.authorized) {
-						navigation('/login')
+						navigation("/login")
 						return
 					}
 
@@ -91,16 +92,16 @@ const MyAccount = () => {
 			{loaded ? (
 				<UserAccount
 					data={{
-						name: user_name,
-						email: user_email,
-						AASB_ID: user_aasbId,
-						AIAA_ID: user_aiaaId,
+						name: user_name ? user_name : "N/A",
+						email: user_email ? user_email : "N/A",
+						AASB_ID: user_aasbId ? user_aasbId : "N/A",
+						AIAA_ID: user_aiaaId ? user_aiaaId : "N/A",
 						Student_ID: !user_studentId ? "N/A" : user_studentId,
-						Department: user_department,
-						YS: user_year_semester,
+						Department: user_department ? user_department : "N/A",
+						YS: user_year_semester ? user_year_semester : "N/A",
 						Contact_No: !user_contact ? "N/A" : user_contact,
-						profileImage: user_profileImage,
-						id: user_id,
+						profileImage: user_profileImage ? user_profileImage : "N/A",
+						id: user_id ? user_id : "N/A",
 					}}
 				></UserAccount>
 			) : (
