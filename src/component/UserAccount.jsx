@@ -11,6 +11,7 @@ import { useEffect } from "react"
 import AccountProfilePicture from "./AccountProfilePicture"
 import Information from "./Information"
 import ChangeAccountPassword from "./ChangeAccountPassword"
+import moment from "moment"
 
 const UserAccount = ({ user_id }) => {
 
@@ -216,7 +217,7 @@ const UserAccount = ({ user_id }) => {
 						<Flex className={"flex w-full md:gap-20 justify-between"}>
 							<Information
 								label={"Account Created"}
-								value={user_data.accountCreatedAt}
+								value={moment(user_data.createdAt).format("MMMM Do YYYY")}
 								id={"Account_Created"}
 							></Information>
 							<Information
