@@ -12,12 +12,12 @@ const ActivityCard = () => {
 	const imagePath = "/images/Activites/Seminar_F23/cardBanner.png"
 	const heading = "Advancement in Aerospace Engineering: Insights and Opportunities"
 	const date = "07 July 2024"
-	const pageLink = '/activites/aasb_seminar_fall23'
+	const pageLink = "/activites/aasb_seminar_fall23"
 	const word_limit = 200
 	let shortInfo = `AIAA AUST Student Branch has started its journey with General Member Recruitment Fall’23, dated from 02 June 2024 to 04 June 2024. Over three action-packed days, the campus of Ahsanullah University of Science and Technology(AUST) buzzed with energy, enthusiasm, and endless fun. From thrilling dart board games to the challenging buzz-wire contest, our booth was the ultimate hub of student engagement!
 	`
-	if (shortInfo.length > word_limit){
-		shortInfo = shortInfo.slice(0,word_limit) + '. . . '
+	if (shortInfo.length > word_limit) {
+		shortInfo = shortInfo.slice(0, word_limit) + ". . . "
 	}
 	useEffect(() => {
 		function checkWindowSize() {
@@ -98,13 +98,11 @@ const ActivityCard = () => {
 								<p className='font-poppins font-medium text-white lg:text-lg text-[16px] mt-10 lg:mb-24 mb-12 lg:leading-8 leading-6 text-pretty'>
 									{shortInfo}
 								</p>
-								<Button
-									className={"absolute lg:bottom-11 lg:right-11 bottom-6 right-6"}
-									invert={true}
-									link={pageLink}
-								>
-									Learn More
-								</Button>
+								<div className='absolute lg:bottom-11 lg:right-11 bottom-6 right-6'>
+									<Button invert={true} link={pageLink}>
+										Learn More
+									</Button>
+								</div>
 							</div>
 						</Flex>
 					</div>

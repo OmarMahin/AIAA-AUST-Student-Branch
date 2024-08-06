@@ -22,7 +22,7 @@ const ConfirmModal = ({ message, showModal, closeModal, confirm, loading }) => {
 		>
 			<Flex
 				className={
-					"bg-background-color rounded-lg px-6 py-5 flex flex-col gap-10 items-center relative"
+					`bg-background-color rounded-lg px-6 py-5 flex flex-col gap-10 items-center relative  ${showModal ? 'scale-100 opacity-100' : 'scale-75 opacity-0'} duration-300`
 				}
 			>
 				<div className='absolute right-3 top-3'>

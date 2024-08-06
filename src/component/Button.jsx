@@ -13,9 +13,7 @@ const Button = ({
 	newPage,
 	disabled,
 	loading = false,
-	
 }) => {
-
 	return disabled ? (
 		<button
 			className={` py-2 px-8 overflow-hidden ${
@@ -30,10 +28,9 @@ const Button = ({
 					: "after:absolute after:w-full after:h-full after:bg-black/10 after:top-0 after:left-0 after:scale-110 cursor-default"
 			} ${className}`}
 			disabled
-			
 		>
 			<Flex className={"flex relative w-full"}>
-				<Flex className={"absolute -left-[26px] top-1/2 -translate-y-1/2 z-10"}>
+				<Flex className={"relative -left-[26px] top-1/2 -translate-y-1/2 z-10"}>
 					<TailSpin
 						visible={loading}
 						height='18'
@@ -58,7 +55,7 @@ const Button = ({
 		</button>
 	) : (
 		<button
-			className={` py-2 px-8 overflow-hidden ${
+			className={` py-2 px-8 overflow-hidden relative ${
 				invert
 					? "bg-[#EAF3FF] text-font-color border-[#EAF3FF]"
 					: "bg-light-blue text-white border-light-blue"
@@ -76,19 +73,18 @@ const Button = ({
 							e.preventDefault()
 					  }
 			}
-			
 		>
+			<Flex className={"absolute left-1 top-1/2 -translate-y-1/2 z-10"}>
+				<TailSpin
+					visible={loading}
+					height='18'
+					width='18'
+					color={invert ? "#112C50" : "#EAF3FF"}
+					ariaLabel='tail-spin-loading'
+					radius='1'
+				/>
+			</Flex>
 			<Flex className={"flex relative w-full justify-center"}>
-				<Flex className={"absolute -left-[26px] top-1/2 -translate-y-1/2 z-10"}>
-					<TailSpin
-						visible={loading}
-						height='18'
-						width='18'
-						color={invert ? "#112C50" : "#EAF3FF"}
-						ariaLabel='tail-spin-loading'
-						radius='1'
-					/>
-				</Flex>
 				{link ? (
 					<Link
 						to={link}

@@ -9,6 +9,7 @@ import Cropper from "react-easy-crop"
 import getCroppedImg from "../helperFunctions/ImageCrop"
 import axios from "axios"
 import { dataURLtoFile } from "../helperFunctions/base64toFile"
+import { FaImages } from "react-icons/fa"
 
 const ASPECT_RATIO = 1
 const MIN_WIDTH = 250
@@ -22,7 +23,6 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 	const [imgCroppedArea, setImgCroppedArea] = useState("")
 
 	const [loading, setLoading] = useState(false)
-	
 
 	let browseImage = () => {
 		imageInputRef.current.click()
@@ -30,7 +30,7 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 
 	let handleClose = (e) => {
 		if (e.target.id && e.target.id == "Background") {
-			setImgUrl('')
+			setImgUrl("")
 			closeModal()
 		}
 	}
@@ -52,7 +52,6 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 
 			imageElement.addEventListener("load", (e) => {
 				const { width, height } = e.currentTarget
-				
 
 				if (width < MIN_WIDTH || height < MIN_WIDTH) {
 					toast.error("Image must be atleast 200 x 200 px")
@@ -61,8 +60,6 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 				}
 				setImgUrl(imageUrl)
 			})
-
-			
 		})
 
 		reader.readAsDataURL(file)
@@ -93,7 +90,6 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 	}
 
 	const uploadImg = async () => {
-		
 		if (!imgUrl) {
 			toast.error("Please select an image")
 			return
@@ -103,20 +99,19 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 
 		let imageFormData = new FormData()
 		imageFormData.append("file", imageData)
-		
+
 		setLoading(true)
 
 		axios
 			.post(`${import.meta.env.VITE_DATABASE_URL}/api/v1/file/imageUpload`, imageFormData)
 			.then((response) => {
-				if (response.status == '200') {
+				if (response.status == "200") {
 					const data = response.data
-					if (data){
+					if (data) {
 						setLoading(false)
 						window.location.reload()
 					}
 				}
-				
 			})
 			.catch((err) => {
 				console.log(err)
@@ -151,8 +146,8 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 						<IoIosCloseCircle className='w-full h-full' />
 					</Flex>
 				</Flex>
-				<Flex className='lg:w-[400px] w-[350px] h-80 flex flex-col overflow-hidden relative border-[1px] border-gray-300 items-center justify-center bg-[#D6DDE5]'>
-					{imgUrl && (
+				<Flex className='lg:w-[400px] w-[350px] h-80 flex flex-col overflow-hidden relative border-[2px] border-gray-400 border-dashed items-center justify-center bg-[#D6DDE5]'>
+					{imgUrl ? (
 						<Cropper
 							image={imgUrl}
 							crop={crop}
@@ -163,11 +158,16 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 							onZoomChange={setZoom}
 							cropShape={"round"}
 							showGrid={false}
-							minZoom = {1}
-							maxZoom = {20}
-							zoomWithScroll = {true}
+							minZoom={1}
+							maxZoom={20}
+							zoomWithScroll={true}
 							cropSize={{ width: MIN_WIDTH, height: MIN_WIDTH }}
 						/>
+					) : (
+						<Flex className={"flex flex-col items-center gap-2 w-full h-full justify-center text-gray-500"}>
+							<FaImages className='w-[10%] h-[10%] ' />
+							<span className="font-poppins">Minimum image size is 200 x 200 px</span>
+						</Flex>
 					)}
 				</Flex>
 				<Flex className={"flex gap-2 mt-5"}>
@@ -180,19 +180,28 @@ const ImageUploadModal = ({ showModal, closeModal, user_id }) => {
 						onLoad={onImageLoad}
 					></input>
 					<input
-					className="hidden"
-					type={'range'}
-					value = {zoom}
-					min = {1}
-					max = {20}
-					onChange = {(e)=>{setZoom(e.target.value)}}
+						className='hidden'
+						type={"range"}
+						value={zoom}
+						min={1}
+						max={20}
+						onChange={(e) => {
+							setZoom(e.target.value)
+						}}
+					></input>
+					<Button
+						className={"lg:text-sm lg:px-3 lg:py-[5px] h-9 leading-[9px]"}
+						onClick={browseImage}
 					>
-						
-					</input>
-					<Button className={"lg:text-sm lg:px-3 lg:py-[5px] h-9 leading-[9px]"} onClick={browseImage}>
 						Browse
 					</Button>
-					<Button className={`lg:text-sm ${loading ? "lg:px-7 " : 'lg:px-3'} lg:py-[5px] h-9 leading-[9px]`} onClick={uploadImg} loading = {loading}>
+					<Button
+						className={`lg:text-sm ${
+							loading ? "lg:px-7 " : "lg:px-3"
+						} lg:py-[5px] h-9 leading-[9px]`}
+						onClick={uploadImg}
+						loading={loading}
+					>
 						Upload
 					</Button>
 				</Flex>
