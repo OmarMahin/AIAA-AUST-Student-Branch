@@ -168,15 +168,15 @@ const SignUpForm = () => {
 	return (
 		<Container>
 			<div className='lg:mt-11 lg:w-[40%] max-w-[400px] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-haasbIdden'>
-				<form key={'Sign-up-form'}>
+				<form key={'signup'}>
 					<Flex className={"flex flex-col items-center px-6 gap-7"}>
 						<h3 className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-3xl'>
 							Sign Up
 						</h3>
-						<div className='relative w-full'>
+						<div className='relative w-full font-poppins font-medium text-font-color text-sm'>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"Full Name"}
 								value={name}
 								onChange={nameInput}
@@ -188,7 +188,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={"email"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"Email"}
 								value={email}
 								onChange={emailInput}
@@ -200,7 +200,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={"text"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"AASB membership Id"}
 								value={aasbId}
 								onChange={aasbIdInput}
@@ -212,7 +212,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={showPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"Password"}
 								value={password}
 								onChange={passwordInput}
@@ -234,7 +234,7 @@ const SignUpForm = () => {
 						<div className='relative w-full'>
 							<input
 								type={showConfirmPassword ? "text" : "password"}
-								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 font-poppins font-regular text-sm'
+								className='w-[100%] bg-white lg:py-3 py-3 lg:pl-5 px-4 rounded-lg border-2 border-slate-500 '
 								placeholder={"Confirm Password"}
 								value={confirmPassword}
 								onChange={conformPasswordInput}

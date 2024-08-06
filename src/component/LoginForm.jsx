@@ -92,8 +92,8 @@ const LoginForm = () => {
 	return (
 		<Container>
 
-			<div className='lg:mt-11 lg:w-[40%] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
-				<form>
+			<div className='lg:mt-11 lg:w-[40%] md:w-[60%] max-w-[400px] mt-40 bg-[#E7ECF1] rounded-2xl mx-auto shadow-around shadow-black/60 relative overflow-hidden'>
+				<form key={'login'}>
 					<Flex className={"flex flex-col items-center px-6 gap-6"}>
 						<h3 className='mx-auto mt-7 font-poppins font-bold text-darknest_blue text-3xl'>
 							Login
