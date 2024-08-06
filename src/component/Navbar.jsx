@@ -19,8 +19,6 @@ import { toast } from "react-toastify"
 const Navbar = () => {
 	axios.defaults.withCredentials = true
 
-	const navigation = useNavigate()
-
 	let [state, setState] = useState(false)
 	let [accountList, setAccountList] = useState(false)
 	let [navShadow, setNavShadow] = useState(false)
@@ -28,7 +26,6 @@ const Navbar = () => {
 	let [userProfileName, setUserProfileName] = useState("")
 	let [fullName, setFullName] = useState("")
 	let [user_profileImage, setUser_ProfileImage] = useState("N/A")
-	let [showGetInvolved, setShowGetInvolved] = useState(false)
 	let [refresh, setRefresh] = useState(false)
 	let accountref = useRef()
 
@@ -138,7 +135,7 @@ const Navbar = () => {
 
 		setTimeout(() => {
 			setRefresh(!refresh)
-		}, import.meta.env.VITE_REFRESH_TIME)
+		}, import.meta.env.VITE_REFRESH_TIME || 300000)
 	}, [userLoggedIn, refresh])
 
 	window.addEventListener("scroll", () => {
@@ -155,6 +152,7 @@ const Navbar = () => {
 				className={`lg:hidden w-[100vw] h-[100vh] top-0 left-0  ${
 					state ? "bg-black/50 z-40 fixed" : "bg-transparent z-[-1] absolute"
 				} duration-300`}
+				id={'Nav-background'}
 				onClick={() => {
 					setState(false)
 				}}

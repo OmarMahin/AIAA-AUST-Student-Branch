@@ -38,13 +38,14 @@ const MyAccount = () => {
 			})
 			.catch((error) => {
 				navigation("/login")
+				setLoaded(true)
 				console.log("error")
 				console.log(error)
 			})
 
 		setTimeout(() => {
 			setRefresh(!refresh)
-		}, import.meta.env.VITE_REFRESH_TIME)
+		}, import.meta.env.VITE_REFRESH_TIME || 300000)
 	}, [refresh])
 
 	return (
