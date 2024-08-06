@@ -4,8 +4,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import ActivityPageCover from "./ActivityPageCover"
 
-const ImageSlider = ( {images, event}) => {
-	console.log(images.map((data)=>{console.log(data)}))
+const ImageSlider = ( {images, event, className}) => {
 	let settings = {
 		dots: true,
 		autoplay: true,
@@ -15,7 +14,7 @@ const ImageSlider = ( {images, event}) => {
 		speed: 500,
 	}
 	return (
-		<Slider {...settings}>
+		<Slider {...settings} className={`${className} rounded-xl overflow-hidden`}>
 			{images.map((image, index) => (
 				<ActivityPageCover image={images[index]} event = {event}></ActivityPageCover>
 			))}

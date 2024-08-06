@@ -31,17 +31,17 @@ const ActivityContent = ({
 					<HiArrowSmLeft className='h-8 w-8 p-1 bg-[#d2deeb] rounded-full ' />
 				</Link>
 			</Flex>
-			<ImageSlider images={images} event={event}></ImageSlider>
+			<ImageSlider images={images} event={event} className={'lg:mt8 mt-6'}></ImageSlider>
 			<Flex
 				className={
 					"lg:justify-between mt-11 lg:items-center flex lg:flex-row flex-col lg:gap-0 gap-5 items-center"
 				}
 			>
-				<h3 className=' font-poppins font-bold text-darker_blue md:text-[26px] text-xl text-center'>
+				<h3 className=' font-poppins font-bold text-darker_blue md:text-[26px] text-xl text-center leading-10'>
 					{heading}
 				</h3>
-				<div className=' bg-darker_blue lg:px-7 py-[6px] px-4 rounded-3xl'>
-					<h4 className=' font-poppins font-medium text-white lg:text-lg text-sm block'>
+				<div className=' bg-darker_blue lg:px-6 py-[6px] px-4 rounded-3xl text-nowrap'>
+					<h4 className=' font-poppins font-medium text-white text-sm'>
 						{date}
 					</h4>
 				</div>

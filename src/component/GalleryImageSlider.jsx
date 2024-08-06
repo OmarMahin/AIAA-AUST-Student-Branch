@@ -10,8 +10,11 @@ const GalleryImageSlider = ({ images, event }) => {
 	function PrevArrowIcon(props) {
 		const { className, style, onClick } = props
 		return (
-			<div className={`absolute top-[40%] lg:top-1/2 z-10 -left-4 hover:cursor-pointer `} onClick={onClick}>
-				<div className='p-2 lg:p-4 bg-darker_blue rounded-full shadow-around'>
+			<div
+				className={`absolute -translate-y-[50%] top-1/2 z-10 -left-4 hover:cursor-pointer `}
+				onClick={onClick}
+			>
+				<div className='p-1 md:p-3 bg-darker_blue rounded-full shadow-around'>
 					<HiArrowNarrowLeft className='text-white lg:w-6 lg:h-6 w-5 h-5' />
 				</div>
 			</div>
@@ -21,8 +24,11 @@ const GalleryImageSlider = ({ images, event }) => {
 	function NextArrowIcon(props) {
 		const { className, style, onClick } = props
 		return (
-			<div className={`absolute top-[40%] lg:top-1/2 z-10 -right-4 hover:cursor-pointer `} onClick={onClick}>
-				<div className='p-2 lg:p-4 bg-darker_blue rounded-full shadow-around'>
+			<div
+				className={`absolute -translate-y-[50%] top-1/2 z-10 -right-4 hover:cursor-pointer `}
+				onClick={onClick}
+			>
+				<div className='p-1 md:p-3 bg-darker_blue rounded-full shadow-around'>
 					<HiArrowNarrowRight className='text-white lg:w-6 lg:h-6 w-5 h-5' />
 				</div>
 			</div>
@@ -40,20 +46,19 @@ const GalleryImageSlider = ({ images, event }) => {
 		speed: 500,
 	}
 	return (
-        <Flex className={'flex justify-center'}>
-
-		<Slider {...settings} className = {'lg:w-[80%] w-[90%] rounded-2xl'}>
-			{images.map((image, index) => (
-				<div className='w-full lg:h-[600px] md:h-[400px] h-[250px] rounded-2xl  overflow-hidden relative lg:mt-14 mt-4'>
-					<Image
-						src={`/images/Activites/${event}/${image}`}
-						className='absolute left-[50%] -translate-x-1/2 w-full'
-						alt={"Activity Image"}
-					></Image>
-				</div>
-			))}
-		</Slider>
-        </Flex>
+		<div className='lg:w-[70%] w-[300px] sm:w-[95%] rounded-xl mx-auto lg:mt-6 mt-8'>
+			<Slider {...settings} className={`leading-[0px]`}>
+				{images.map((image, index) => (
+					<div className='w-full lg:h-[550px] h-[200px] sm:h-[400px] overflow-hidden relative'>
+						<Image
+							src={`/images/Activites/${event}/${image}`}
+							className='absolute bottom-0 left-[50%] -translate-x-1/2 w-full'
+							alt={"Activity Image"}
+						></Image>
+					</div>
+				))}
+			</Slider>
+		</div>
 	)
 }
 
