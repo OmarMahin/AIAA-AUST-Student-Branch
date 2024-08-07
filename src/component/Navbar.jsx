@@ -169,7 +169,7 @@ const Navbar = () => {
 					<Container>
 						<Flex className='lg:py-6 py-5 justify-between items-center flex'>
 							<Link to={"/"}>
-								<Image src={"/images/Logo.png"} className={"lg:w-24 md:w-20 w-16"}></Image>
+								<Image src={"/images/Logo.png"} className={"lg:w-24 md:w-20 w-16"} fetchpriority={"high"}></Image>
 							</Link>
 							<FaBars
 								className={`lg:hidden absolute top-[50%] translate-y-[-50%] right-5  hover:cursor-pointer z-20 ${

@@ -24,6 +24,7 @@ const TeamMember = ({
 						src={`/images/members/Fall'23/${image}`}
 						alt={`${name}'s image'`}
 						className={" absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"}
+						loadingType={"lazy"}
 					></Image>
 				</div>
 				<h3

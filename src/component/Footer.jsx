@@ -27,6 +27,7 @@ const Footer = () => {
 								<Image
 									src={"/images/Footer_Logo.png"}
 									className='lg:w-[70%] md:w-[40%] w-[70%]  mx-auto lg:mx-0 lg:mb-0 mb-6'
+									fetchpriority={"high"}
 								></Image>
 							</Link>
 						</div>
@@ -60,6 +61,9 @@ const Footer = () => {
 								</ListItem>
 								<ListItem className={"font-poppins font-medium text-lg text-white"}>
 									<Link to={"/blog"}>Blog</Link>
+								</ListItem>
+								<ListItem className={"font-poppins font-medium text-lg text-white"}>
+									<Link to={"/contact"}>Contact Us</Link>
 								</ListItem>
 							</List>
 						</div>
@@ -97,7 +101,11 @@ const Footer = () => {
 				</Container>
 			</div>
 			<div className=' bg-darknest_blue py-6 w-full'>
-				<Flex className={'flex items-center justify-center text-white font-poppins text-center'}><h3>&copy; 2024 AIAA AUST Student Branch. All Rights Reserved</h3></Flex>
+				<Flex
+					className={"flex items-center justify-center text-white font-poppins text-center"}
+				>
+					<h3>&copy; 2024 AIAA AUST Student Branch. All Rights Reserved</h3>
+				</Flex>
 			</div>
 		</>
 	)
