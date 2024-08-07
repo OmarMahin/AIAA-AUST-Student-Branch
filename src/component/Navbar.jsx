@@ -9,8 +9,7 @@ import Image from "./Image"
 import List from "./List"
 import ListItem from "./ListItem"
 import { IoMdCloseCircleOutline } from "react-icons/io"
-import { FaBars, FaMinus } from "react-icons/fa"
-import { FaPlus } from "react-icons/fa6"
+import { FaBars, FaMinus, FaPlus } from "react-icons/fa"
 import { useRef } from "react"
 import ScrollToTopButton from "./ScrollToTopButton"
 import DropDownMenu from "./DropDownMenu"
@@ -284,9 +283,10 @@ const Navbar = () => {
 										Contact Us
 									</Link>
 								</ListItem>
-								<div ref={accountref}>
+								<div ref={accountref} >
 									<ListItem
 										className={`flex flex-col lg:flex-row font-poppins font-medium text-[15px] hover:cursor-pointer relative`}
+										onClick={changeAccountList}
 									>
 										<Flex
 											className={`lg:border-2 lg:border-white lg:py-1 py-3 duration-300 ${
@@ -296,7 +296,7 @@ const Navbar = () => {
 													? "lg:text-light-blue lg:bg-white"
 													: "lg:text-white lg:bg-none "
 											}  flex items-center w-full justify-between relative lg:after:content-none after:absolute after:w-full after:bottom-[-13px] after:h-[1px] lg:after:bg-white after:bg-[#92A2B8]`}
-											onClick={changeAccountList}
+											
 										>
 											<Flex className={"flex items-center gap-2"}>
 												{userLoggedIn ? (
@@ -319,12 +319,15 @@ const Navbar = () => {
 													""
 												)}
 												<h3>Account</h3>
-											</Flex>
+											</Flex >
+											<Flex className={'relative after:absolute after:w-full after:h-full after:top-0 after:left-0'} onClick={changeAccountList}>
+												
 											{!accountList ? (
 												<FaPlus className=' lg:hidden' />
 											) : (
-												<FaMinus className='lg:hidden'></FaMinus>
+												<FaMinus className='lg:hidden' ></FaMinus>
 											)}
+											</Flex>
 										</Flex>
 										<List
 											className={`flex flex-col mt-[13px] lg:absolute right-0 lg:translate-y-[100%] lg:w-[180px] w-full lg:bg-[#d9e3ec] lg:rounded-md lg:shadow-xl lg:shadow-black/10 pl-4 lg:px-4 lg:border-[1px] lg:border-[#aeb1b563]
