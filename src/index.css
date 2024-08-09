@@ -14,3 +14,28 @@
         scrollbar-width: none;  /* Firefox */
   }
 }
+
+.ql-editor p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color : #1F1F1F;
+}
+
+.ql-editor h2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px !important;
+    font-weight: 600;
+    color : #112C50;
+}
+
+.ql-toolbar {
+    border: none !important;
+}
+
+.ql-toolbar .ql-picker-label {
+    border: none !important;
+}
+
+.ql-toolbar .ql-picker-label svg {
+    display: hidden !important;
+}

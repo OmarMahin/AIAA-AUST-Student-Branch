@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css"
 
 const RootLayout = () => {
 	return (
-		<div className='overflow-x-hidden'>
+		<div>
 			<Navbar></Navbar>
 			<ScrollRestoration></ScrollRestoration>
 			<ToastContainer
