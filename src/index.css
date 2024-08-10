@@ -39,3 +39,73 @@
 .ql-toolbar .ql-picker-label svg {
     display: hidden !important;
 }
+
+.animate-bangladesh {
+    animation: 1s showBangladesh ease-out;
+}
+
+
+.animate-plane{
+    opacity: 1 !important;
+    stroke-dasharray: 1152;
+    animation: 2.5s showPlane linear;
+}
+
+.animate-connecting-line {
+    opacity: 1 !important;
+    stroke-dasharray: 418;
+    animation: 1.7s showLine linear;
+}
+
+.loading-screen-animation{
+    animation: 0.8s screen-fade-out forwards;
+}
+
+@keyframes showPlane {
+    0% {
+        stroke-dashoffset: 1152;
+    }
+    90% {
+        stroke-dashoffset: 850;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+
+@keyframes showLine {
+    0% {
+        stroke-dashoffset: 418;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes showBangladesh {
+    0% {
+        top: 55%;
+        opacity: 0;
+    }
+
+    100% {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes screen-fade-out{
+    0% {
+        opacity: 1;
+        visibility: visible;
+        top: 0;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

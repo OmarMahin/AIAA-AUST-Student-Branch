@@ -32,6 +32,7 @@ import SpaceportAmeriacaCup from "./pages/SpaceportAmeriacaCup"
 import VolunteerOpportunites from "./pages/VolunteerOpportunites"
 import PageNotFound from "./pages/PageNotFound"
 import Test from "./pages/Test"
+import LoadingScreen from "./pages/LoadingScreen"
 
 function App() {
 	const router = createBrowserRouter(
@@ -74,6 +75,7 @@ function App() {
 				<Route path='myaccount' element={<MyAccount></MyAccount>}></Route>
 				<Route path='admin' element={<AdminPage></AdminPage>}></Route>
 				<Route path='test' element={<Test></Test>}></Route>
+				<Route path='loading' element={<LoadingScreen></LoadingScreen>}></Route>
 				<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 			</Route>
 		)
