@@ -6,7 +6,7 @@ const LogoPlaneOutline = ({className, getRef}) => {
 	})
 
 	return (
-		<div className={`w-fit h-14 ${className} z-20 `} ref={planeRef}>
+		<div className={`w-fit lg:h-14 h-10 ${className} z-20 `} ref={planeRef}>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='127'

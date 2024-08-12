@@ -2,7 +2,7 @@ import React from "react"
 
 const ConnectingLine = ({ className, children }) => {
 	return (
-		<div className={`w-40 h-fit ${className} z-10 `}>
+		<div className={`lg:w-40 w-32 h-fit ${className} z-10 `}>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='217'
