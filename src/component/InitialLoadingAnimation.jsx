@@ -1,10 +1,10 @@
-import React from "react"
+import React, { useCallback } from "react"
 import Flex from "./Flex"
 import LogoPlaneOutline from "./svgComponents/LogoPlaneOutline"
 import ConnectingLine from "./svgComponents/ConnectingLine"
 import Image from "./Image"
 
-const InitialLoadingAnimation = () => {
+const InitialLoadingAnimation = ({contentRef}) => {
 	const planeOutlineRef = (e) => {
 		const screen = document.querySelector("#loading-screen")
 		const plane = document.querySelector("#logo-plane-outline")
@@ -19,17 +19,22 @@ const InitialLoadingAnimation = () => {
 			plane.classList.add("animate-plane")
 		})
 
-		// plane.addEventListener("animationend", () => {
-		// 	screen.classList.add("loading-screen-animation")
-		// })
+		plane.addEventListener("animationend", () => {
+			screen.classList.add("loading-screen-animation")
+		})
 	}
 
+	const screenRef = useCallback((e) => {
+		contentRef(e)
+	})
+
 	return (
-		<Flex
+		<div
 			className={
-				"w-full h-full fixed top-0 left-0 bg-darker_blue items-center justify-center z-50"
+				"w-full h-full flex fixed top-0 left-0 bg-darker_blue items-center justify-center z-50"
 			}
 			id={"loading-screen"}
+			ref = {screenRef}
 		>
 			<Flex
 				className={
@@ -49,7 +54,7 @@ const InitialLoadingAnimation = () => {
 					/>
 				</ConnectingLine>
 			</Flex>
-		</Flex>
+		</div>
 	)
 }
 

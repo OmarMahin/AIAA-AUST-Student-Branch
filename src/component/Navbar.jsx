@@ -82,7 +82,7 @@ const Navbar = () => {
 			.then((respone) => {
 				if (respone.status == "200") {
 					const data = respone.data
-
+					console.log("Refreshed")
 					if (!data.authorized) {
 						if (userLoggedIn) {
 							window.location.reload()
