@@ -31,7 +31,7 @@ const InitialLoadingAnimation = ({contentRef}) => {
 	return (
 		<div
 			className={
-				"w-full h-full flex fixed top-0 left-0 bg-darker_blue items-center justify-center z-50"
+				"w-full h-full flex fixed top-0 left-0 bg-darker_blue items-center justify-center z-[999]"
 			}
 			id={"loading-screen"}
 			ref = {screenRef}
