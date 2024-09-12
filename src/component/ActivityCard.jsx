@@ -9,12 +9,12 @@ import { Link } from "react-router-dom"
 
 const ActivityCard = () => {
 	let [smallerDisplay, setSmallerDisplay] = useState(false)
-	const imagePath = "/images/Activites/Seminar_F23/cardBanner.png"
-	const heading = "Advancement in Aerospace Engineering: Insights and Opportunities"
-	const date = "07 July 2024"
-	const pageLink = "/activites/aasb_seminar_fall23"
+	const imagePath = "/images/Activites/Relief_And_Rescue_Bot/cardBanner.png"
+	const heading = "Rescue and Relief Bot For Flood Effected Area"
+	const date = "12 September 2024"
+	const pageLink = "/activites/rescue_and_relief_bot"
 	const word_limit = 200
-	let shortInfo = `AIAA AUST Student Branch has started its journey with General Member Recruitment Fall’23, dated from 02 June 2024 to 04 June 2024. Over three action-packed days, the campus of Ahsanullah University of Science and Technology(AUST) buzzed with energy, enthusiasm, and endless fun. From thrilling dart board games to the challenging buzz-wire contest, our booth was the ultimate hub of student engagement!
+	let shortInfo = `Initiated by AIAA AUST Student Branch Chair Anas Al Rafin, and with contributions from a dedicated team of 17 students, this project exemplifies the power of engineering applied to real-world problems. We have created a remote-controlled waterborne bot capable of navigating floodwaters to rescue individuals weighing up to 50 kg and deliver essential supplies such as food, medicine, drinkable water, and relief materials to regions otherwise unreachable by conventional methods. Designed to operate in severely impacted areas, the bot provides both immediate humanitarian aid and life-saving assistance.
 	`
 	if (shortInfo.length > word_limit) {
 		shortInfo = shortInfo.slice(0, word_limit) + ". . . "

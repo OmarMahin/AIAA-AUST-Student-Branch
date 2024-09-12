@@ -5,6 +5,8 @@ import { HiArrowSmLeft } from "react-icons/hi"
 import ImageSlider from "./ImageSlider"
 import GalleryImageSlider from "./GalleryImageSlider"
 import { Link } from "react-router-dom"
+import ActivityListContent from "./ActivityListContent"
+
 
 const ActivityContent = ({
 	images,
@@ -17,6 +19,7 @@ const ActivityContent = ({
 	event,
 	ImageHeading,
 	imageContent,
+	listContent = false
 }) => {
 	let paras = content.split(/\r?\n|\r|\n/g)
 
@@ -49,6 +52,9 @@ const ActivityContent = ({
 			<div className=' lg:mt-16 mt-10 font-poppins font-medium text-lg leading-8 text-pretty text-font-color'>
 				{paras.map((para) => (para ? <p>{para}</p> : <br></br>))}
 			</div>
+			{listContent && (
+				<ActivityListContent></ActivityListContent>
+			)}
 			{videoHeading && video ? (
 				<div>
 					<h3 className=' mt-11 font-poppins font-bold text-light-blue lg:text-[26px] text-xl mb-11'>

@@ -33,6 +33,7 @@ import VolunteerOpportunites from "./pages/VolunteerOpportunites"
 import PageNotFound from "./pages/PageNotFound"
 import Test from "./pages/Test"
 import LoadingScreen from "./pages/LoadingScreen"
+import RescueAndReliefBot from "./pages/Activites/RescueAndReliefBot"
 
 function App() {
 	const router = createBrowserRouter(
@@ -49,6 +50,10 @@ function App() {
 					<Route
 						path='aasb_seminar_fall23'
 						element={<Seminer_F23></Seminer_F23>}
+					></Route>
+					<Route
+						path='rescue_and_relief_bot'
+						element={<RescueAndReliefBot></RescueAndReliefBot>}
 					></Route>
 				</Route>
 				<Route path='design_build_fly' element={<DBF_Information></DBF_Information>}></Route>
