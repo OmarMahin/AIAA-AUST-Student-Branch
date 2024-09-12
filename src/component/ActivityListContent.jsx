@@ -13,15 +13,7 @@ const ActivityListContent = () => {
                 <ListItem className={'lg:w-[150px] w-[100px] font-poppins font-semibold text-darknest_blue text-xl justify-center'}>Department</ListItem>
             </List>
             <List className={'flex gap-5 mt-2'}>
-                <ListItem className={'lg:w-[250px] w-[200px] font-poppins font-semibold text-font-color'}>Anas Al Rafin</ListItem>
-                <ListItem className={'lg:w-[150px] w-[100px] font-poppins font-semibold text-font-color justify-center'}>ME</ListItem>
-            </List>
-            <List className={'flex gap-5'}>
-                <ListItem className={'lg:w-[250px] w-[200px] font-poppins font-semibold text-font-color'}>Shihab Tanvir Sadnan</ListItem>
-                <ListItem className={'lg:w-[150px] w-[100px] font-poppins font-semibold text-font-color justify-center'}>ME</ListItem>
-            </List>
-            <List className={'flex gap-5'}>
-                <ListItem className={'lg:w-[250px] w-[200px] font-poppins font-semibold text-font-color'}>Anas Al Rafin</ListItem>
+                <ListItem className={'lg:w-[250px] w-[200px] font-poppins font-semibold text-font-color'}>Anas Al Rafin  (Leader)</ListItem>
                 <ListItem className={'lg:w-[150px] w-[100px] font-poppins font-semibold text-font-color justify-center'}>ME</ListItem>
             </List>
             <List className={'flex gap-5'}>
@@ -37,7 +29,7 @@ const ActivityListContent = () => {
                 <ListItem className={'lg:w-[150px] w-[100px] font-poppins font-semibold text-font-color justify-center'}>EEE</ListItem>
             </List>
             <List className={'flex gap-5'}>
-                <ListItem className={'lg:w-[250px] w-[200px] font-poppins font-semibold text-font-color'}>Rifah Tasfia Kabir</ListItem>
+                <ListItem className={'lg:w-[250px] w-[200px] font-poppins font-semibold text-font-color'}>Rifah Tasfia Kabir (Co-Leader)</ListItem>
                 <ListItem className={'lg:w-[150px] w-[100px] font-poppins font-semibold text-font-color justify-center'}>EEE</ListItem>
             </List>
             <List className={'flex gap-5'}>

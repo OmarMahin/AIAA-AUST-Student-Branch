@@ -6,7 +6,7 @@ import ImageSlider from "./ImageSlider"
 import GalleryImageSlider from "./GalleryImageSlider"
 import { Link } from "react-router-dom"
 import ActivityListContent from "./ActivityListContent"
-
+import Image from "./Image"
 
 const ActivityContent = ({
 	images,
@@ -19,7 +19,7 @@ const ActivityContent = ({
 	event,
 	ImageHeading,
 	imageContent,
-	listContent = false
+	listContent = false,
 }) => {
 	let paras = content.split(/\r?\n|\r|\n/g)
 
@@ -34,7 +34,18 @@ const ActivityContent = ({
 					<HiArrowSmLeft className='h-8 w-8 p-1 bg-[#d2deeb] rounded-full ' />
 				</Link>
 			</Flex>
-			<ImageSlider images={images} event={event} className={'lg:mt8 mt-6'}></ImageSlider>
+
+			{images.length > 1 ? (
+				<ImageSlider images={images} event={event} className={"lg:mt8 mt-6"}></ImageSlider>
+			) : (
+				<div className='w-full lg:h-[450px] md:h-[300px] h-[200px] rounded-xl overflow-hidden relative lg:mt8 mt-6'>
+					<Image
+						src={`/images/Activites/${event}/${images[0]}`}
+						className='absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-full'
+						alt={"Activity Image"}
+					></Image>
+				</div>
+			)}
 			<Flex
 				className={
 					"lg:justify-between mt-11 lg:items-center flex lg:flex-row flex-col lg:gap-0 gap-5 items-center"
@@ -44,17 +55,13 @@ const ActivityContent = ({
 					{heading}
 				</h3>
 				<div className=' bg-darker_blue lg:px-6 py-[6px] px-4 rounded-3xl text-nowrap'>
-					<h4 className=' font-poppins font-medium text-white text-sm'>
-						{date}
-					</h4>
+					<h4 className=' font-poppins font-medium text-white text-sm'>{date}</h4>
 				</div>
 			</Flex>
 			<div className=' lg:mt-16 mt-10 font-poppins font-medium text-lg leading-8 text-pretty text-font-color'>
 				{paras.map((para) => (para ? <p>{para}</p> : <br></br>))}
 			</div>
-			{listContent && (
-				<ActivityListContent></ActivityListContent>
-			)}
+			{listContent && <ActivityListContent></ActivityListContent>}
 			{videoHeading && video ? (
 				<div>
 					<h3 className=' mt-11 font-poppins font-bold text-light-blue lg:text-[26px] text-xl mb-11'>
