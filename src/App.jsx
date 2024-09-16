@@ -72,7 +72,7 @@ function App() {
 					<Route path='propeller_of_an_aircraft' element={<Proppeller></Proppeller>}></Route>
 				</Route>
 				<Route path='contact' element={<ContactUs></ContactUs>}></Route>
-				<Route path='login' element={<Login></Login>}></Route>
+				{/* <Route path='login' element={<Login></Login>}></Route>
 				<Route path='forget-password' element={<ForgetPassword></ForgetPassword>}></Route>
 				<Route path='password-change/:id' element={<PasswordChange></PasswordChange>}></Route>
 				<Route path='user-otp/:id' element={<OTP_Page></OTP_Page>}></Route>
@@ -80,7 +80,7 @@ function App() {
 				<Route path='myaccount' element={<MyAccount></MyAccount>}></Route>
 				<Route path='admin' element={<AdminPage></AdminPage>}></Route>
 				<Route path='test' element={<Test></Test>}></Route>
-				<Route path='loading' element={<LoadingScreen></LoadingScreen>}></Route>
+				<Route path='loading' element={<LoadingScreen></LoadingScreen>}></Route> */}
 				<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 			</Route>
 		)

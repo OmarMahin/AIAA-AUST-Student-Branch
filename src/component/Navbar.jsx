@@ -283,7 +283,7 @@ const Navbar = () => {
 										Contact Us
 									</Link>
 								</ListItem>
-								<div ref={accountref} >
+								{/* <div ref={accountref} >
 									<ListItem
 										className={`flex flex-col lg:flex-row font-poppins font-medium text-[15px] hover:cursor-pointer relative`}
 										onClick={changeAccountList}
@@ -366,7 +366,7 @@ const Navbar = () => {
 											</ListItem>
 										</List>
 									</ListItem>
-								</div>
+								</div> */}
 							</List>
 						</Flex>
 					</Container>
