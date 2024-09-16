@@ -7,6 +7,7 @@ import GalleryImageSlider from "./GalleryImageSlider"
 import { Link } from "react-router-dom"
 import ActivityListContent from "./ActivityListContent"
 import Image from "./Image"
+import ActivityContentEmbededLink from "./ActivityContentEmbededLink"
 
 const ActivityContent = ({
 	images,
@@ -20,6 +21,7 @@ const ActivityContent = ({
 	ImageHeading,
 	imageContent,
 	listContent = false,
+	embededLink = false,
 }) => {
 	let paras = content.split(/\r?\n|\r|\n/g)
 
@@ -61,6 +63,7 @@ const ActivityContent = ({
 			<div className=' lg:mt-16 mt-10 font-poppins font-medium text-lg leading-8 text-pretty text-font-color'>
 				{paras.map((para) => (para ? <p>{para}</p> : <br></br>))}
 			</div>
+			{embededLink && <ActivityContentEmbededLink link={embededLink}></ActivityContentEmbededLink>}
 			{listContent && <ActivityListContent></ActivityListContent>}
 			{videoHeading && video ? (
 				<div>
