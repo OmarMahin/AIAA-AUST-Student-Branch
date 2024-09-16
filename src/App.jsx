@@ -34,6 +34,7 @@ import PageNotFound from "./pages/PageNotFound"
 import Test from "./pages/Test"
 import LoadingScreen from "./pages/LoadingScreen"
 import RescueAndReliefBot from "./pages/Activites/RescueAndReliefBot"
+import Credits from "./pages/Credits"
 
 function App() {
 	const router = createBrowserRouter(
@@ -72,6 +73,8 @@ function App() {
 					<Route path='propeller_of_an_aircraft' element={<Proppeller></Proppeller>}></Route>
 				</Route>
 				<Route path='contact' element={<ContactUs></ContactUs>}></Route>
+				<Route path='credits' element={<Credits></Credits>}></Route>
+
 				{/* <Route path='login' element={<Login></Login>}></Route>
 				<Route path='forget-password' element={<ForgetPassword></ForgetPassword>}></Route>
 				<Route path='password-change/:id' element={<PasswordChange></PasswordChange>}></Route>

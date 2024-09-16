@@ -31,8 +31,11 @@ const Proppeller = () => {
 						<Flex className='flex py-2 px-4 rounded-full bg-[#d2deeb] items-center gap-2'>
 							<FaBookOpen className={"text-darker_blue"} />
 							<span>6 min read</span>
-						</Flex>
-						<Flex className='flex h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
+						</Flex> 
+						
+						{/* Link and favourite options */}
+
+						{/* <Flex className='flex h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
 							<span>
 								{liked ? (
 									<FaHeart
@@ -69,7 +72,7 @@ const Proppeller = () => {
 									/>
 								)}
 							</span>
-						</Flex>
+						</Flex> */}
 						</Flex>
 					</Flex>
 					<div
@@ -400,7 +403,7 @@ const Proppeller = () => {
 				</Flex>
 				
 
-				<BlogComment></BlogComment>
+				{/* <BlogComment></BlogComment> */}
 			</Container>
 		</AnimatePage>
 	)

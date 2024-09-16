@@ -33,7 +33,10 @@ const Swashplate = () => {
 							<FaBookOpen className={"text-darker_blue"} />
 							<span>5 min read</span>
 						</Flex>
-						<Flex className='flex h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
+
+						{/* Link and favourite options */}
+
+						{/* <Flex className='flex h-8 max-w-8  px-2 gap-2 duration-500 rounded-full bg-[#d2deeb] justify-start items-center'>
 							<span>
 								{liked ? (
 									<FaHeart
@@ -70,7 +73,7 @@ const Swashplate = () => {
 									/>
 								)}
 							</span>
-						</Flex>
+						</Flex> */}
 					</Flex>
 					</Flex>
 					<div
@@ -307,7 +310,7 @@ const Swashplate = () => {
 					</Flex>
 				</Flex>
 
-				<BlogComment></BlogComment>
+				{/* <BlogComment></BlogComment> */}
 			</Container>
 		</AnimatePage>
 	)

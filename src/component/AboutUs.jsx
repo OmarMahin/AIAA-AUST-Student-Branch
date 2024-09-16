@@ -7,7 +7,7 @@ const AboutUs = () => {
 	return (
 		<Container>
 			<Title>AIAA AUST Student Branch</Title>
-			<p className=' w-full text-font-color font-poppins font-medium lg:text-[20px] text-[18px] text-pretty leading-10'>
+			<p className=' w-full text-font-color font-poppins font-medium lg:text-[19px] text-[17px] text-pretty leading-9'>
 				<span className=' font-bold'>AIAA AUST Student Branch</span>, the first student branch
 				of the American Institute of Aeronautics and Astronautics(AIAA) in Bangladesh. At the
 				AIAA AUST Student Branch, we are dedicated to pushing the boundaries of aerospace
@@ -15,8 +15,8 @@ const AboutUs = () => {
 				<span className=' font-bold'>AIAA.</span>
 			</p>
 			<p
-				className=' mt-5 w-full text-font-color font-poppins font-medium lg:text-[20px] text-[18px] text-pretty
-         leading-10'
+				className=' mt-5 w-full text-font-color font-poppins font-medium lg:text-[19px] text-[17px] text-pretty
+         leading-9'
 			>
 				Our vision is to reach new heights in the Aerospace and Aviation field through{" "}
 				<span className=' font-bold'>AIAA</span> by giving cutting-edge aerospace insights,

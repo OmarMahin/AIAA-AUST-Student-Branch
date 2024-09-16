@@ -37,7 +37,7 @@ const ActivityCard = () => {
 				<Link to={pageLink}>
 					<div className='overflow-hidden bg-darker_blue rounded-xl px-0 mt-3'>
 						<Flex className={" gap-4 justify-between flex flex-col"}>
-							<div className='relative overflow-hidden lg:h-[400px] h-[300px]'>
+							<div className='relative overflow-hidden lg:h-[400px] sm:h-[600px] h-[300px]'>
 								<Image
 									src={imagePath}
 									className='absolute bottom-0 left-0 translate-y-[0%]'

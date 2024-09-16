@@ -104,7 +104,12 @@ const Footer = () => {
 				<Flex
 					className={"flex items-center justify-center text-white font-poppins text-center"}
 				>
-					<h3>&copy; 2024 AIAA AUST Student Branch. All Rights Reserved</h3>
+					<h3>
+						&copy; 2024 AIAA AUST Student Branch. All Rights Reserved.&nbsp;
+						<span >
+							<Link className="border-b-[1px] border-white" to={"/credits"}>Credits</Link>
+						</span>
+					</h3>
 				</Flex>
 			</div>
 		</>
