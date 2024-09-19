@@ -24,7 +24,7 @@ We extend our gratitude to Prof. Dr. A N Mustafizul Karim (HoD, MPE), Prof. Dr. 
 					listContent={true}
 					ImageHeading={"Moments of the events"}
 					imageContent={["image1.png", "image2.png", "image3.png", "image4.png", "image5.png", "image6.png", "image7.png"]}
-					embededLink={"https://aust.edu/news/2476"}
+					embededLink={["https://aust.edu/news/2476", "https://www.facebook.com/share/r/JyLvuFJQ2KxjXoUv/"]}
 				></ActivityContent>
 			</Container>
 		</AnimatePage>
