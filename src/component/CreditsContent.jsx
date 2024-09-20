@@ -13,13 +13,13 @@ const CreditsContent = () => {
 					<TeamMember
 						name={"Fabbiha Tahsin Prova"}
 						image={"Fabbiha Tahsin Prova.png"}
-						position={"Team Leader"}
+						
 						deparment={"CSE"}
 					></TeamMember>
 					<TeamMember
 						name={"Md. Omar Karim"}
 						image={"Md Omar Karim.png"}
-						position={"Web Development & Publicity Executive"}
+						
 						deparment={"ME"}
 					></TeamMember>
 				</Flex>
